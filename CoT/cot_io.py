@@ -14,9 +14,9 @@ if __name__ == '__main__':
                         default=256, help="the max length of LLMs output.")
     parser.add_argument("--temperature", type=int,
                         default=0, help="the temperature")
-    parser.add_argument("--LLM_type", type=int,
+    parser.add_argument("--LLM_type", type=str,
                         default="gpt-3.5-turbo", help="base LLM model.")
-    parser.add_argument("--opeani_api_keys", type=int,
+    parser.add_argument("--opeani_api_keys", type=str,
                         default="", help="if the LLM_type is gpt-3.5-turbo or gpt-4, you need add your own openai api keys.")
     args = parser.parse_args()
 

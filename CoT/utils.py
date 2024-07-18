@@ -3,17 +3,18 @@ import time
 import json
 
 def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine="gpt-3.5-turbo"):
-    if "llama" not in engine.lower():
-        openai.api_key = "EMPTY"
-        openai.api_base = "http://localhost:8000/v1"  # your local llama server port
-        engine = openai.Model.list()["data"][0]["id"]
-    else:
-        openai.api_key = opeani_api_keys
-
+    #if "llama" not in engine.lower():
+    #    openai.api_key = "EMPTY"
+    #    openai.api_base = "http://localhost:8000/v1"  # your local llama server port
+    #    engine = openai.Model.list()["data"][0]["id"]
+    #else:
+    #    openai.api_key = opeani_api_keys
+    f = 0
+    openai.api_key = opeani_api_keys
     messages = [{"role":"system","content":"You are an AI assistant that helps people find information."}]
     message_prompt = {"role":"user","content":prompt}
     messages.append(message_prompt)
-    print("start openai")
+    #print("start openai")
     while(f == 0):
         try:
             response = openai.ChatCompletion.create(
@@ -28,7 +29,7 @@ def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine="gpt-3.5-tu
         except:
             print("openai error, retry")
             time.sleep(2)
-    print("end openai")
+    #print("end openai")
     return result
 
 def prepare_dataset(dataset_name):

@@ -5,6 +5,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", type=str,
                         default="cwq", help="choose the dataset.")
+    parser.add_argument("--method", type=str,
+                        default="CoT", help="choose the method.")
     parser.add_argument("--output_file", type=str,
                         default="ToG_cwq.json", help="the output file name.")
     parser.add_argument("--constraints_refuse", type=bool,
@@ -16,8 +18,10 @@ if __name__ == '__main__':
     num_right = 0
     num_error = 0
     for data in output_datas:
+        print(data) # check bug by YJ
         answers = align(args.dataset, question_string, data, ground_truth_datas)
-        results = data['results']
+        #results = data['results'] # used in ToG results by YJ
+        results = data['cot_result'] # used in CoT results by YJ
         if check_string(results):
             response = clean_results(results)
             if response=="NULL":
@@ -39,5 +43,5 @@ if __name__ == '__main__':
     print("Exact Match: {}".format(float(num_right/len(output_datas))))
     print("right: {}, error: {}".format(num_right, num_error))
 
-    save_result2json(args.dataset, num_right, num_error, len(output_datas))
+    save_result2json(args.dataset, num_right, num_error, len(output_datas), args.method) # increase args.method by YJ
     

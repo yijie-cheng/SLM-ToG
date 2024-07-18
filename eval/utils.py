@@ -56,10 +56,12 @@ def align(dataset_name, question_string, data, ground_truth_datas):
         else:
             answers = origin_data["answer"]
         for answer in answers:
-            alias = answer['aliases']
-            ans = answer['answer']
-            alias.append(ans)
-            answer_list.extend(alias)
+            print(type(answer)) # check bug by YJ
+            #alias = answer['aliases']
+            #ans = answer['answer']
+            #alias.append(ans)
+            #answer_list.extend(alias)
+            answer_list.extend(answer) # debug by YJ (not sure)
 
     elif dataset_name == 'webqsp':
         answers = origin_data["Parses"]
@@ -134,7 +136,7 @@ def save_result2json(dataset_name, num_right, num_error, total_nums, method):
         'Right Samples': num_right,
         'Error Sampels': num_error
     }
-    with open('ToG_{}_results.json'.format(dataset_name), 'w', encoding='utf-8') as f:
+    with open('{}_{}_results.json'.format(method, dataset_name), 'w', encoding='utf-8') as f: # edit file name by YJ
         json.dump(results_data, f, ensure_ascii=False, indent=4)
                      
 def extract_content(s):

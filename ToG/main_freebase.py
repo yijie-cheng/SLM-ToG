@@ -9,7 +9,7 @@ from client import *
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", type=str,
-                        default="webqsp", help="choose the dataset.")
+                        default="cwq", help="choose the dataset.")
     parser.add_argument("--max_length", type=int,
                         default=256, help="the max length of LLMs output.")
     parser.add_argument("--temperature_exploration", type=float,
