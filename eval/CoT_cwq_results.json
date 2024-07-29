@@ -1,7 +1,7 @@
 {
     "dataset": "cwq",
     "method": "CoT",
-    "Exact Match": 0.9985839705465873,
-    "Right Samples": 3526,
-    "Error Sampels": 5
+    "Exact Match": 0.2670631549136222,
+    "Right Samples": 943,
+    "Error Sampels": 2588
 }

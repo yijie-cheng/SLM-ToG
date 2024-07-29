@@ -8,7 +8,7 @@ if __name__ == '__main__':
     parser.add_argument("--method", type=str,
                         default="CoT", help="choose the method.")
     parser.add_argument("--output_file", type=str,
-                        default="ToG_cwq.json", help="the output file name.")
+                        default="CoT_cwq.json", help="the output file name.")
     parser.add_argument("--constraints_refuse", type=bool,
                         default=True, help="LLM may have refuse erorr, enable this option to skip current sample.")
     args = parser.parse_args()
@@ -18,7 +18,6 @@ if __name__ == '__main__':
     num_right = 0
     num_error = 0
     for data in output_datas:
-        print(data) # check bug by YJ
         answers = align(args.dataset, question_string, data, ground_truth_datas)
         #results = data['results'] # used in ToG results by YJ
         results = data['cot_result'] # used in CoT results by YJ
