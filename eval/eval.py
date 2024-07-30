@@ -19,24 +19,32 @@ if __name__ == '__main__':
     num_error = 0
     for data in output_datas:
         answers = align(args.dataset, question_string, data, ground_truth_datas)
-        #results = data['results'] # used in ToG results by YJ
-        results = data['cot_result'] # used in CoT results by YJ
+        if args.method == "CoT":
+            results = data['cot_result']
+        elif args.method == "ToG_test":
+            results = data['results'] # debug by YJ
         if check_string(results):
             response = clean_results(results)
+            # print("response: " + str(response))
             if response=="NULL":
                 response = results
             else:
                 if exact_match(response, answers):
+                    # print("Correct!")
                     num_right+=1
                 else:
+                    # print("Wrong!")
                     num_error+=1
         else:
             response = results
+            # print("response: " + str(response))
             if args.constraints_refuse and check_string(response):
                 continue
             if exact_match(response, answers):
+                # print("Correct!")
                 num_right+=1
             else:
+                # print("Wrong!")
                 num_error+=1
 
     print("Exact Match: {}".format(float(num_right/len(output_datas))))
