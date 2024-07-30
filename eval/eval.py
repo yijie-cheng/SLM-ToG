@@ -21,7 +21,7 @@ if __name__ == '__main__':
         answers = align(args.dataset, question_string, data, ground_truth_datas)
         if args.method == "CoT":
             results = data['cot_result']
-        elif args.method == "ToG_test":
+        elif args.method == "ToG":
             results = data['results'] # debug by YJ
         if check_string(results):
             response = clean_results(results)
