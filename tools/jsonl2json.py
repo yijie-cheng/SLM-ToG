@@ -9,3 +9,4 @@ def jsonl_to_json(jsonl_file, json_file):
 
 # 用法示例
 jsonl_to_json('../CoT/cot_cwq.jsonl', '../CoT/CoT_cwq.json')
+jsonl_to_json('../ToG/ToG_cwq.jsonl', '../ToG/ToG_cwq.json')
