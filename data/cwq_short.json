@@ -1,0 +1,358 @@
+[
+    {
+        "ID": "WebQTest-832_c334509bb5e02cacae1ba2e80c176499",
+        "compositionality_type": "composition",
+        "created": "2018-02-13T04:12:57",
+        "machine_question": "when is the last time the the team has a team moscot named Lou Seal won the world series",
+        "question": "Lou Seal is the mascot for the team that last won the World Series when?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:sports.sports_team.team_mascot ns:m.03_dwn . \n?c ns:sports.sports_team.championships ?x .\n?x ns:time.event.start_date ?sk0 .\n}\nORDER BY DESC(xsd:datetime(?sk0))\nLIMIT 1\n",
+        "webqsp_ID": "WebQTest-832",
+        "webqsp_question": "when is the last time the giants won the world series",
+        "topic_entity": {
+            "m.03_dwn": "Lou Seal"
+        },
+        "answer": "2014 World Series",
+        "qid_topic_entity": {}
+    },
+    {
+        "ID": "WebQTrn-1259_1997cb4922db71983be26e6a509950f4",
+        "compositionality_type": "composition",
+        "created": "2018-02-12T21:58:58",
+        "machine_question": "where did the artist had a concert tour named Country Nation World Tour graduate from college",
+        "question": "Where did the \"Country Nation World Tour\" concert artist go to college?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:music.artist.concert_tours ns:m.010qhfmm . \n?c ns:people.person.education ?y .\n?y ns:education.education.institution ?x .\n?x ns:common.topic.notable_types ns:m.01y2hnl .\n?y ns:education.education.degree ns:m.019v9k .\n}\n",
+        "webqsp_ID": "WebQTrn-1259",
+        "webqsp_question": "where did brad paisley graduate from college",
+        "topic_entity": {
+            "m.010qhfmm": "Country Nation World Tour",
+            "m.019v9k": "Bachelor's degree"
+        },
+        "answer": "Belmont University",
+        "qid_topic_entity": {
+            "Q17004176": "Country Nation World Tour",
+            "Q163727": "Bachelor's degree"
+        }
+    },
+    {
+        "ID": "WebQTest-1384_744a496b907e407b16bc5d7c197dc3f0",
+        "compositionality_type": "composition",
+        "created": "2018-02-13T05:14:50",
+        "machine_question": "what is the predominant religion in the religious leader is Ovadia Yosef",
+        "question": "What is the predominant religion where the leader is Ovadia Yosef?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:religion.religious_leadership_jurisdiction.leader ?k .\n?k ns:religion.religious_organization_leadership.leader ns:m.02qmnw . \n?c ns:location.statistical_region.religions ?y .\n?y ns:location.religion_percentage.religion ?x .\n?y ns:location.religion_percentage.percentage ?sk0 .\n}\nORDER BY DESC(xsd:float(?sk0))\nLIMIT 1\n",
+        "webqsp_ID": "WebQTest-1384",
+        "webqsp_question": "what is the predominant religion in israel",
+        "topic_entity": {
+            "m.02qmnw": "Ovadia Yosef"
+        },
+        "answer": "Judaism",
+        "qid_topic_entity": {
+            "Q467172": "Ovadia Yosef"
+        }
+    },
+    {
+        "ID": "WebQTrn-241_dfb6c97ac9bf2f0ac07f27dd80f9edc2",
+        "compositionality_type": "conjunction",
+        "created": "2018-02-12T20:06:06",
+        "machine_question": "what countries share borders with france and is the location contains and airport that server Nijmegen",
+        "question": "What country bordering France contains an airport that serves Nijmegen?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ns:m.0f8l9c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\nns:m.0f8l9c ns:location.location.adjoin_s ?y .\n?y ns:location.adjoining_relationship.adjoins ?x .\n?x ns:common.topic.notable_types ns:m.01mp .\n?x ns:location.location.contains ?c .\n?c ns:aviation.airport.serves ns:m.05g2b . \n}",
+        "webqsp_ID": "WebQTrn-241",
+        "webqsp_question": "what countries share borders with france",
+        "topic_entity": {
+            "m.0f8l9c": "France",
+            "m.05g2b": "Nijmegen"
+        },
+        "answer": "Germany",
+        "qid_topic_entity": {
+            "Q142": "France",
+            "Q47887": "Nijmegen"
+        }
+    },
+    {
+        "ID": "WebQTrn-1077_f4a9e5f1e0dcfb82cbadf4771eda7bb5",
+        "compositionality_type": "composition",
+        "created": "2018-02-12T21:40:31",
+        "machine_question": "what religions are practiced in the country that has the national anthem Afghan National Anthem",
+        "question": "The national anthem Afghan National Anthem is from the country which practices what religions?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:location.country.national_anthem ?k .\n?k ns:government.national_anthem_of_a_country.anthem ns:m.02r0hl7 . \n?c ns:location.statistical_region.religions ?y .\n?y ns:location.religion_percentage.religion ?x .\n}\n",
+        "webqsp_ID": "WebQTrn-1077",
+        "webqsp_question": "what religions are practiced in afghanistan",
+        "topic_entity": {
+            "m.02r0hl7": "Afghan National Anthem"
+        },
+        "answer": "Sunni Islam",
+        "qid_topic_entity": {
+            "Q179968": "Afghan National Anthem"
+        }
+    },
+    {
+        "ID": "WebQTest-576_01e2da60a2779c4ae4b5d1547499a4f8",
+        "compositionality_type": "conjunction",
+        "created": "2018-02-13T03:48:03",
+        "machine_question": "what are the 7 countries that are part of central america and is the country that contains Alta Verapaz Department",
+        "question": "Which nation has the Alta Verapaz Department and is in Central America?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ns:m.01tzh)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\nns:m.01tzh ns:location.location.contains ?x .\n?x ns:common.topic.notable_types ns:m.01mp .\n?x ns:location.country.administrative_divisions ns:m.0146np . \n}",
+        "webqsp_ID": "WebQTest-576",
+        "webqsp_question": "what are the 7 countries that are part of central america",
+        "topic_entity": {
+            "m.01tzh": "Central America",
+            "m.0146np": "Alta Verapaz Department"
+        },
+        "answer": "Guatemala",
+        "qid_topic_entity": {
+            "Q27611": "Central America",
+            "Q504637": "Alta Verapaz Department"
+        }
+    },
+    {
+        "ID": "WebQTest-590_6aad73acb74f304bc9acae44314164be",
+        "compositionality_type": "composition",
+        "created": "2018-02-13T03:49:14",
+        "machine_question": "who is in charge of the country that has the national anthem Libya, Libya, Libya now",
+        "question": "Which man is the leader of the country that uses Libya, Libya, Libya as its national anthem?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:location.country.national_anthem ?k .\n?k ns:government.national_anthem_of_a_country.anthem ns:m.0gg95zf . \n?c ns:government.governmental_jurisdiction.governing_officials ?y .\n?y ns:government.government_position_held.office_holder ?x .\n?y ns:government.government_position_held.office_position_or_title ns:m.0j5wjnc .\nFILTER(NOT EXISTS {?y ns:government.government_position_held.from ?sk0} || \nEXISTS {?y ns:government.government_position_held.from ?sk1 . \nFILTER(xsd:datetime(?sk1) <= \"2015-08-10\"^^xsd:dateTime) })\nFILTER(NOT EXISTS {?y ns:government.government_position_held.to ?sk2} || \nEXISTS {?y ns:government.government_position_held.to ?sk3 . \nFILTER(xsd:datetime(?sk3) >= \"2015-08-10\"^^xsd:dateTime) })\n}\n",
+        "webqsp_ID": "WebQTest-590",
+        "webqsp_question": "who is in charge of libya now",
+        "topic_entity": {
+            "m.0gg95zf": "Libya, Libya, Libya",
+            "m.0j5wjnc": "Prime Minister of Libya"
+        },
+        "answer": "Abdullah al-Thani",
+        "qid_topic_entity": {
+            "Q45861": "Libya, Libya, Libya"
+        }
+    },
+    {
+        "ID": "WebQTrn-3251_d8cddfe5e947e414b7735780ef1efff8",
+        "compositionality_type": "conjunction",
+        "created": "2018-02-13T01:31:49",
+        "machine_question": "what college is in greeley colorado and is the education institution has a sports team named Northern Colorado Bears football",
+        "question": "What educational institution has a football sports team named Northern Colorado Bears is in Greeley, Colorado?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ns:m.0rczx)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\nns:m.0rczx ns:location.location.contains ?x .\n?x ns:common.topic.notable_types ns:m.01y2hnl .\n?x ns:education.educational_institution.sports_teams ns:m.0lqj7vt . \n}",
+        "webqsp_ID": "WebQTrn-3251",
+        "webqsp_question": "what college is in greeley colorado",
+        "topic_entity": {
+            "m.0rczx": "Greeley",
+            "m.0lqj7vt": "Northern Colorado Bears football"
+        },
+        "answer": "University of Northern Colorado",
+        "qid_topic_entity": {
+            "Q94274": "Greeley",
+            "Q7058248": "Northern Colorado Bears football"
+        }
+    },
+    {
+        "ID": "WebQTrn-2069_0fa727f3b282196eb1097410b4be6818",
+        "compositionality_type": "composition",
+        "created": "2018-02-12T23:22:00",
+        "machine_question": "what language the location that appointed Michelle Bachelet to govermental position speak",
+        "question": "What language is spoken in the location that appointed Michelle Bachelet to a governmental position speak?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:government.governmental_jurisdiction.governing_officials ?k .\n?k ns:government.government_position_held.appointed_by ns:m.03wws_ . \n?c ns:location.country.languages_spoken ?x .\n}\n",
+        "webqsp_ID": "WebQTrn-2069",
+        "webqsp_question": "what language chile speak",
+        "topic_entity": {
+            "m.03wws_": "Michelle Bachelet"
+        },
+        "answer": "Spanish Language",
+        "qid_topic_entity": {
+            "Q320": "Michelle Bachelet"
+        }
+    },
+    {
+        "ID": "WebQTrn-1938_7322a2a4d46bf36b95bfab4418c9a32b",
+        "compositionality_type": "composition",
+        "created": "2018-02-12T23:08:49",
+        "machine_question": "what type of government does the country that contains Northern District",
+        "question": "What type of government is used in the country with Northern District?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:location.country.administrative_divisions ns:m.01vz6b . \n?c ns:location.country.form_of_government ?x .\n}\n",
+        "webqsp_ID": "WebQTrn-1938",
+        "webqsp_question": "what type of government does israel",
+        "topic_entity": {
+            "m.01vz6b": "Northern District"
+        },
+        "answer": "Parliamentary system",
+        "qid_topic_entity": {
+            "Q189942": "Northern District"
+        }
+    },
+    {
+        "ID": "WebQTrn-60_68f0d0ad309d64a4af858a5ef4fb5713",
+        "compositionality_type": "conjunction",
+        "created": "2018-02-12T19:43:48",
+        "machine_question": "what countries do people speak portuguese and is the chile laber percent was once 1.8",
+        "question": "In which countries do the people speak Portuguese, where the child labor percentage was once 1.8?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ns:m.05zjd)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\nns:m.05zjd ns:language.human_language.countries_spoken_in ?x .\n?x ns:location.statistical_region.child_labor_percent ?c .\n?c ns:measurement_unit.dated_percentage.rate \"1.8\" . \n}",
+        "webqsp_ID": "WebQTrn-60",
+        "webqsp_question": "what countries do people speak portuguese",
+        "topic_entity": {
+            "m.05zjd": "Portuguese Language"
+        },
+        "answer": "Mozambique",
+        "qid_topic_entity": {
+            "Q5146": "Portuguese Language"
+        }
+    },
+    {
+        "ID": "WebQTest-100_bf66fd89b6e9fc5fcb96c8b3f7a0e616",
+        "compositionality_type": "composition",
+        "created": "2018-02-13T02:46:16",
+        "machine_question": "what language is spoken in the country that contains Nord-Ouest Department today",
+        "question": "The people from the country that contains Nord-Ouest Department speak what languages today?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:location.country.administrative_divisions ns:m.02g__4 . \n?c ns:location.country.languages_spoken ?x .\n}\n",
+        "webqsp_ID": "WebQTest-100",
+        "webqsp_question": "what language is spoken in haiti today",
+        "topic_entity": {
+            "m.02g__4": "Nord-Ouest Department"
+        },
+        "answer": "French",
+        "qid_topic_entity": {
+            "Q608361": "Nord-Ouest Department"
+        }
+    },
+    {
+        "ID": "WebQTrn-962_032f61bfcfed69da8b215bb8f058c24e",
+        "compositionality_type": "composition",
+        "created": "2018-02-12T21:28:01",
+        "machine_question": "who played the film has a charcter named Jenny's Father as a kid",
+        "question": "What actor played the a kid in the movie with a character named Jenny's Father?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:film.film.starring ?k .\n?k ns:film.performance.character ns:m.0y54dn_ . \n?c ns:film.film.starring ?y .\n?y ns:film.performance.actor ?x .\n?y ns:film.performance.character ns:m.0264f7h .\n?y ns:film.performance.character_note ?sk0 .\nFILTER (str(?sk0) = \"Young Forrest\")\n}\n",
+        "webqsp_ID": "WebQTrn-962",
+        "webqsp_question": "who played forrest gump as a kid",
+        "topic_entity": {
+            "m.0y54dn_": "Jenny's Father",
+            "m.0264f7h": "Forrest Gump"
+        },
+        "answer": "Michael Connor Humphreys",
+        "qid_topic_entity": {
+            "Q3077690": "Forrest Gump"
+        }
+    },
+    {
+        "ID": "WebQTrn-849_586aae7703d62aa44eb79759e1563309",
+        "compositionality_type": "conjunction",
+        "created": "2018-02-12T21:13:45",
+        "machine_question": "which countries do germany border and is the country that contains Lejre Municipality",
+        "question": "What European Union country sharing borders with Germany contains the Lejre Municipality?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ns:m.0345h)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\nns:m.0345h ns:location.location.adjoin_s ?y .\n?y ns:location.adjoining_relationship.adjoins ?x .\n?x ns:common.topic.notable_types ns:m.01mp .\n?x ns:location.country.administrative_divisions ns:m.010v_j8w . \n}",
+        "webqsp_ID": "WebQTrn-849",
+        "webqsp_question": "which countries do germany border",
+        "topic_entity": {
+            "m.0345h": "Germany",
+            "m.010v_j8w": "Lejre Municipality"
+        },
+        "answer": "Denmark",
+        "qid_topic_entity": {
+            "Q183": "Germany",
+            "Q505369": "Lejre Municipality"
+        }
+    },
+    {
+        "ID": "WebQTrn-710_c264a6d11d7956741926d417b94327e2",
+        "compositionality_type": "composition",
+        "created": "2018-02-12T20:57:09",
+        "machine_question": "when was the last time the the organiztion leadership has a person named Larry Baer won a world series",
+        "question": "When was the last time a team led by Larr Baer win the World Series?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:organization.organization.leadership ?k .\n?k ns:organization.leadership.person ns:m.0hhv_6h . \n?c ns:sports.sports_team.championships ?x .\n?x ns:time.event.start_date ?sk0 .\n}\nORDER BY DESC(xsd:datetime(?sk0))\nLIMIT 1\n",
+        "webqsp_ID": "WebQTrn-710",
+        "webqsp_question": "when was the last time the san francisco giants won a world series",
+        "topic_entity": {
+            "m.0hhv_6h": "Larry Baer"
+        },
+        "answer": "2014 World Series",
+        "qid_topic_entity": {
+            "Q6489900": "Larry Baer"
+        }
+    },
+    {
+        "ID": "WebQTrn-2209_c1374f388d9cc7a78365860c91218362",
+        "compositionality_type": "composition",
+        "created": "2018-02-12T23:35:04",
+        "machine_question": "when did the the basket ball team head coach is Brad Stevens win championship",
+        "question": "What year did the basketball team coached by Brad Stevens win the championship?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:basketball.basketball_team.head_coach ns:m.02qwvmq . \n?c ns:sports.sports_team.championships ?x .\n}\n",
+        "webqsp_ID": "WebQTrn-2209",
+        "webqsp_question": "when did the celtics win championship",
+        "topic_entity": {
+            "m.02qwvmq": "Brad Stevens"
+        },
+        "answer": "1964 NBA Finals",
+        "qid_topic_entity": {
+            "Q4954288": "Brad Stevens"
+        }
+    },
+    {
+        "ID": "WebQTest-1251_cbf2f20f6caf754bc49d672ca7b150b7",
+        "compositionality_type": "conjunction",
+        "created": "2018-02-13T04:57:06",
+        "machine_question": "which countries speak germanic languages and the currency used in the country is East German mark",
+        "question": "What country speaks Germanic languages and uses the East German mark as currency?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ns:m.04306rv)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\nns:m.04306rv ns:language.human_language.countries_spoken_in ?x .\n?x ns:location.country.official_language ns:m.04306rv .\n?x ns:location.country.currency_used ns:m.01tct6 . \n}",
+        "webqsp_ID": "WebQTest-1251",
+        "webqsp_question": "which countries speak germanic languages",
+        "topic_entity": {
+            "m.04306rv": "German Language",
+            "m.01tct6": "East German mark"
+        },
+        "answer": "East Germany",
+        "qid_topic_entity": {
+            "Q188": "German Language",
+            "Q157011": "East German mark"
+        }
+    },
+    {
+        "ID": "WebQTrn-3100_143c89d70679c3e5257c93d8e2bc4c67",
+        "compositionality_type": "conjunction",
+        "created": "2018-02-13T01:15:20",
+        "machine_question": "what is the dominican republic part of and the location time zone is UTCâ05:00",
+        "question": "Which globe region with the UTCâ05:00 time zone does the Dominican Republic call home?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ns:m.027rn)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\nns:m.027rn ns:location.location.containedby ?x .\n?x ns:location.location.time_zones ns:m.02_37z . \n}",
+        "webqsp_ID": "WebQTrn-3100",
+        "webqsp_question": "what is the dominican republic part of",
+        "topic_entity": {
+            "m.027rn": "Dominican Republic",
+            "m.02_37z": "UTC−05:00"
+        },
+        "answer": "Greater Antilles",
+        "qid_topic_entity": {
+            "Q786": "Dominican Republic",
+            "Q5390": "UTC−05:00"
+        }
+    },
+    {
+        "ID": "WebQTrn-662_7a992044f94b39edfc37ac5dcfcb3c26",
+        "compositionality_type": "composition",
+        "created": "2018-02-12T20:53:12",
+        "machine_question": "what was the team won the 2008 FIFA Club World Cup Final championship first name",
+        "question": "What was the name of the team that won the 2008 FIFA Club World Cup Final championship?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ?c)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\n?c ns:sports.sports_team.championships ns:m.053nq3y . \n?c ns:sports.sports_team.previously_known_as ?x .\n}\n",
+        "webqsp_ID": "WebQTrn-662",
+        "webqsp_question": "what was manchester united first name",
+        "topic_entity": {
+            "m.053nq3y": "2008 FIFA Club World Cup Final"
+        },
+        "answer": "Newton Heath L&YR F.C.",
+        "qid_topic_entity": {
+            "Q1152731": "2008 FIFA Club World Cup Final"
+        }
+    },
+    {
+        "ID": "WebQTest-743_0a8cdba29cf260283b7c890b3609c0b9",
+        "compositionality_type": "superlative",
+        "created": "2018-02-13T04:04:56",
+        "machine_question": "what was the name of jfk 's brothers and held his govermental position from latest",
+        "question": "Which of JFK's brother held the latest governmental position?",
+        "sparql": "PREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT DISTINCT ?x\nWHERE {\nFILTER (?x != ns:m.0d3k14)\nFILTER (!isLiteral(?x) OR lang(?x) = '' OR langMatches(lang(?x), 'en'))\nns:m.0d3k14 ns:people.person.sibling_s ?y .\n?y ns:people.sibling_relationship.sibling ?x .\n?x ns:people.person.gender ns:m.05zppz .\n?x ns:government.politician.government_positions_held ?c .\n?c ns:government.government_position_held.from ?num .\n}\nORDER BY DESC(?num) LIMIT 1",
+        "webqsp_ID": "WebQTest-743",
+        "webqsp_question": "what was the name of jfk 's brothers",
+        "topic_entity": {
+            "m.0d3k14": "John F. Kennedy",
+            "m.05zppz": "Male"
+        },
+        "answer": "Robert F. Kennedy",
+        "qid_topic_entity": {
+            "Q9696": "John F. Kennedy",
+            "Q44148": "Male"
+        }
+    }
+]
