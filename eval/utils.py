@@ -50,7 +50,7 @@ def prepare_dataset_for_eval(dataset_name, output_file):
 def align(dataset_name, question_string, data, ground_truth_datas):
     answer_list= []
     origin_data = [j for j in ground_truth_datas if j[question_string] == data[question_string]][0]
-    if dataset_name == 'cwq':
+    if dataset_name == 'cwq' or 'cwq_short' or 'cwq_2284':
         if 'answers' in origin_data:
             answers = origin_data["answers"]
         else:
