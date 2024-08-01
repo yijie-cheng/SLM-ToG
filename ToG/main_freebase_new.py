@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import argparse
 from utils import *
-from freebase_func import *
+from freebase_func_new import *
 import random
 from client import *
 
