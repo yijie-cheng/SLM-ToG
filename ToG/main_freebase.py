@@ -35,28 +35,20 @@ if __name__ == '__main__':
     datas, question_string = prepare_dataset(args.dataset)
     print("Start Running ToG on %s dataset." % args.dataset)
     for data in tqdm(datas):
-        # print(data["question"])
-        # print(data["answer"])
         question = data[question_string]
         topic_entity = data['topic_entity']
         cluster_chain_of_entities = []
         if len(topic_entity) == 0:
-            # print("no topic entity!")
             results = generate_without_explored_paths(question, args)
             save_2_jsonl(question, results, [], file_name=args.dataset)
             continue
         pre_relations = []
         flag_printed = False
         for depth in range(1, args.depth+1):
-            # print("depth: " + str(depth))
-            # print("topic_entity:")
-            # print(topic_entity)
-            # print("len(topic_entity): " + str(len(topic_entity)))
-            pre_heads= [-1] * len(topic_entity)
             current_entity_relations_list = []
             i=0
+            pre_heads= [-1] * len(topic_entity)
             for entity in topic_entity:
-                # print(" i: " + str(i))
                 if entity!="[FINISH_ID]":
                     retrieve_relations_with_scores = relation_search_prune(entity, topic_entity[entity], pre_relations, pre_heads[i], question, args)  # best entity triplet, entitiy_id
                     current_entity_relations_list.extend(retrieve_relations_with_scores)
@@ -86,9 +78,6 @@ if __name__ == '__main__':
             
             if len(total_candidates) ==0:
                 half_stop(question, cluster_chain_of_entities, depth, args)
-                results = generate_without_explored_paths(question, args)
-                # print("Original results: " + str(results))
-                save_2_jsonl(question, results, [], file_name=args.dataset)
                 flag_printed = True
                 break
                 
@@ -97,8 +86,7 @@ if __name__ == '__main__':
             if flag:
                 stop, results = reasoning(question, cluster_chain_of_entities, args)
                 if stop:
-                    # print("ToG stoped at depth %d." % depth)
-                    # print("ToG results: " + str(results))
+                    print("ToG stoped at depth %d." % depth)
                     save_2_jsonl(question, results, cluster_chain_of_entities, file_name=args.dataset)
                     flag_printed = True
                     break
@@ -107,21 +95,14 @@ if __name__ == '__main__':
                     flag_finish, entities_id = if_finish_list(entities_id)
                     if flag_finish:
                         half_stop(question, cluster_chain_of_entities, depth, args)
-                        results = generate_without_explored_paths(question, args)
-                        # print("Original results: " + str(results))
-                        save_2_jsonl(question, results, [], file_name=args.dataset)
                         flag_printed = True
                     else:
                         topic_entity = {entity: id2entity_name_or_type(entity) for entity in entities_id}
                         continue
             else:
                 half_stop(question, cluster_chain_of_entities, depth, args)
-                results = generate_without_explored_paths(question, args)
-                # print("Original results: " + str(results))
-                save_2_jsonl(question, results, [], file_name=args.dataset)
                 flag_printed = True
         
         if not flag_printed:
             results = generate_without_explored_paths(question, args)
-            # print("Original results: " + str(results))
             save_2_jsonl(question, results, [], file_name=args.dataset)

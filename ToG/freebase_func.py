@@ -213,7 +213,7 @@ def update_history(entity_candidates, entity, scores, entity_candidates_id, tota
 def half_stop(question, cluster_chain_of_entities, depth, args):
     print("No new knowledge added during search depth %d, stop searching." % depth)
     answer = generate_answer(question, cluster_chain_of_entities, args)
-    # save_2_jsonl(question, answer, cluster_chain_of_entities, file_name=args.dataset)
+    save_2_jsonl(question, answer, cluster_chain_of_entities, file_name=args.dataset)
 
 
 def generate_answer(question, cluster_chain_of_entities, args): 
