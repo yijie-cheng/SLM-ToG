@@ -3,7 +3,7 @@ import re
 
 
 def prepare_dataset_for_eval(dataset_name, output_file):
-    if dataset_name == 'cwq':
+    if dataset_name == 'cwq' or 'cwq_2284' or 'cwq_short':
         with open('../data/cwq.json',encoding='utf-8') as f:
             datas = json.load(f)
         question_string = 'question'
