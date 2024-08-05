@@ -11,7 +11,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     ground_truth_datas, question_string, CoT_output_datas = prepare_dataset_for_eval(args.dataset, "../CoT/CoT_cwq.json")
-    ground_truth_datas, question_string, ToG_output_datas = prepare_dataset_for_eval(args.dataset, "../ToG/ToG_cwq_new.json")
+    ground_truth_datas, question_string, ToG_output_datas = prepare_dataset_for_eval(args.dataset, "../ToG/ToG_cwq.json")
 
     CoT_num_right = 0
     CoT_num_error = 0
