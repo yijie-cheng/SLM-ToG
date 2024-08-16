@@ -28,31 +28,11 @@ if __name__ == '__main__':
         CoT_Match = False
 
         CoT_response = CoT_results
-        if exact_match(CoT_response, answers):
+        if exact_match(CoT_response, answers) or exact_match(clean_results(CoT_response), answers):
             CoT_Match = True
             CoT_num_right+=1
         else:
             CoT_num_error+=1
-
-        # if check_string(CoT_results):
-        #     CoT_response = clean_results(CoT_results)
-        #     if CoT_response=="NULL":
-        #         CoT_response = CoT_results
-        #     else:
-        #         if exact_match(CoT_response, answers):
-        #             CoT_Match = True
-        #             CoT_num_right+=1
-        #         else:
-        #             CoT_num_error+=1
-        # else:
-        #     CoT_response = CoT_results
-        #     if args.constraints_refuse and check_string(CoT_response):
-        #         continue
-        #     if exact_match(CoT_response, answers):
-        #         CoT_Match = True
-        #         CoT_num_right+=1
-        #     else:
-        #         CoT_num_error+=1
 
         answers = align(args.dataset, question_string, ToG_output_datas[i], ground_truth_datas)
         ToG_results = ToG_output_datas[i]['results']
@@ -60,31 +40,11 @@ if __name__ == '__main__':
         ToG_Match = False
 
         ToG_response = ToG_results
-        if exact_match(ToG_response, answers):
+        if exact_match(ToG_response, answers) or exact_match(clean_results(ToG_response), answers):
             ToG_Match = True
             ToG_num_right+=1
         else:
             ToG_num_error+=1
-
-        # if check_string(ToG_results):
-        #     ToG_response = clean_results(ToG_results)
-        #     if ToG_response=="NULL":
-        #         ToG_response = ToG_results
-        #     else:
-        #         if exact_match(ToG_response, answers):
-        #             ToG_Match = True
-        #             ToG_num_right+=1
-        #         else:
-        #             ToG_num_error+=1
-        # else:
-        #     ToG_response = ToG_results
-        #     if args.constraints_refuse and check_string(ToG_response):
-        #         continue
-        #     if exact_match(ToG_response, answers):
-        #         ToG_Match = True
-        #         ToG_num_right+=1
-        #     else:
-        #         ToG_num_error+=1
 
         concluded_data = {
         'question': question,
@@ -99,7 +59,7 @@ if __name__ == '__main__':
         }
         conclusion.append(concluded_data)
 
-    with open('conclusion.json', 'w', encoding='utf-8') as f:
+    with open('conclusion_new.json', 'w', encoding='utf-8') as f:
         json.dump(conclusion, f, ensure_ascii=False, indent=4)
 
     print("Exact Match: {}".format(float(CoT_num_right/len(CoT_output_datas))))
