@@ -99,6 +99,8 @@ def clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relat
 
 
 def construct_relation_prune_prompt(question, entity_name, total_relations, args):
+    # print("\nConstruct_relation_prune_prompt:")
+    # print(f"question: {question}, \nentity_name: {entity_name}, \ntotal_relations: {total_relations}")
     return extract_relation_prompt % (args.width, args.width) + question + '\nTopic Entity: ' + entity_name + '\nRelations: '+ '; '.join(total_relations) + "\nA: "
         
 
@@ -107,34 +109,46 @@ def construct_entity_score_prompt(question, relation, entity_candidates):
 
 
 def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, question, args):
+    print(f"\n\nStart relation_search_prune: \nentity_id: {entity_id}, \nentity_name: {entity_name}, \npre_relations: {pre_relations}, \npre_head: {pre_head}, \nquestion: {question}, \nargs: {args}")
     sparql_relations_extract_head = sparql_head_relations % (entity_id)
     head_relations = execurte_sparql(sparql_relations_extract_head)
     head_relations = replace_relation_prefix(head_relations)
+    # print(f"Head relations after prefix replacement: {head_relations}")
     
     sparql_relations_extract_tail= sparql_tail_relations % (entity_id)
     tail_relations = execurte_sparql(sparql_relations_extract_tail)
     tail_relations = replace_relation_prefix(tail_relations)
+    # print(f"Tail relations after prefix replacement: {tail_relations}")
 
     if args.remove_unnecessary_rel:
         head_relations = [relation for relation in head_relations if not abandon_rels(relation)]
         tail_relations = [relation for relation in tail_relations if not abandon_rels(relation)]
+        # print(f"Head relations after pruning: {head_relations}")
+        # print(f"Tail relations after pruning: {tail_relations}")
     
     if pre_head:
         tail_relations = list(set(tail_relations) - set(pre_relations))
+        # print(f"Tail relations after removing pre_relations: {tail_relations}")
     else:
         head_relations = list(set(head_relations) - set(pre_relations))
+        # print(f"Head relations after removing pre_relations: {head_relations}")
 
     head_relations = list(set(head_relations))
     tail_relations = list(set(tail_relations))
     total_relations = head_relations+tail_relations
     total_relations.sort()  # make sure the order in prompt is always equal
+    print(f"Total relations after merging and sorting: {total_relations}")
     
     if args.prune_tools == "llm":
         prompt = construct_relation_prune_prompt(question, entity_name, total_relations, args)
-
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        print(f"Prompt for LLM: \n{prompt}")
+        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type)
+        print(f"LLM result: {result}")
         flag, retrieve_relations_with_scores = clean_relations(result, entity_id, head_relations) 
-
+        print(f"Cleaned relations with LLM: {retrieve_relations_with_scores}, \nflag: {flag}")
+        
     elif args.prune_tools == "bm25":
         topn_relations, topn_scores = compute_bm25_similarity(question, total_relations, args.width)
         flag, retrieve_relations_with_scores = clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations) 
@@ -144,8 +158,10 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
         flag, retrieve_relations_with_scores = clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations) 
 
     if flag:
+        print(f"Final retrieved relations with scores: {retrieve_relations_with_scores}")
         return retrieve_relations_with_scores
     else:
+        print("Returning empty list due to format error or too small max_length")
         return [] # format error or too small max_length
     
     
