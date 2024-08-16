@@ -1,0 +1,175 @@
+Start Running ToG on cwq dataset.
+  0%|          | 0/3516 [00:00<?, ?it/s]
+
+Start relation_search_prune: 
+entity_id: m.02qwvmq, 
+entity_name: Brad Stevens, 
+pre_relations: [], 
+pre_head: -1, 
+question: What year did the basketball team coached by Brad Stevens win the championship?, 
+args: Namespace(dataset='cwq', max_length=256, temperature_exploration=0.4, temperature_reasoning=0, width=3, depth=3, remove_unnecessary_rel=True, LLM_type='gpt-4', opeani_api_keys='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', num_retain_entity=5, prune_tools='llm')
+Total relations after merging and sorting: ['basketball.basketball_coach.previous_teams', 'basketball.basketball_coach.team', 'basketball.basketball_historical_coach_position.coach', 'basketball.basketball_team.head_coach', 'education.education.student', 'kg.object_profile.prominent_type', 'location.location.people_born_here', 'people.marriage.spouse', 'people.person.children', 'people.person.children', 'people.person.date_of_birth', 'people.person.education', 'people.person.gender', 'people.person.nationality', 'people.person.parents', 'people.person.parents', 'people.person.place_of_birth', 'people.person.places_lived', 'people.person.profession', 'people.person.spouse_s', 'people.place_lived.person', 'people.profession.people_with_this_profession', 'sports.pro_athlete.teams', 'sports.sport.team_coaches', 'sports.sports_team_coach.sports_coached', 'sports.sports_team_coach.teams_coached', 'sports.sports_team_coach_tenure.coach', 'sports.sports_team_roster.player']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Prompt for LLM: 
+Please retrieve 3 relations (separated by semicolon) that contribute to the question and rate their contribution on a scale from 0 to 1 (the sum of the scores of 3 relations is 1).
+Q: Name the president of the country whose main spoken language was Brahui in 1980?
+Topic Entity: Brahui Language
+Relations: language.human_language.main_country; language.human_language.language_family; language.human_language.iso_639_3_code; base.rosetta.languoid.parent; language.human_language.writing_system; base.rosetta.languoid.languoid_class; language.human_language.countries_spoken_in; kg.object_profile.prominent_type; base.rosetta.languoid.document; base.ontologies.ontology_instance.equivalent_instances; base.rosetta.languoid.local_name; language.human_language.region
+A: 1. {language.human_language.main_country (Score: 0.4))}: This relation is highly relevant as it directly relates to the country whose president is being asked for, and the main country where Brahui language is spoken in 1980.
+2. {language.human_language.countries_spoken_in (Score: 0.3)}: This relation is also relevant as it provides information on the countries where Brahui language is spoken, which could help narrow down the search for the president.
+3. {base.rosetta.languoid.parent (Score: 0.2)}: This relation is less relevant but still provides some context on the language family to which Brahui belongs, which could be useful in understanding the linguistic and cultural background of the country in question.
+
+Q: What year did the basketball team coached by Brad Stevens win the championship?
+Topic Entity: Brad Stevens
+Relations: basketball.basketball_coach.previous_teams; basketball.basketball_coach.team; basketball.basketball_historical_coach_position.coach; basketball.basketball_team.head_coach; education.education.student; kg.object_profile.prominent_type; location.location.people_born_here; people.marriage.spouse; people.person.children; people.person.children; people.person.date_of_birth; people.person.education; people.person.gender; people.person.nationality; people.person.parents; people.person.parents; people.person.place_of_birth; people.person.places_lived; people.person.profession; people.person.spouse_s; people.place_lived.person; people.profession.people_with_this_profession; sports.pro_athlete.teams; sports.sport.team_coaches; sports.sports_team_coach.sports_coached; sports.sports_team_coach.teams_coached; sports.sports_team_coach_tenure.coach; sports.sports_team_roster.player
+A: 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+LLM result: 1. {basketball.basketball_coach.team (Score: 0.4)}: This relation is highly relevant as it directly links Brad Stevens to the teams he has coached, which is necessary to find out which team won the championship under his coaching.
+2. {sports.sports_team_coach.teams_coached (Score: 0.35)}: This relation is also very relevant as it provides a list of teams that Brad Stevens has coached, which could help in identifying the championship-winning team.
+3. {sports.sports_team_coach_tenure.coach (Score: 0.25)}: This relation is relevant as it provides information on the tenure of Brad Stevens as a coach, which could help in determining the year the championship was won.
+Cleaned relations with LLM: [{'entity': 'm.02qwvmq', 'relation': 'basketball.basketball_coach.team', 'score': 0.4, 'head': True}, {'entity': 'm.02qwvmq', 'relation': 'sports.sports_team_coach.teams_coached', 'score': 0.35, 'head': True}, {'entity': 'm.02qwvmq', 'relation': 'sports.sports_team_coach_tenure.coach', 'score': 0.25, 'head': False}], 
+flag: True
+Final retrieved relations with scores: [{'entity': 'm.02qwvmq', 'relation': 'basketball.basketball_coach.team', 'score': 0.4, 'head': True}, {'entity': 'm.02qwvmq', 'relation': 'sports.sports_team_coach.teams_coached', 'score': 0.35, 'head': True}, {'entity': 'm.02qwvmq', 'relation': 'sports.sports_team_coach_tenure.coach', 'score': 0.25, 'head': False}]
+[{'entity': 'm.02qwvmq', 'relation': 'basketball.basketball_coach.team', 'score': 0.4, 'head': True}, {'entity': 'm.02qwvmq', 'relation': 'sports.sports_team_coach.teams_coached', 'score': 0.35, 'head': True}, {'entity': 'm.02qwvmq', 'relation': 'sports.sports_team_coach_tenure.coach', 'score': 0.25, 'head': False}]
+depth 1 still not find the answer.
+
+
+Start relation_search_prune: 
+entity_id: m.0bwjj, 
+entity_name: Boston Celtics, 
+pre_relations: ['basketball.basketball_coach.team', 'sports.sports_team_coach.teams_coached', 'sports.sports_team_coach.teams_coached'], 
+pre_head: -1, 
+question: What year did the basketball team coached by Brad Stevens win the championship?, 
+args: Namespace(dataset='cwq', max_length=256, temperature_exploration=0.4, temperature_reasoning=0, width=3, depth=3, remove_unnecessary_rel=True, LLM_type='gpt-4', opeani_api_keys='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', num_retain_entity=5, prune_tools='llm')
+Total relations after merging and sorting: ['award.award_honor.award_winner', 'award.award_nomination.award_nominee', 'award.award_nominee.award_nominations', 'award.award_winner.awards_won', 'base.daylifetopics.daylife_id.daylife_topic_id', 'base.daylifetopics.daylife_id.daylife_topic_name', 'base.daylifetopics.daylife_id.daylife_url_token', 'base.ontologies.ontology_instance.equivalent_instances', 'base.ontologies.ontology_instance_mapping.freebase_topic', 'base.schemastaging.athlete_salary.team', 'base.schemastaging.context_name.nickname', 'base.yupgrade.user.topics', 'basketball.basketball_conference.teams', 'basketball.basketball_division.teams', 'basketball.basketball_historical_coach_position.team', 'basketball.basketball_player_stats.team', 'basketball.basketball_team.conference', 'basketball.basketball_team.division', 'basketball.basketball_team.head_coach', 'basketball.basketball_team.previous_coaches', 'business.employer.employees', 'business.employment_tenure.company', 'dataworld.gardening_hint.last_referenced_by', 'film.person_or_entity_appearing_in_film.films', 'film.personal_film_appearance.person', 'internet.blog.focus', 'kg.object_profile.prominent_type', 'sports.mascot.team', 'sports.professional_sports_team.draft_picks', 'sports.professional_sports_team.owner_s', 'sports.sport.teams', 'sports.sports_award.team', 'sports.sports_championship_event.champion', 'sports.sports_championship_event.runner_up', 'sports.sports_facility.teams', 'sports.sports_league_draft_pick.team', 'sports.sports_league_participation.team', 'sports.sports_team.arena_stadium', 'sports.sports_team.championships', 'sports.sports_team.coaches', 'sports.sports_team.colors', 'sports.sports_team.founded', 'sports.sports_team.league', 'sports.sports_team.location', 'sports.sports_team.roster', 'sports.sports_team.sport', 'sports.sports_team.team_mascot', 'sports.sports_team.venue', 'sports.sports_team_coach_tenure.team', 'sports.sports_team_location.teams', 'sports.sports_team_owner.teams_owned', 'sports.sports_team_roster.team', 'sports.team_venue_relationship.team', 'tv.tv_actor.guest_roles', 'tv.tv_guest_role.actor', 'tv.tv_program.subjects', 'tv.tv_series_episode.subjects', 'tv.tv_subject.tv_episodes', 'tv.tv_subject.tv_programs', 'user.avh.default_domain.ellerdale_topic.ellerdale_id', 'user.robert.default_domain.daylife.hero_image_id']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Prompt for LLM: 
+Please retrieve 3 relations (separated by semicolon) that contribute to the question and rate their contribution on a scale from 0 to 1 (the sum of the scores of 3 relations is 1).
+Q: Name the president of the country whose main spoken language was Brahui in 1980?
+Topic Entity: Brahui Language
+Relations: language.human_language.main_country; language.human_language.language_family; language.human_language.iso_639_3_code; base.rosetta.languoid.parent; language.human_language.writing_system; base.rosetta.languoid.languoid_class; language.human_language.countries_spoken_in; kg.object_profile.prominent_type; base.rosetta.languoid.document; base.ontologies.ontology_instance.equivalent_instances; base.rosetta.languoid.local_name; language.human_language.region
+A: 1. {language.human_language.main_country (Score: 0.4))}: This relation is highly relevant as it directly relates to the country whose president is being asked for, and the main country where Brahui language is spoken in 1980.
+2. {language.human_language.countries_spoken_in (Score: 0.3)}: This relation is also relevant as it provides information on the countries where Brahui language is spoken, which could help narrow down the search for the president.
+3. {base.rosetta.languoid.parent (Score: 0.2)}: This relation is less relevant but still provides some context on the language family to which Brahui belongs, which could be useful in understanding the linguistic and cultural background of the country in question.
+
+Q: What year did the basketball team coached by Brad Stevens win the championship?
+Topic Entity: Boston Celtics
+Relations: award.award_honor.award_winner; award.award_nomination.award_nominee; award.award_nominee.award_nominations; award.award_winner.awards_won; base.daylifetopics.daylife_id.daylife_topic_id; base.daylifetopics.daylife_id.daylife_topic_name; base.daylifetopics.daylife_id.daylife_url_token; base.ontologies.ontology_instance.equivalent_instances; base.ontologies.ontology_instance_mapping.freebase_topic; base.schemastaging.athlete_salary.team; base.schemastaging.context_name.nickname; base.yupgrade.user.topics; basketball.basketball_conference.teams; basketball.basketball_division.teams; basketball.basketball_historical_coach_position.team; basketball.basketball_player_stats.team; basketball.basketball_team.conference; basketball.basketball_team.division; basketball.basketball_team.head_coach; basketball.basketball_team.previous_coaches; business.employer.employees; business.employment_tenure.company; dataworld.gardening_hint.last_referenced_by; film.person_or_entity_appearing_in_film.films; film.personal_film_appearance.person; internet.blog.focus; kg.object_profile.prominent_type; sports.mascot.team; sports.professional_sports_team.draft_picks; sports.professional_sports_team.owner_s; sports.sport.teams; sports.sports_award.team; sports.sports_championship_event.champion; sports.sports_championship_event.runner_up; sports.sports_facility.teams; sports.sports_league_draft_pick.team; sports.sports_league_participation.team; sports.sports_team.arena_stadium; sports.sports_team.championships; sports.sports_team.coaches; sports.sports_team.colors; sports.sports_team.founded; sports.sports_team.league; sports.sports_team.location; sports.sports_team.roster; sports.sports_team.sport; sports.sports_team.team_mascot; sports.sports_team.venue; sports.sports_team_coach_tenure.team; sports.sports_team_location.teams; sports.sports_team_owner.teams_owned; sports.sports_team_roster.team; sports.team_venue_relationship.team; tv.tv_actor.guest_roles; tv.tv_guest_role.actor; tv.tv_program.subjects; tv.tv_series_episode.subjects; tv.tv_subject.tv_episodes; tv.tv_subject.tv_programs; user.avh.default_domain.ellerdale_topic.ellerdale_id; user.robert.default_domain.daylife.hero_image_id
+A: 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+LLM result: 1. {basketball.basketball_team.head_coach (Score: 0.4)}: This relation is highly relevant as it directly links the basketball team to its head coach, which in this case is Brad Stevens.
+2. {sports.sports_team.championships (Score: 0.4)}: This relation is equally important as it provides information on the championships won by the basketball team.
+3. {sports.sports_team.coaches (Score: 0.2)}: This relation is less relevant but still provides additional context on the coaches of the basketball team, which could be useful in case Brad Stevens was not the head coach but a coach in a different capacity.
+Cleaned relations with LLM: [{'entity': 'm.0bwjj', 'relation': 'basketball.basketball_team.head_coach', 'score': 0.4, 'head': True}, {'entity': 'm.0bwjj', 'relation': 'sports.sports_team.championships', 'score': 0.4, 'head': True}, {'entity': 'm.0bwjj', 'relation': 'sports.sports_team.coaches', 'score': 0.2, 'head': True}], 
+flag: True
+Final retrieved relations with scores: [{'entity': 'm.0bwjj', 'relation': 'basketball.basketball_team.head_coach', 'score': 0.4, 'head': True}, {'entity': 'm.0bwjj', 'relation': 'sports.sports_team.championships', 'score': 0.4, 'head': True}, {'entity': 'm.0bwjj', 'relation': 'sports.sports_team.coaches', 'score': 0.2, 'head': True}]
+[{'entity': 'm.0bwjj', 'relation': 'basketball.basketball_team.head_coach', 'score': 0.4, 'head': True}, {'entity': 'm.0bwjj', 'relation': 'sports.sports_team.championships', 'score': 0.4, 'head': True}, {'entity': 'm.0bwjj', 'relation': 'sports.sports_team.coaches', 'score': 0.2, 'head': True}]
+
+
+Start relation_search_prune: 
+entity_id: m.0w3_qv3, 
+entity_name: UnName_Entity, 
+pre_relations: ['basketball.basketball_coach.team', 'sports.sports_team_coach.teams_coached', 'sports.sports_team_coach.teams_coached'], 
+pre_head: -1, 
+question: What year did the basketball team coached by Brad Stevens win the championship?, 
+args: Namespace(dataset='cwq', max_length=256, temperature_exploration=0.4, temperature_reasoning=0, width=3, depth=3, remove_unnecessary_rel=True, LLM_type='gpt-4', opeani_api_keys='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', num_retain_entity=5, prune_tools='llm')
+Total relations after merging and sorting: ['sports.coaching_position.coaches', 'sports.sports_team.coaches', 'sports.sports_team_coach_tenure.coach', 'sports.sports_team_coach_tenure.from', 'sports.sports_team_coach_tenure.position', 'sports.sports_team_coach_tenure.team']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Prompt for LLM: 
+Please retrieve 3 relations (separated by semicolon) that contribute to the question and rate their contribution on a scale from 0 to 1 (the sum of the scores of 3 relations is 1).
+Q: Name the president of the country whose main spoken language was Brahui in 1980?
+Topic Entity: Brahui Language
+Relations: language.human_language.main_country; language.human_language.language_family; language.human_language.iso_639_3_code; base.rosetta.languoid.parent; language.human_language.writing_system; base.rosetta.languoid.languoid_class; language.human_language.countries_spoken_in; kg.object_profile.prominent_type; base.rosetta.languoid.document; base.ontologies.ontology_instance.equivalent_instances; base.rosetta.languoid.local_name; language.human_language.region
+A: 1. {language.human_language.main_country (Score: 0.4))}: This relation is highly relevant as it directly relates to the country whose president is being asked for, and the main country where Brahui language is spoken in 1980.
+2. {language.human_language.countries_spoken_in (Score: 0.3)}: This relation is also relevant as it provides information on the countries where Brahui language is spoken, which could help narrow down the search for the president.
+3. {base.rosetta.languoid.parent (Score: 0.2)}: This relation is less relevant but still provides some context on the language family to which Brahui belongs, which could be useful in understanding the linguistic and cultural background of the country in question.
+
+Q: What year did the basketball team coached by Brad Stevens win the championship?
+Topic Entity: UnName_Entity
+Relations: sports.coaching_position.coaches; sports.sports_team.coaches; sports.sports_team_coach_tenure.coach; sports.sports_team_coach_tenure.from; sports.sports_team_coach_tenure.position; sports.sports_team_coach_tenure.team
+A: 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+LLM result: 1. {sports.coaching_position.coaches (Score: 0.4)}: This relation is highly relevant as it directly relates to the coach and the team he is coaching.
+2. {sports.sports_team_coach_tenure.coach (Score: 0.3)}: This relation is also relevant as it provides information on the tenure of Brad Stevens, which could help identify the year they won the championship.
+3. {sports.sports_team_coach_tenure.from (Score: 0.3)}: This relation is important as it provides the time frame of the coach's tenure, which can be used to determine the year of the championship win.
+Cleaned relations with LLM: [{'entity': 'm.0w3_qv3', 'relation': 'sports.coaching_position.coaches', 'score': 0.4, 'head': False}, {'entity': 'm.0w3_qv3', 'relation': 'sports.sports_team_coach_tenure.coach', 'score': 0.3, 'head': True}, {'entity': 'm.0w3_qv3', 'relation': 'sports.sports_team_coach_tenure.from', 'score': 0.3, 'head': True}], 
+flag: True
+Final retrieved relations with scores: [{'entity': 'm.0w3_qv3', 'relation': 'sports.coaching_position.coaches', 'score': 0.4, 'head': False}, {'entity': 'm.0w3_qv3', 'relation': 'sports.sports_team_coach_tenure.coach', 'score': 0.3, 'head': True}, {'entity': 'm.0w3_qv3', 'relation': 'sports.sports_team_coach_tenure.from', 'score': 0.3, 'head': True}]
+[{'entity': 'm.0w3_qv3', 'relation': 'sports.coaching_position.coaches', 'score': 0.4, 'head': False}, {'entity': 'm.0w3_qv3', 'relation': 'sports.sports_team_coach_tenure.coach', 'score': 0.3, 'head': True}, {'entity': 'm.0w3_qv3', 'relation': 'sports.sports_team_coach_tenure.from', 'score': 0.3, 'head': True}]
+
+
+Start relation_search_prune: 
+entity_id: m.0w4828t, 
+entity_name: UnName_Entity, 
+pre_relations: ['basketball.basketball_coach.team', 'sports.sports_team_coach.teams_coached', 'sports.sports_team_coach.teams_coached'], 
+pre_head: -1, 
+question: What year did the basketball team coached by Brad Stevens win the championship?, 
+args: Namespace(dataset='cwq', max_length=256, temperature_exploration=0.4, temperature_reasoning=0, width=3, depth=3, remove_unnecessary_rel=True, LLM_type='gpt-4', opeani_api_keys='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', num_retain_entity=5, prune_tools='llm')
+Total relations after merging and sorting: ['sports.coaching_position.coaches', 'sports.sports_team.coaches', 'sports.sports_team_coach_tenure.coach', 'sports.sports_team_coach_tenure.from', 'sports.sports_team_coach_tenure.position', 'sports.sports_team_coach_tenure.team', 'sports.sports_team_coach_tenure.to']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Prompt for LLM: 
+Please retrieve 3 relations (separated by semicolon) that contribute to the question and rate their contribution on a scale from 0 to 1 (the sum of the scores of 3 relations is 1).
+Q: Name the president of the country whose main spoken language was Brahui in 1980?
+Topic Entity: Brahui Language
+Relations: language.human_language.main_country; language.human_language.language_family; language.human_language.iso_639_3_code; base.rosetta.languoid.parent; language.human_language.writing_system; base.rosetta.languoid.languoid_class; language.human_language.countries_spoken_in; kg.object_profile.prominent_type; base.rosetta.languoid.document; base.ontologies.ontology_instance.equivalent_instances; base.rosetta.languoid.local_name; language.human_language.region
+A: 1. {language.human_language.main_country (Score: 0.4))}: This relation is highly relevant as it directly relates to the country whose president is being asked for, and the main country where Brahui language is spoken in 1980.
+2. {language.human_language.countries_spoken_in (Score: 0.3)}: This relation is also relevant as it provides information on the countries where Brahui language is spoken, which could help narrow down the search for the president.
+3. {base.rosetta.languoid.parent (Score: 0.2)}: This relation is less relevant but still provides some context on the language family to which Brahui belongs, which could be useful in understanding the linguistic and cultural background of the country in question.
+
+Q: What year did the basketball team coached by Brad Stevens win the championship?
+Topic Entity: UnName_Entity
+Relations: sports.coaching_position.coaches; sports.sports_team.coaches; sports.sports_team_coach_tenure.coach; sports.sports_team_coach_tenure.from; sports.sports_team_coach_tenure.position; sports.sports_team_coach_tenure.team; sports.sports_team_coach_tenure.to
+A: 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+LLM result: 1. {sports.sports_team_coach_tenure.coach (Score: 0.4)}: This relation is highly relevant as it directly relates to the coach, Brad Stevens, whose team's championship win is being asked for.
+2. {sports.sports_team_coach_tenure.team (Score: 0.3)}: This relation is also relevant as it provides information on the team that Brad Stevens coached, which is necessary to identify the championship win.
+3. {sports.sports_team_coach_tenure.from and sports.sports_team_coach_tenure.to (Score: 0.3)}: These relations are combined because they both provide the time frame of Brad Stevens' tenure as a coach, which is crucial to identify the specific year of the championship win.
+  0%|          | 0/3516 [00:55<?, ?it/s]
+Cleaned relations with LLM: [{'entity': 'm.0w4828t', 'relation': 'sports.sports_team_coach_tenure.coach', 'score': 0.4, 'head': True}, {'entity': 'm.0w4828t', 'relation': 'sports.sports_team_coach_tenure.team', 'score': 0.3, 'head': True}, {'entity': 'm.0w4828t', 'relation': 'sports.sports_team_coach_tenure.from and sports.sports_team_coach_tenure.to', 'score': 0.3, 'head': False}], 
+flag: True
+Final retrieved relations with scores: [{'entity': 'm.0w4828t', 'relation': 'sports.sports_team_coach_tenure.coach', 'score': 0.4, 'head': True}, {'entity': 'm.0w4828t', 'relation': 'sports.sports_team_coach_tenure.team', 'score': 0.3, 'head': True}, {'entity': 'm.0w4828t', 'relation': 'sports.sports_team_coach_tenure.from and sports.sports_team_coach_tenure.to', 'score': 0.3, 'head': False}]
+[{'entity': 'm.0w4828t', 'relation': 'sports.sports_team_coach_tenure.coach', 'score': 0.4, 'head': True}, {'entity': 'm.0w4828t', 'relation': 'sports.sports_team_coach_tenure.team', 'score': 0.3, 'head': True}, {'entity': 'm.0w4828t', 'relation': 'sports.sports_team_coach_tenure.from and sports.sports_team_coach_tenure.to', 'score': 0.3, 'head': False}]
+Traceback (most recent call last):
+  File "/home/yijie-cheng/anaconda3/lib/python3.12/site-packages/SPARQLWrapper/Wrapper.py", line 926, in _query
+    response = urlopener(request)
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/yijie-cheng/anaconda3/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yijie-cheng/anaconda3/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/yijie-cheng/anaconda3/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/yijie-cheng/anaconda3/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yijie-cheng/anaconda3/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/yijie-cheng/anaconda3/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 400: Bad Request
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/yijie_cheng/Documents/ToG/ToG/main_freebase.py", line 68, in <module>
+    entity_candidates_id = entity_search(entity['entity'], entity['relation'], False)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/yijie_cheng/Documents/ToG/ToG/freebase_func.py", line 174, in entity_search
+    entities = execurte_sparql(head_entities_extract)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/yijie_cheng/Documents/ToG/ToG/freebase_func.py", line 26, in execurte_sparql
+    results = sparql.query().convert()
+              ^^^^^^^^^^^^^^
+  File "/home/yijie-cheng/anaconda3/lib/python3.12/site-packages/SPARQLWrapper/Wrapper.py", line 960, in query
+    return QueryResult(self._query())
+                       ^^^^^^^^^^^^^
+  File "/home/yijie-cheng/anaconda3/lib/python3.12/site-packages/SPARQLWrapper/Wrapper.py", line 930, in _query
+    raise QueryBadFormed(e.read())
+SPARQLWrapper.SPARQLExceptions.QueryBadFormed: QueryBadFormed: A bad request has been sent to the endpoint: probably the SPARQL query is badly formed. 
+
+Response:
+b"Virtuoso 37000 Error SP030: SPARQL compiler, line 6: syntax error at 'and' before 'sports.sports_team_coach_tenure.to'\n\nSPARQL query:\ndefine sql:big-data-const 0 \n#output-format:application/sparql-results+json\nPREFIX ns: <http://rdf.freebase.com/ns/>\nSELECT ?tailEntity\nWHERE {\n?tailEntity ns:m.0w4828t ns:sports.sports_team_coach_tenure.from and sports.sports_team_coach_tenure.to  .\n}"

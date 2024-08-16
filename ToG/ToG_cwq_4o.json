@@ -1,0 +1,507 @@
+[
+    {
+        "question": "Lou Seal is the mascot for the team that last won the World Series when?",
+        "results": "{Yes}. Based on the given knowledge triplets, Lou Seal is the mascot for the San Francisco Giants. The San Francisco Giants last won the World Series in 2014. Therefore, the answer to the question is {2014}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Lou Seal",
+                        "sports.mascot.team",
+                        "San Francisco Giants"
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        "San Francisco Giants",
+                        "sports.sports_team.championships",
+                        "2014 World Series"
+                    ],
+                    [
+                        "San Francisco Giants",
+                        "sports.sports_team.team_mascot",
+                        "Crazy Crab"
+                    ],
+                    [
+                        "San Francisco Giants",
+                        "sports.sports_team.team_mascot",
+                        "Lou Seal"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "Where did the \"Country Nation World Tour\" concert artist go to college?",
+        "results": "First, the \"Country Nation World Tour\" concert artist is Brad Paisley. Second, Brad Paisley went to college at Belmont University. The answer is {Belmont University}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "What is the predominant religion where the leader is Ovadia Yosef?",
+        "results": "{Yes}. Based on the given knowledge triplets, Ovadia Yosef is associated with Haredi Judaism. Therefore, the predominant religion where the leader is Ovadia Yosef is {Haredi Judaism}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Ovadia Yosef",
+                        "people.person.religion",
+                        "Haredi Judaism"
+                    ],
+                    [
+                        "Ovadia Yosef",
+                        "religion.religious_leader.religious_leadership",
+                        "UnName_Entity"
+                    ],
+                    [
+                        "Ovadia Yosef",
+                        "people.person.nationality",
+                        "Israel"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "What country bordering France contains an airport that serves Nijmegen?",
+        "results": "The given knowledge triplets are empty, so there is no direct information provided to answer the question. However, using general knowledge, we can determine the answer.\n\nNijmegen is a city in the Netherlands. The closest major airport serving Nijmegen is Weeze Airport, which is located in Germany, near the border with the Netherlands.\n\nTherefore, the country bordering France that contains an airport serving Nijmegen is Germany.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "The national anthem Afghan National Anthem is from the country which practices what religions?",
+        "results": "Based on the given knowledge triplets, the Afghan National Anthem is the national anthem of Afghanistan. To answer the question about the religions practiced in Afghanistan, we need additional knowledge. \n\nAfghanistan is predominantly an Islamic country, with the majority of its population practicing Islam. The two main branches of Islam practiced in Afghanistan are Sunni Islam and Shia Islam. Therefore, the answer to the question is:\n\n{Islam (Sunni and Shia)}",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Afghan National Anthem",
+                        "government.national_anthem.national_anthem_of",
+                        "UnName_Entity"
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        "UnName_Entity",
+                        "government.national_anthem_of_a_country.country",
+                        "Afghanistan"
+                    ],
+                    [
+                        "UnName_Entity",
+                        "government.national_anthem_of_a_country.anthem",
+                        "Afghan National Anthem"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "Which nation has the Alta Verapaz Department and is in Central America?",
+        "results": "{Yes}. Based on the given knowledge triplets, Alta Verapaz Department is located in Guatemala, and Guatemala is in Central America. Therefore, the answer to the question is {Guatemala}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Central America",
+                        "location.location.contains",
+                        "Guatemala"
+                    ],
+                    [
+                        "Alta Verapaz Department",
+                        "location.administrative_division.country",
+                        "Guatemala"
+                    ],
+                    [
+                        "Central America",
+                        "location.location.containedby",
+                        "Americas"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "Which man is the leader of the country that uses Libya, Libya, Libya as its national anthem?",
+        "results": "Based on the given knowledge triplets, the national anthem \"Libya, Libya, Libya\" is associated with the country Libya. However, the triplets do not provide the specific name of the current leader of Libya. The triplets mention the title \"Prime Minister of Libya\" but do not specify the individual holding this office.\n\nTo answer the question, we need additional knowledge about the current Prime Minister of Libya. As of my last update, the Prime Minister of Libya is Abdul Hamid Dbeibeh, but this information may have changed. Therefore, the answer to the question, based on the most recent information available, is {Abdul Hamid Dbeibeh}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Libya, Libya, Libya",
+                        "government.national_anthem.national_anthem_of",
+                        "UnName_Entity"
+                    ],
+                    [
+                        "Libya, Libya, Libya",
+                        "government.national_anthem.national_anthem_of",
+                        "UnName_Entity"
+                    ],
+                    [
+                        "Prime Minister of Libya",
+                        "government.government_office_or_title.office_holders",
+                        "UnName_Entity"
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        "UnName_Entity",
+                        "government.national_anthem_of_a_country.country",
+                        "Libya"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "What educational institution has a football sports team named Northern Colorado Bears is in Greeley, Colorado?",
+        "results": "{Yes}. Based on the given knowledge triplets, the educational institution with a football sports team named Northern Colorado Bears is the University of Northern Colorado. Additionally, it is mentioned that the University of Northern Colorado is located in Greeley, Colorado. Therefore, the answer to the question is {University of Northern Colorado}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Northern Colorado Bears football",
+                        "sports.school_sports_team.school",
+                        "University of Northern Colorado"
+                    ],
+                    [
+                        "Greeley",
+                        "location.location.contains",
+                        "University of Northern Colorado"
+                    ],
+                    [
+                        "Northern Colorado Bears football",
+                        "sports.school_sports_team.athletics_brand",
+                        "Northern Colorado Bears"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "What language is spoken in the location that appointed Michelle Bachelet to a governmental position speak?",
+        "results": "The provided knowledge triplets are empty, so there is no direct information to answer the question. However, I can use my general knowledge to help answer it.\n\nMichelle Bachelet is a prominent political figure from Chile. She has served as the President of Chile and has held other governmental positions in the country. The official language spoken in Chile is Spanish.\n\nTherefore, the language spoken in the location that appointed Michelle Bachelet to a governmental position is {Spanish}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "What type of government is used in the country with Northern District?",
+        "results": "The provided knowledge triplets are empty, so there is no direct information to answer the question about the type of government used in the country with Northern District. However, if we assume that \"Northern District\" refers to a specific region within a known country, we can use general knowledge to infer the answer.\n\nFor example, if \"Northern District\" refers to a region in Israel, then the type of government in Israel is a parliamentary democracy.\n\nIf you can provide more specific information or additional triplets, I can give a more precise answer.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "In which countries do the people speak Portuguese, where the child labor percentage was once 1.8?",
+        "results": "The given knowledge triplets are empty, so there is no direct information provided to answer the question. However, I can use my general knowledge to provide an answer.\n\nPortuguese is the official language of several countries, including Brazil, Portugal, Mozambique, Angola, Guinea-Bissau, East Timor, Equatorial Guinea, Cape Verde, and S\u00e3o Tom\u00e9 and Pr\u00edncipe.\n\nRegarding child labor percentages, specific historical data on child labor percentages for each of these countries would be needed to identify which one had a child labor percentage of 1.8 at some point in time. Without this specific data, it is not possible to definitively answer the question based on the given information.\n\nIf you have more specific data or additional knowledge triplets, please provide them, and I can help further.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "The people from the country that contains Nord-Ouest Department speak what languages today?",
+        "results": "{Yes}. Based on the given knowledge triplets, Nord-Ouest Department is located in Haiti. Therefore, the people from Haiti, which contains Nord-Ouest Department, speak Haitian Creole and French today.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Nord-Ouest Department",
+                        "location.administrative_division.country",
+                        "Haiti"
+                    ],
+                    [
+                        "Nord-Ouest Department",
+                        "location.administrative_division.capital",
+                        "UnName_Entity"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "What actor played the a kid in the movie with a character named Jenny's Father?",
+        "results": "First, identify the movie with a character named Jenny's Father. The movie is \"Forrest Gump.\" Second, the actor who played the kid (young Forrest) in \"Forrest Gump\" is Michael Conner Humphreys. The answer is {Michael Conner Humphreys}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "What European Union country sharing borders with Germany contains the Lejre Municipality?",
+        "results": "{Yes}. Based on the given knowledge triplets, Lejre Municipality is located in Denmark. Since Denmark is a European Union country that shares borders with Germany, the answer to the question is {Denmark}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Germany",
+                        "location.location.containedby",
+                        "Europe"
+                    ],
+                    [
+                        "Lejre Municipality",
+                        "location.administrative_division.country",
+                        "Denmark"
+                    ],
+                    [
+                        "Lejre Municipality",
+                        "location.location.containedby",
+                        "Denmark"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "When was the last time a team led by Larr Baer win the World Series?",
+        "results": "First, the correct name is Larry Baer, not Larr Baer. Larry Baer is the CEO of the San Francisco Giants. \n\nSecond, the San Francisco Giants last won the World Series in 2014.\n\nThe answer is {2014}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "What year did the basketball team coached by Brad Stevens win the championship?",
+        "results": "Brad Stevens coached the Butler University men's basketball team, but they did not win a national championship during his tenure. They reached the NCAA Championship game in 2010 and 2011 but were runners-up both times. Therefore, the answer is {They did not win a championship during Brad Stevens' tenure}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "What country speaks Germanic languages and uses the East German mark as currency?",
+        "results": "{Yes}. Based on the given knowledge triplets, it is sufficient to answer the question. The triplets indicate that the German language is spoken in East Germany and that the East German mark was used as currency in East Germany. Therefore, the country that speaks Germanic languages and uses the East German mark as currency is {East Germany}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "German Language",
+                        "language.human_language.main_country",
+                        "Germany"
+                    ],
+                    [
+                        "East German mark",
+                        "finance.currency.countries_formerly_used",
+                        "East Germany"
+                    ],
+                    [
+                        "German Language",
+                        "language.human_language.countries_spoken_in",
+                        "East Germany"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "Which globe region with the UTC\u00e2\u0088\u009205:00 time zone does the Dominican Republic call home?",
+        "results": "The given knowledge triplets are empty, so there is no direct information provided to answer the question. However, based on general knowledge, the Dominican Republic is located in the Caribbean region. The time zone for the Dominican Republic is UTC\u221204:00, not UTC\u221205:00. Therefore, the Dominican Republic calls the Caribbean region home.\n\nIf the question specifically asks for a region with the UTC\u221205:00 time zone, it would not apply to the Dominican Republic. Instead, countries like Colombia, Panama, and parts of the United States (Eastern Standard Time without daylight saving) fall under the UTC\u221205:00 time zone.",
+        "reasoning_chains": [
+            []
+        ]
+    },
+    {
+        "question": "Which globe region with the UTC\u00e2\u0088\u009205:00 time zone does the Dominican Republic call home?",
+        "results": "The given knowledge triplets are empty, so there is no direct information provided to answer the question. However, based on general knowledge, the Dominican Republic is located in the Caribbean region. The time zone for the Dominican Republic is UTC\u221204:00, not UTC\u221205:00. Therefore, the Dominican Republic calls the Caribbean region home.",
+        "reasoning_chains": [
+            [],
+            []
+        ]
+    },
+    {
+        "question": "What was the name of the team that won the 2008 FIFA Club World Cup Final championship?",
+        "results": "{Yes}. Based on the given knowledge triplets, the team that won the 2008 FIFA Club World Cup Final championship is Manchester United F.C. Therefore, the answer to the question is {Manchester United F.C.}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "2008 FIFA Club World Cup Final",
+                        "sports.sports_championship_event.champion",
+                        "Manchester United F.C."
+                    ],
+                    [
+                        "2008 FIFA Club World Cup Final",
+                        "sports.sports_championship_event.championship",
+                        "FIFA Club World Cup"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "Which of JFK's brother held the latest governmental position?",
+        "results": "The provided knowledge triplets do not contain any relevant information about JFK (John F. Kennedy) or his brothers. Therefore, I cannot answer the question based on the given triplets.\n\nHowever, using general knowledge, John F. Kennedy had several brothers, including Robert F. Kennedy and Edward \"Ted\" Kennedy. Robert F. Kennedy served as the U.S. Attorney General and was a U.S. Senator before his assassination in 1968. Edward \"Ted\" Kennedy served as a U.S. Senator from Massachusetts from 1962 until his death in 2009. Given this information, Edward \"Ted\" Kennedy held the latest governmental position among JFK's brothers.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Male",
+                        "fictional_universe.character_gender.characters_of_this_gender",
+                        "Dahak"
+                    ],
+                    [
+                        "Male",
+                        "fictional_universe.character_gender.characters_of_this_gender",
+                        "Ninth Doctor"
+                    ],
+                    [
+                        "Male",
+                        "fictional_universe.character_gender.characters_of_this_gender",
+                        "Party Guest"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "What group fought in the Battle of Vicksburg that was based in Montgomery?",
+        "results": "The provided knowledge triplets are empty, so there is no direct information to answer the question. However, based on historical knowledge, the group that fought in the Battle of Vicksburg and was based in Montgomery would be the Confederate Army, specifically units from Alabama. Montgomery, Alabama, was a significant location for the Confederacy during the American Civil War. Therefore, the answer to the question is the Confederate Army units from Alabama.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "Which country that is situated in the ASEAN Common Time Zone has the largest population?",
+        "results": "First, the ASEAN Common Time Zone (ACT) includes countries such as Indonesia, Thailand, Vietnam, and others. Second, Indonesia has the largest population among these countries. The answer is {Indonesia}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "What popular sport in Spain has a team that won the 2010 FIFA World Cup championship?",
+        "results": "The given knowledge triplets do not provide direct information about the popular sport in Spain or the team that won the 2010 FIFA World Cup championship. However, based on general knowledge, the popular sport in Spain is football (soccer), and the Spanish national football team won the 2010 FIFA World Cup championship. Therefore, the answer to the question is {football (soccer)}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Spain",
+                        "location.location.containedby",
+                        "Europe"
+                    ],
+                    [
+                        "Spain",
+                        "location.location.containedby",
+                        "Northern Hemisphere"
+                    ],
+                    [
+                        "Spain",
+                        "location.location.containedby",
+                        "Western Europe"
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        "Europe",
+                        "government.governmental_jurisdiction.governing_officials",
+                        "UnName_Entity"
+                    ],
+                    [
+                        "Northern Hemisphere",
+                        "location.location.partially_contains",
+                        "Africa"
+                    ],
+                    [
+                        "Northern Hemisphere",
+                        "location.location.partially_contains",
+                        "South America"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "Which movie with a character called Ajila was directed by Angelina Jolie?",
+        "results": "First, identify the movie directed by Angelina Jolie that features a character named Ajila. Angelina Jolie directed the movie \"First They Killed My Father.\" In this movie, there is a character named Ajila. \n\nThe answer is {First They Killed My Father}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "WHat movies have the actress who is an alumni for West Reading El Ctr a part of?",
+        "results": "First, identify the actress who is an alumna of West Reading Elementary Center. The actress in question is Taylor Swift.\n\nSecond, list the movies that Taylor Swift has been a part of. Some of the movies she has appeared in include:\n\n1. \"Valentine's Day\" (2010)\n2. \"The Lorax\" (2012) - voice role\n3. \"The Giver\" (2014)\n4. \"Cats\" (2019)\n5. \"Miss Americana\" (2020) - documentary\n\nThe answer is {Valentine's Day, The Lorax, The Giver, Cats, Miss Americana}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "For what did the personage who was educated at the Dewitt High School win a gold medal?",
+        "results": "First, I need to identify the person who was educated at Dewitt High School. \n\nDeWitt Clinton High School is a well-known school in New York City, and one of its notable alumni is Sugar Ray Robinson, a famous boxer.\n\nSecond, I need to determine what Sugar Ray Robinson won a gold medal for. \n\nSugar Ray Robinson is known for his professional boxing career, but he did not win an Olympic gold medal. However, another notable alumnus of DeWitt Clinton High School is Mark Breland, who did win a gold medal in boxing at the 1984 Summer Olympics.\n\nThe answer is {Boxing}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "Where did Tennessee Williams go to college where the newspaper is \"The Maneater\"?",
+        "results": "First, Tennessee Williams attended the University of Missouri. Second, the newspaper \"The Maneater\" is associated with the University of Missouri. The answer is {University of Missouri}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "Who is the daughter of the artist who had a concert tour called I Am... World Tour?",
+        "results": "Based on the given knowledge triplets, the artist who had a concert tour called \"I Am... World Tour\" is Beyonc\u00e9 Knowles. To answer the question about who is the daughter of Beyonc\u00e9 Knowles, we need additional knowledge. \n\nBeyonc\u00e9 Knowles' daughter is Blue Ivy Carter. Therefore, the answer to the question is {Blue Ivy Carter}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "I Am... World Tour",
+                        "music.concert_tour.artist",
+                        "Beyonc\u00e9 Knowles"
+                    ],
+                    [
+                        "I Am... World Tour",
+                        "music.concert_tour.album_or_release_supporting",
+                        "I Am... Sasha Fierce"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "What are the governmental types in the country whose national anthem is Tien Quan Ca?",
+        "results": "The given knowledge triplets are empty, so they do not provide any information about the country whose national anthem is \"Tien Quan Ca.\" However, based on my knowledge, \"Tien Quan Ca\" is the national anthem of Vietnam. \n\nVietnam is a socialist republic, and its government type is a single-party socialist republic. Therefore, the answer to the question is {single-party socialist republic}.",
+        "reasoning_chains": []
+    },
+    {
+        "question": "Copenhagen is the capital of which German neighboring country?",
+        "results": "The given knowledge triplets do not provide sufficient information to directly answer the question. However, based on general knowledge, Copenhagen is the capital of Denmark. Denmark is a neighboring country of Germany. Therefore, the answer to the question is {Denmark}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Germany",
+                        "location.location.containedby",
+                        "Western Europe"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "Which of team owners Tom Hicks sports team are in the American League West?",
+        "results": "{Yes}. Based on the given knowledge triplets, it is sufficient to answer the question. The triplets indicate that Tom Hicks owns the Texas Rangers, and the Texas Rangers are in the American League West. Therefore, the answer to the question is {Texas Rangers}.",
+        "reasoning_chains": [
+            [
+                [
+                    [
+                        "Tom Hicks",
+                        "sports.sports_team_owner.teams_owned",
+                        "Dallas Stars"
+                    ],
+                    [
+                        "Tom Hicks",
+                        "sports.sports_team_owner.teams_owned",
+                        "Texas Rangers"
+                    ],
+                    [
+                        "American League West",
+                        "baseball.baseball_division.teams",
+                        "Houston Astros"
+                    ]
+                ]
+            ],
+            [
+                [
+                    [
+                        "Texas Rangers",
+                        "sports.professional_sports_team.owner_s",
+                        "Tom Hicks"
+                    ],
+                    [
+                        "Houston Astros",
+                        "sports.professional_sports_team.owner_s",
+                        "Drayton McLane, Jr."
+                    ],
+                    [
+                        "Texas Rangers",
+                        "baseball.baseball_team.division",
+                        "American League West"
+                    ]
+                ]
+            ]
+        ]
+    },
+    {
+        "question": "What colleges did the famous person who went to Castlemont High school go to?",
+        "results": "First, we need to identify the famous person who went to Castlemont High School. \n\nOne notable alumnus of Castlemont High School is Huey P. Newton, co-founder of the Black Panther Party.\n\nNext, we need to determine the colleges that Huey P. Newton attended. \n\nHuey P. Newton attended Merritt College and later San Francisco Law School.\n\nThe answer is {Merritt College, San Francisco Law School}.",
+        "reasoning_chains": []
+    }
+]
