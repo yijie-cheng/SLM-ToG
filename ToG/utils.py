@@ -2,6 +2,7 @@ from prompt_list import *
 import json
 import time
 import openai
+from openai import OpenAI
 import re
 from prompt_list import *
 from rank_bm25 import BM25Okapi
@@ -55,7 +56,7 @@ def compute_bm25_similarity(query, corpus, width=3):
     tokenized_query = query.split(" ")
 
     doc_scores = bm25.get_scores(tokenized_query)
-    
+
     relations = bm25.get_top_n(tokenized_query, corpus, n=width)
     doc_scores = sorted(doc_scores, reverse=True)[:width]
 
@@ -102,37 +103,41 @@ def clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relat
         i+=1
     return True, relations
 
-
+from transformers import AutoTokenizer
 def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine="gpt-3.5-turbo"):
     if "gpt" not in engine.lower():
-        print("USE OTHER MODEL!!!")
-        openai.api_key = "EMPTY"
-        openai.api_base = "http://localhost:8000/v1"  # your local llama server port
-        engine = openai.Model.list()["data"][0]["id"]
+        print(f"USE OTHER MODEL: {engine}!!!")
+        client = OpenAI(
+            api_key="EMPTY",
+            base_url="http://localhost:8000/v1"
+        )
+        engine = client.models.list().data[0].id
     else:
-        openai.api_key = opeani_api_keys
+        client = OpenAI(api_key=opeani_api_keys)
 
     messages = [{"role":"system","content":"You are an AI assistant that helps people find information."}]
     message_prompt = {"role":"user","content":prompt}
     messages.append(message_prompt)
+
     f = 0
     while(f == 0):
         try:
-            response = openai.ChatCompletion.create(
-                    model=engine,
-                    messages = messages,
-                    temperature=temperature,
-                    max_tokens=max_tokens,
-                    frequency_penalty=0,
-                    presence_penalty=0)
-            result = response["choices"][0]['message']['content']
+            response = client.chat.completions.create(
+                model=engine,
+                messages = messages,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                frequency_penalty=0,
+                presence_penalty=0,
+            )
+            result = response.choices[0].message.content
             f = 1
-        except:
-            print("openai error, retry")
+        except Exception as e:
+            print(f"Error during request, retrying: {e}")
             time.sleep(2)
     return result
 
-    
+
 def all_unknown_entity(entity_candidates):
     return all(candidate == "UnName_Entity" for candidate in entity_candidates)
 
@@ -152,7 +157,7 @@ def clean_scores(string, entity_candidates):
     else:
         print("All entities are created equal.")
         return [1/len(entity_candidates)] * len(entity_candidates)
-    
+
 
 def save_2_jsonl(question, answer, cluster_chain_of_entities, file_name):
     dict = {"question":question, "results": answer, "reasoning_chains": cluster_chain_of_entities}
@@ -160,7 +165,7 @@ def save_2_jsonl(question, answer, cluster_chain_of_entities, file_name):
         json_str = json.dumps(dict)
         outfile.write(json_str + "\n")
 
-    
+
 def extract_answer(text):
     start_index = text.find("{")
     end_index = text.find("}")
@@ -168,7 +173,7 @@ def extract_answer(text):
         return text[start_index+1:end_index].strip()
     else:
         return ""
-    
+
 
 def if_true(prompt):
     if prompt.lower().strip().replace(" ","")=="yes":
