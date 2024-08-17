@@ -1,0 +1,9 @@
+{% for message in messages %}
+{% if message['role'] == 'system' %}
+<sys>{{ message['content'] }}</sys>
+{% elif message['role'] == 'user' %}
+<usr>{{ message['content'] }}</usr>
+{% elif message['role'] == 'assistant' %}
+<asst>{{ message['content'] }}</asst>
+{% endif %}
+{% endfor %}
