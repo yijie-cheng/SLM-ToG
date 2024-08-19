@@ -103,7 +103,6 @@ def clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relat
         i+=1
     return True, relations
 
-from transformers import AutoTokenizer
 def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine="gpt-3.5-turbo"):
     if "gpt" not in engine.lower():
         print(f"USE OTHER MODEL: {engine}!!!")
