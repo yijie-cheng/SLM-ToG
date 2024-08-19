@@ -23,6 +23,8 @@ if __name__ == '__main__':
             results = data['cot_result']
         else:
             results = data['results'] # debug by YJ
+        results = results.replace("{Yes}", "") # debug by YJ
+
         if check_string(results):
             response = clean_results(results)
             if response=="NULL":
@@ -44,5 +46,5 @@ if __name__ == '__main__':
     print("Exact Match: {}".format(float(num_right/len(output_datas))))
     print("right: {}, error: {}".format(num_right, num_error))
 
-    save_result2json(args.dataset, num_right, num_error, len(output_datas), args.method) # increase args.method by YJ
+    # save_result2json(args.dataset, num_right, num_error, len(output_datas), args.method) # increase args.method by YJ
     
