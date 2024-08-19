@@ -200,12 +200,12 @@ def prepare_dataset(dataset_name):
         with open('../data/cwq.json',encoding='utf-8') as f:
             datas = json.load(f)
         question_string = 'question'
-    elif dataset_name == 'cwq_short':
-        with open('../data/cwq_short.json',encoding='utf-8') as f:
+    elif dataset_name == 'cwq_20':
+        with open('../data/cwq_20.json',encoding='utf-8') as f:
             datas = json.load(f)
         question_string = 'question'
-    elif dataset_name == 'cwq_2284':
-        with open('../data/cwq_2284.json',encoding='utf-8') as f:
+    elif dataset_name == 'cwq_353':
+        with open('../data/cwq_353.json',encoding='utf-8') as f:
             datas = json.load(f)
         question_string = 'question'
     elif dataset_name == 'webqsp':
