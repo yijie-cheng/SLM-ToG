@@ -1,9 +1,0 @@
-{%- for message in messages -%}
-    {%- if message.role == 'system' -%}
-        [SYSTEM]: {{ message.content }}
-    {%- elif message.role == 'user' -%}
-        [USER]: {{ message.content }}
-    {%- elif message.role == 'assistant' -%}
-        [ASSISTANT]: {{ message.content }}
-    {%- endif -%}
-{%- endfor -%}
