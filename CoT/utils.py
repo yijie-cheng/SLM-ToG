@@ -1,33 +1,38 @@
 import openai
 import time
 import json
+from openai import OpenAI
 
 def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine="gpt-3.5-turbo"):
-    #if "llama" not in engine.lower():
-    #    openai.api_key = "EMPTY"
-    #    openai.api_base = "http://localhost:8000/v1"  # your local llama server port
-    #    engine = openai.Model.list()["data"][0]["id"]
-    #else:
-    #    openai.api_key = opeani_api_keys
+    if "gpt" not in engine.lower():
+        print(f"USE OTHER MODEL: {engine}!!!")
+        client = OpenAI(
+            api_key="EMPTY",
+            base_url="http://localhost:8000/v1"
+        )
+        engine = client.models.list().data[0].id
+    else:
+        client = OpenAI(api_key=opeani_api_keys)
+
     f = 0
-    openai.api_key = opeani_api_keys
     messages = [{"role":"system","content":"You are an AI assistant that helps people find information."}]
     message_prompt = {"role":"user","content":prompt}
     messages.append(message_prompt)
-    #print("start openai")
+
     while(f == 0):
         try:
-            response = openai.ChatCompletion.create(
-                    model=engine,
-                    messages = messages,
-                    temperature=temperature,
-                    max_tokens=max_tokens,
-                    frequency_penalty=0,
-                    presence_penalty=0)
-            result = response["choices"][0]['message']['content']
+            response = client.chat.completions.create(
+                model=engine,
+                messages = messages,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                frequency_penalty=0,
+                presence_penalty=0
+            )
+            result = response.choices[0].message.content
             f = 1
-        except:
-            print("openai error, retry")
+        except Exception as e:
+            print(f"Error during request, retrying: {e}")
             time.sleep(2)
     #print("end openai")
     return result
