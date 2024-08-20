@@ -134,6 +134,8 @@ def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine="gpt-3.5-tu
         except Exception as e:
             print(f"Error during request, retrying: {e}")
             time.sleep(2)
+    if engine == "casperhansen/vicuna-7b-v1.5-awq":
+        return result.replace("\\", "") # fix vicuna output bug
     return result
 
 
