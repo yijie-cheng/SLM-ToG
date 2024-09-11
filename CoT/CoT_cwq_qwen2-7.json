@@ -1,0 +1,802 @@
+[
+    {
+        "question": "Lou Seal is the mascot for the team that last won the World Series when?",
+        "cot_result": "First, the San Francisco Giants won the World Series in 2012. Second, the mascot for the San Francisco Giants is Lou Seal. The answer is {2012}."
+    },
+    {
+        "question": "Where did the \"Country Nation World Tour\" concert artist go to college?",
+        "cot_result": "First, Jason Aldean is the artist who went on the Country Nation World Tour. Second, Jason Aldean attended the University of West Georgia. The answer is {University of West Georgia}."
+    },
+    {
+        "question": "What is the predominant religion where the leader is Ovadia Yosef?",
+        "cot_result": "First, Judaism is the predominant religion where the leader is Ovadia Yosef. The answer is {Judaism}."
+    },
+    {
+        "question": "What country bordering France contains an airport that serves Nijmegen?",
+        "cot_result": "First, the country bordering France that contains an airport serving Nijmegen is the Netherlands. Second, the Netherlands bordering France contains an airport serving Nijmegen. The answer is {Netherlands}."
+    },
+    {
+        "question": "The national anthem Afghan National Anthem is from the country which practices what religions?",
+        "cot_result": "First, the Afghan National Anthem is from Afghanistan. Second, Afghanistan practices Islam and some forms of Christianity along with other smaller religions. The answer is {Islam and Christianity}."
+    },
+    {
+        "question": "Which nation has the Alta Verapaz Department and is in Central America?",
+        "cot_result": "First, Guatemala has the Alta Verapaz Department. Second, Guatemala is in Central America. The answer is {Guatemala}."
+    },
+    {
+        "question": "Which man is the leader of the country that uses Libya, Libya, Libya as its national anthem?",
+        "cot_result": "First, the country that uses Libya, Libya, Libya as its national anthem is Libya. Second, the leader of Libya is currently Prime Minister Abdul Hamid Dbeibeh, although the position of leader can change due to political developments. The answer is {Abdul Hamid Dbeibeh}."
+    },
+    {
+        "question": "What educational institution has a football sports team named Northern Colorado Bears is in Greeley, Colorado?",
+        "cot_result": "First, the educational institution with a football sports team named Northern Colorado Bears is the University of Northern Colorado. Second, the University of Northern Colorado is located in Greeley, Colorado. The answer is {University of Northern Colorado}."
+    },
+    {
+        "question": "What language is spoken in the location that appointed Michelle Bachelet to a governmental position speak?",
+        "cot_result": "First, Michelle Bachelet was appointed to a governmental position in Chile. Second, Spanish is the language spoken in Chile. The answer is {Spanish}."
+    },
+    {
+        "question": "What type of government is used in the country with Northern District?",
+        "cot_result": "First, the country with Northern District is Japan. Second, Japan uses a Constitutional Monarchy form of government. The answer is {Constitutional Monarchy}."
+    },
+    {
+        "question": "In which countries do the people speak Portuguese, where the child labor percentage was once 1.8?",
+        "cot_result": "First, Portugal and Brazil are countries where people speak Portuguese. Second, the child labor percentage was once 1.8 in these countries. The answer is {Portugal, Brazil}."
+    },
+    {
+        "question": "The people from the country that contains Nord-Ouest Department speak what languages today?",
+        "cot_result": "First, the country containing Nord-Ouest Department is Senegal. Second, the languages spoken in Senegal today are Wolof, French, Serer, and other local languages. The answer is {Wolof, French, Serer}."
+    },
+    {
+        "question": "What actor played the a kid in the movie with a character named Jenny's Father?",
+        "cot_result": "First, the movie is \"Juno\" and the character is \"Juno's Dad\". Second, the actor who played Juno's Dad is Jason Ritter. The answer is {Jason Ritter}."
+    },
+    {
+        "question": "What European Union country sharing borders with Germany contains the Lejre Municipality?",
+        "cot_result": "First, Denmark shares borders with Germany. Second, Denmark contains the Lejre Municipality. The answer is {Denmark}."
+    },
+    {
+        "question": "When was the last time a team led by Larr Baer win the World Series?",
+        "cot_result": "First, Larr Baer was a coach for the Atlanta Braves. Second, the Atlanta Braves won the World Series in 1995. The answer is {1995}."
+    },
+    {
+        "question": "What year did the basketball team coached by Brad Stevens win the championship?",
+        "cot_result": "First, the Boston Celtics won the championship. Second, Brad Stevens coached the Boston Celtics. Third, the Boston Celtics won the championship in 2008. The answer is {2008}."
+    },
+    {
+        "question": "What country speaks Germanic languages and uses the East German mark as currency?",
+        "cot_result": "First, Germany speaks Germanic languages and uses the Euro as its currency, not the East German mark. However, the East German mark was the currency used in East Germany, which was a separate country until it reunited with West Germany in 1990 to form the current Germany. The answer is {Germany}."
+    },
+    {
+        "question": "Which globe region with the UTC\u00e2\u0088\u009205:00 time zone does the Dominican Republic call home?",
+        "cot_result": "First, the Dominican Republic is located in the Caribbean region. Second, the Caribbean region observes the UTC\u00e2\u0088\u009205:00 time zone. The answer is {Caribbean}."
+    },
+    {
+        "question": "What was the name of the team that won the 2008 FIFA Club World Cup Final championship?",
+        "cot_result": "First, the team that won the 2008 FIFA Club World Cup Final championship is the Internacional of Brazil. The answer is {Internacional}."
+    },
+    {
+        "question": "Which of JFK's brother held the latest governmental position?",
+        "cot_result": "First, Robert F. Kennedy and Edward M. Kennedy were JFK's brothers. Second, Robert F. Kennedy held the latest governmental position as the Attorney General of the United States from 1961 to 1964. The answer is {Robert F. Kennedy}."
+    },
+    {
+        "question": "What group fought in the Battle of Vicksburg that was based in Montgomery?",
+        "cot_result": "First, the Confederate Army fought in the Battle of Vicksburg. Second, the Confederate Army was based in Montgomery. The answer is {Confederate Army}."
+    },
+    {
+        "question": "Which country that is situated in the ASEAN Common Time Zone has the largest population?",
+        "cot_result": "First, the ASEAN Common Time Zone includes countries like Indonesia, Malaysia, the Philippines, Singapore, Thailand, and Vietnam. Second, Indonesia has the largest population among these countries. The answer is {Indonesia}."
+    },
+    {
+        "question": "What popular sport in Spain has a team that won the 2010 FIFA World Cup championship?",
+        "cot_result": "First, the sport in Spain is football. Second, the team that won the 2010 FIFA World Cup championship is the Spain national football team. The answer is {Spain national football team}."
+    },
+    {
+        "question": "Which movie with a character called Ajila was directed by Angelina Jolie?",
+        "cot_result": "First, the movie with a character called Ajila is \"A Mighty Heart\". Second, \"A Mighty Heart\" was directed by Angelina Jolie. The answer is {A Mighty Heart}."
+    },
+    {
+        "question": "WHat movies have the actress who is an alumni for West Reading El Ctr a part of?",
+        "cot_result": "First, the actress who is an alumna of West Reading El Ctr is Emma Watson. Second, Emma Watson has been part of movies such as \"Harry Potter\" series, \"Beauty and the Beast,\" and \"The Perks of Being a Wallflower.\" The answer is {Harry Potter series, Beauty and the Beast, The Perks of Being a Wallflower}."
+    },
+    {
+        "question": "For what did the personage who was educated at the Dewitt High School win a gold medal?",
+        "cot_result": "First, the personage who was educated at Dewitt High School is Jesse Owens. Second, Jesse Owens won a gold medal at the 1936 Summer Olympics. The answer is {Jesse Owens}."
+    },
+    {
+        "question": "Where did Tennessee Williams go to college where the newspaper is \"The Maneater\"?",
+        "cot_result": "First, the college where the newspaper is \"The Maneater\" is the University of Missouri. Second, Tennessee Williams attended the University of Missouri. The answer is {University of Missouri}."
+    },
+    {
+        "question": "Who is the daughter of the artist who had a concert tour called I Am... World Tour?",
+        "cot_result": "First, the artist who had a concert tour called I Am... World Tour is Justin Bieber. Second, Justin Bieber's daughter is named Justice Bieber. The answer is {Justice Bieber}."
+    },
+    {
+        "question": "What are the governmental types in the country whose national anthem is Tien Quan Ca?",
+        "cot_result": "First, the national anthem of Vietnam is Tien Quan Ca. Second, Vietnam has a Socialist Republic government type. The answer is {Socialist Republic}."
+    },
+    {
+        "question": "Copenhagen is the capital of which German neighboring country?",
+        "cot_result": "First, the neighboring country of Denmark is Germany. Second, Copenhagen is the capital of Denmark. The answer is {Denmark}."
+    },
+    {
+        "question": "Which of team owners Tom Hicks sports team are in the American League West?",
+        "cot_result": "First, Tom Hicks owned the Texas Rangers. Second, the Texas Rangers are in the American League West. The answer is {Texas Rangers}."
+    },
+    {
+        "question": "What colleges did the famous person who went to Castlemont High school go to?",
+        "cot_result": "First, Tupac Shakur went to Castlemont High School. Second, Tupac Shakur went to the University of California, Los Angeles (UCLA) and also attended the University of South Carolina. The answer is {University of California, Los Angeles (UCLA), University of South Carolina}."
+    },
+    {
+        "question": "What movie with the character Teklel Hafouli did Ron Howard do?",
+        "cot_result": "First, Ron Howard directed the movie \"Rush,\" which features the character Teklel Hafouli. The answer is {Rush}."
+    },
+    {
+        "question": "In the nation that has the Badakhshan province, what religions are practiced?",
+        "cot_result": "First, Afghanistan has the Badakhshan province. Second, Islam and Buddhism are practiced religions in Afghanistan. The answer is {Islam, Buddhism}."
+    },
+    {
+        "question": "Who was the governor of Arizona in 2009 that held his governmental position before 1998?",
+        "cot_result": "First, Jan Brewer was the governor of Arizona in 2009. Second, Jan Brewer held her governmental position before 1998. The answer is {Jan Brewer}."
+    },
+    {
+        "question": "What does the Missouri River bisect in the Central Time Zone?",
+        "cot_result": "First, the Missouri River bisects the states of Montana, North Dakota, South Dakota, Nebraska, Iowa, and Missouri. Second, these states are located in the Central Time Zone. The answer is {the Central Time Zone}."
+    },
+    {
+        "question": "Who was the governor of Ohio in 2011 that was in the government prior to 3-1-1983?",
+        "cot_result": "First, Ted Strickland was the governor of Ohio in 2011. Second, Ted Strickland was in the government prior to 3-1-1983. The answer is {Ted Strickland}."
+    },
+    {
+        "question": "Which of the seven Central American countries had co2 emissions per capita once of 2009 metric ton?",
+        "cot_result": "First, we need to identify the countries in Central America. They are: Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama, and Belize. Second, we need to find the country with CO2 emissions per capita of 2009 metric tons. Without specific data, it's hard to pinpoint a country exactly, but generally, the emissions per capita can vary significantly based on economic activities, energy consumption, and other factors. For example, Costa Rica has been known for its efforts in sustainable energy and might have lower emissions per capita compared to other countries. However, without specific data for each country in 2009, it's not possible to definitively answer which country had exactly 2009 metric tons of CO2 emissions per capita. The answer would require specific data from a reliable source."
+    },
+    {
+        "question": "What team that has a mascot named Mariner Moose is in the American League West?",
+        "cot_result": "First, the team with a mascot named Mariner Moose is the Seattle Mariners. Second, the Seattle Mariners are in the American League West. The answer is {Seattle Mariners}."
+    },
+    {
+        "question": "What religion is practiced in Indonesia and has a sacred site of Mecca?",
+        "cot_result": "First, Islam is practiced in Indonesia. Second, Islam has a sacred site of Mecca. The answer is {Islam}."
+    },
+    {
+        "question": "Which location in the Anadyr Timezone has the biggest population?",
+        "cot_result": "First, Anadyr, Chukotka, and other cities in the Anadyr Timezone have populations. Second, Anadyr has the biggest population among these cities. The answer is {Anadyr}."
+    },
+    {
+        "question": "Of the four regions which make up the United Kingdom, which is the country that includes the location, Down District Council?",
+        "cot_result": "First, Down District Council is located in Northern Ireland. Second, Northern Ireland is one of the four regions that make up the United Kingdom. The answer is {Northern Ireland}."
+    },
+    {
+        "question": "What is the most recent event in which the sports team owned by James L. Dolan won the championship?",
+        "cot_result": "First, the sports team owned by James L. Dolan is the New York Knicks (NBA) and the New York Rangers (NHL). Second, the most recent championship win for either team is the New York Rangers winning the Stanley Cup in 2014. The answer is {New York Rangers winning the Stanley Cup in 2014}."
+    },
+    {
+        "question": "What's the currency of the country that includes the location of Buenos Aires?",
+        "cot_result": "First, the location of Buenos Aires is in Argentina. Second, the currency of Argentina is the Argentine peso. The answer is {Argentine peso}."
+    },
+    {
+        "question": "What year did the team with mascot named Lou Seal win the World Series?",
+        "cot_result": "First, the team with mascot Lou Seal is the San Francisco Giants. Second, the San Francisco Giants won the World Series in 2012. The answer is {2012}."
+    },
+    {
+        "question": "In the film with teh character named Winged Monkey #7, who played Dorothy?",
+        "cot_result": "First, the character named Winged Monkey #7 appears in The Wizard of Oz. Second, Judy Garland played Dorothy in The Wizard of Oz. The answer is {Judy Garland}."
+    },
+    {
+        "question": "Who holds the position of Prime Minister in the country which contains Dire Dawa?",
+        "cot_result": "First, Dire Dawa is in Ethiopia. Second, Abiy Ahmed holds the position of Prime Minister in Ethiopia. The answer is {Abiy Ahmed}."
+    },
+    {
+        "question": "Where is the state with the capitol of Frankfort located?",
+        "cot_result": "First, Frankfort is the capital of Kentucky. Second, Kentucky is located in the southeastern region of the United States. The answer is {Kentucky}."
+    },
+    {
+        "question": "What stadium does the team with mascot named Hank play at?",
+        "cot_result": "First, Hank is the mascot of the Washington Nationals. Second, the Washington Nationals play at Nationals Park. The answer is {Nationals Park}."
+    },
+    {
+        "question": "Where is the home stadium of the team who won the 1946 World Series championship?",
+        "cot_result": "First, the team that won the 1946 World Series championship is the St. Louis Cardinals. Second, the home stadium of the St. Louis Cardinals is Busch Stadium. The answer is {Busch Stadium}."
+    },
+    {
+        "question": "People from the country that contains Nord-Est Department speak what  languages today?",
+        "cot_result": "First, the country containing Nord-Est Department is Haiti. Second, people in Haiti speak Haitian Creole and French. The answer is {Haitian Creole and French}."
+    },
+    {
+        "question": "In which US county is the TV program NBC Nightside filmed in?",
+        "cot_result": "First, NBC Nightside is filmed in Los Angeles County. Second, Los Angeles County is in California. The answer is {Los Angeles County, California}."
+    },
+    {
+        "question": "What museum established before 1971 is there to see in Vienna, Austria?",
+        "cot_result": "First, the Museum of Applied Arts was established before 1971. Second, the Museum of Applied Arts is located in Vienna, Austria. The answer is {Museum of Applied Arts}."
+    },
+    {
+        "question": "Where was the artist that had This Summer Tour raised?",
+        "cot_result": "First, the artist who had the This Summer Tour is Panic! At The Disco. Second, Panic! At The Disco is from Las Vegas, Nevada. The answer is {Las Vegas, Nevada}."
+    },
+    {
+        "question": "What major US religions has a religious organization named Tamil Nadu Thowheed Jamath?",
+        "cot_result": "First, Tamil Nadu Thowheed Jamath is associated with Islam. Second, Islam is practiced in the United States. The answer is {Islam}."
+    },
+    {
+        "question": "A person who once lived in Mansfeld would have what profession?",
+        "cot_result": "First, Mansfeld is a town in Germany known for its coal mining history. Second, a person who once lived in Mansfeld might have a profession related to coal mining, such as a miner or a mine engineer. The answer is {miner or mine engineer}."
+    },
+    {
+        "question": "Who was the vice president of the President who attended Ramble Elementary School?",
+        "cot_result": "First, George W. Bush attended Ramble Elementary School. Second, Dick Cheney was the Vice President of George W. Bush. The answer is {Dick Cheney}."
+    },
+    {
+        "question": "What year did the MLB franchise owned by Bill Neukom win the world series?",
+        "cot_result": "First, Bill Neukom owned the Seattle Mariners. Second, the Seattle Mariners won the World Series in 1995. The answer is {1995}."
+    },
+    {
+        "question": "Santo Domingo is the capital of the country with what currency?",
+        "cot_result": "First, Santo Domingo is the capital of the Dominican Republic. Second, the currency of the Dominican Republic is the Dominican peso. The answer is {Dominican peso}."
+    },
+    {
+        "question": "What Portuguese speaking country imported form Brazil?",
+        "cot_result": "First, Angola, Mozambique, and S\u00e3o Tom\u00e9 and Pr\u00edncipe are Portuguese-speaking countries that have historical and economic ties with Brazil. Second, Angola imports from Brazil. The answer is {Angola}."
+    },
+    {
+        "question": "Who was the US President during WW2 that held his government position from 3-4-1933?",
+        "cot_result": "First, Franklin D. Roosevelt held his government position from 3-4-1933. Second, Franklin D. Roosevelt was the US President during WW2. The answer is {Franklin D. Roosevelt}."
+    },
+    {
+        "question": "What languiages are spoken by residents of the Central Western Time Zone?",
+        "cot_result": "First, the Central Western Time Zone is primarily found in the United States, covering parts of Arizona, New Mexico, and Texas. Second, the residents of these states speak English as their primary language. The answer is {English}."
+    },
+    {
+        "question": "What TV series that had 3 episodes was Kim Richards in?",
+        "cot_result": "First, Kim Richards appeared in the TV series \"The Young and the Restless\". Second, \"The Young and the Restless\" has over 3 episodes. The answer is {The Young and the Restless}."
+    },
+    {
+        "question": "The Daily Cardinal is the school newspaper at which university that Russell Wilson attended?",
+        "cot_result": "First, Russell Wilson attended the University of Wisconsin-Madison. Second, The Daily Cardinal is the school newspaper at the University of Wisconsin-Madison. The answer is {University of Wisconsin-Madison}."
+    },
+    {
+        "question": "When did the team with Crazy crab as their mascot win the world series?",
+        "cot_result": "First, the team with Crazy Crab as their mascot is the Tampa Bay Rays. Second, the Tampa Bay Rays won the World Series in 2020. The answer is {2020}."
+    },
+    {
+        "question": "What movie was Taylor Swift in that had a character named Once-ler?",
+        "cot_result": "First, Taylor Swift starred in the movie \"The Giver\". Second, in \"The Giver\", there is a character named The Once-ler. The answer is {The Giver}."
+    },
+    {
+        "question": "What is considered modern in the country where Bilady, Bilady, Bilady language is the national anthem?",
+        "cot_result": "First, the country where Bilady, Bilady, Bilady language is the national anthem is Libya. Second, Libya is considered modern in terms of its contemporary political and cultural developments. The answer is {Libya}."
+    },
+    {
+        "question": "What does the religion who worships in Barcelona Cathedral call their God?",
+        "cot_result": "First, the religion that worships in Barcelona Cathedral is Catholicism. Second, Catholicism calls their God as God. The answer is {God}."
+    },
+    {
+        "question": "What educational institution with men's  sports team named Wisconsin Badgers did Russell Wilson go to?",
+        "cot_result": "First, Russell Wilson attended the University of Wisconsin-Madison, which has a men's sports team named Wisconsin Badgers. The answer is {University of Wisconsin-Madison}."
+    },
+    {
+        "question": "What country  that appointed Liberal Government of New Zealand to governmental position is an Oceania territory?",
+        "cot_result": "First, Australia appointed the Liberal Government of New Zealand to governmental positions. Second, Australia is an Oceania territory. The answer is {Australia}."
+    },
+    {
+        "question": "What languages are spoken in the country that has national anthem La Dessaliniene?",
+        "cot_result": "First, the country with the national anthem La Dessalini\u00e8re is Haiti. Second, the languages spoken in Haiti are Haitian Creole and French. The answer is {Haitian Creole, French}."
+    },
+    {
+        "question": "What educational institution with Le Delit Francais newspaper did Charles Drew attend?",
+        "cot_result": "First, Charles Drew attended Howard University. Second, Howard University publishes Le Delit Francais newspaper. The answer is {Howard University}."
+    },
+    {
+        "question": "What country do they speak Portuguese where the GDP real adjusted value was once 100349905926?",
+        "cot_result": "First, Portugal has Portuguese as its official language. Second, Portugal's GDP real adjusted value was once 100349905926. The answer is {Portugal}."
+    },
+    {
+        "question": "What is the birthplace of the artist that went on The Avril Lavinge Tour?",
+        "cot_result": "First, Avril Lavigne went on The Avril Lavinge Tour. Second, Avril Lavigne was born in Bellevue, Washington. The answer is {Bellevue, Washington}."
+    },
+    {
+        "question": "The person educated at Chase Lane Primary School played for what team in 2011?",
+        "cot_result": "First, the person educated at Chase Lane Primary School is Wayne Rooney. Second, Wayne Rooney played for Manchester United in 2011. The answer is {Manchester United}."
+    },
+    {
+        "question": "What location appointed Dennis Daugaard to governmental position and is bisected by the Missouri River?",
+        "cot_result": "First, Dennis Daugaard was appointed to governmental positions by the state of South Dakota. Second, South Dakota is bisected by the Missouri River. The answer is {South Dakota}."
+    },
+    {
+        "question": "In what stadium does the team who is owned by William DeWitt, Jr. play?",
+        "cot_result": "First, the team owned by William DeWitt, Jr. is the St. Louis Cardinals. Second, the St. Louis Cardinals play in Busch Stadium. The answer is {Busch Stadium}."
+    },
+    {
+        "question": "What country located in the Greenwich Mean Time Zone that is the main trading partner of China?",
+        "cot_result": "First, the United States, Japan, and the European Union are main trading partners of China. Second, the United States is located in the Greenwich Mean Time Zone. The answer is {United States}."
+    },
+    {
+        "question": "Which of the seven Central American countries uses the United States Dollar currency?",
+        "cot_result": "First, the seven Central American countries are Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua, Panama, and Belize. Second, only Costa Rica, El Salvador, and Panama use the United States Dollar currency. However, since the question asks for a single country, and considering the context, the answer is {Costa Rica}."
+    },
+    {
+        "question": "What movies did the person who went to William O. Schafer Elementary School direct?",
+        "cot_result": "First, Christopher Nolan went to William O. Schafer Elementary School. Second, Christopher Nolan directed movies such as \"The Dark Knight,\" \"Inception,\" and \"Interstellar.\" The answer is {The Dark Knight, Inception, Interstellar}."
+    },
+    {
+        "question": "What is there to see in Mountain Time Zone near the Grand Canyon?",
+        "cot_result": "First, the Grand Canyon is located in the Mountain Time Zone. Second, there are several attractions near the Grand Canyon, including the Grand Canyon Village, the South Rim, and various lookout points offering stunning views of the canyon. The answer is {Grand Canyon Village, South Rim, lookout points}."
+    },
+    {
+        "question": "In which years have the baseball club that claimed victory in the 1988 World Series won the World Series?",
+        "cot_result": "First, the baseball club that claimed victory in the 1988 World Series is the Los Angeles Dodgers. Second, the Los Angeles Dodgers have won the World Series in the years 1959, 1963, 1965, 1981, and 1988. The answer is {1959, 1963, 1965, 1981, 1988}."
+    },
+    {
+        "question": "The person who attended education institution in East Whittier Elementary School died where?",
+        "cot_result": "First, Michael Jackson attended East Whittier Elementary School. Second, Michael Jackson died in Los Angeles, California. The answer is {Los Angeles, California}."
+    },
+    {
+        "question": "What film with character Luke Castelland does Logan Lerman play in?",
+        "cot_result": "First, Logan Lerman plays character Luke Castellan in the film \"Bolt.\" The answer is {Bolt}."
+    },
+    {
+        "question": "Rise is the mascot for the team which won the Super Bowl in what year?",
+        "cot_result": "First, the mascot for the team that won the Super Bowl is the Tampa Bay Buccaneers. Second, the Tampa Bay Buccaneers won the Super Bowl in the year 2021. The answer is {2021}."
+    },
+    {
+        "question": "Mike Johanns was elected governor of what area that is bisected by the Missouri River?",
+        "cot_result": "First, Mike Johanns was elected governor of Nebraska. Second, Nebraska is bisected by the Missouri River. The answer is {Nebraska}."
+    },
+    {
+        "question": "Which popular sports team in Spain, that won the 2014 Eurocup Finals championship?",
+        "cot_result": "First, FC Barcelona, Real Madrid, and FC Barcelona (Basketball) are popular sports teams in Spain. Second, FC Barcelona (Basketball) won the 2014 Eurocup Finals championship. The answer is {FC Barcelona (Basketball)}."
+    },
+    {
+        "question": "What organization led by Bentley B. Rayburn?",
+        "cot_result": "First, the organization led by Bentley B. Rayburn is the National Association of Independent Colleges and Universities. The answer is {National Association of Independent Colleges and Universities}."
+    },
+    {
+        "question": "What Caribbean countries use the East Caribbean dollar currency?",
+        "cot_result": "First, the East Caribbean dollar is used in several Caribbean countries. Second, these countries include Antigua and Barbuda, Dominica, Grenada, St. Kitts and Nevis, St. Lucia, and St. Vincent and the Grenadines. The answer is {Antigua and Barbuda, Dominica, Grenada, St. Kitts and Nevis, St. Lucia, St. Vincent and the Grenadines}."
+    },
+    {
+        "question": "What country does Turkey trade with that contains the Annaba Province?",
+        "cot_result": "First, Algeria contains the Annaba Province. Second, Turkey trades with Algeria. The answer is {Algeria}."
+    },
+    {
+        "question": "What type of religiong with a religious sacred site of Lumbini is in the United States?",
+        "cot_result": "First, Buddhism has a religious sacred site of Lumbini. Second, Buddhism is practiced in the United States. The answer is {Buddhism}."
+    },
+    {
+        "question": "What stadium does the champion of the 1931 World Series Championship play at?",
+        "cot_result": "First, the champion of the 1931 World Series Championship is the New York Yankees. Second, the New York Yankees play at Yankee Stadium. The answer is {Yankee Stadium}."
+    },
+    {
+        "question": "Where was the main artist featured in the Rihanna: Live in Concert Tour raised?",
+        "cot_result": "First, Rihanna was raised in Barbados. Second, Rihanna was the main artist featured in the Rihanna: Live in Concert Tour. The answer is {Barbados}."
+    },
+    {
+        "question": "What are the school colors of Harvard Art Museum?",
+        "cot_result": "First, Harvard Art Museum does not have specific school colors as it is not a university with traditional school colors. Second, Harvard University, which the Harvard Art Museum is affiliated with, has school colors of crimson and white. The answer is {Crimson and White}."
+    },
+    {
+        "question": "What is the mascot of the organization with the person named Eric F. Spina?",
+        "cot_result": "First, Eric F. Spina is the president of the Massachusetts Institute of Technology (MIT). Second, the mascot of MIT is the MIT Tech (a type of robot). The answer is {MIT Tech}."
+    },
+    {
+        "question": "The country that contains Alta Verapaz Department uses what money?",
+        "cot_result": "First, Guatemala contains Alta Verapaz Department. Second, Guatemala uses the Guatemalan peso as its money. The answer is {Guatemalan peso}."
+    },
+    {
+        "question": "What team did Payton Manning's father play for that has a mascot named Viktor the Viking?",
+        "cot_result": "First, the team Payton Manning's father, Archie Manning, played for is the New Orleans Saints. Second, the mascot of the New Orleans Saints is Viktor the Viking. The answer is {New Orleans Saints}."
+    },
+    {
+        "question": "Which country that once had a CPI inflation rate of -1.61 speaks Portuguese?",
+        "cot_result": "First, Portugal has a CPI inflation rate that can fluctuate over time. Second, Portugal speaks Portuguese. The answer is {Portugal}."
+    },
+    {
+        "question": "What country that once had the CPI inflation rate at -1.56 percent do people speak Portuguese?",
+        "cot_result": "First, Portugal had the CPI inflation rate at -1.56 percent. Second, people speak Portuguese in Portugal. The answer is {Portugal}."
+    },
+    {
+        "question": "Mary is a notable figure in which religion that is observed in Indonesia?",
+        "cot_result": "First, Mary is a notable figure in Christianity. Second, Christianity is observed in Indonesia. The answer is {Christianity}."
+    },
+    {
+        "question": "What part is the country with the capital named Santo Domingo?",
+        "cot_result": "First, the country with the capital named Santo Domingo is the Dominican Republic. The answer is {Dominican Republic}."
+    },
+    {
+        "question": "What educational institution with the mascot named Washington University Bear did Tennessee Williams go to?",
+        "cot_result": "First, Tennessee Williams attended Washington University in St. Louis. Second, Washington University in St. Louis has a mascot named the Bear. The answer is {Washington University in St. Louis}."
+    },
+    {
+        "question": "Who founded New York University, which held his governmental position from after 1795-03-04?",
+        "cot_result": "First, New York University was founded by Peter Stuyvesant. Second, Peter Stuyvesant held his governmental position from after 1795-03-04. The answer is {Peter Stuyvesant}."
+    },
+    {
+        "question": "Which was the earliest President during WW2 in the United States?",
+        "cot_result": "First, Franklin D. Roosevelt was the President of the United States during World War II. Second, Franklin D. Roosevelt was inaugurated on March 4, 1933, and served until his death on April 12, 1945, making him the earliest President during WW2. The answer is {Franklin D. Roosevelt}."
+    },
+    {
+        "question": "Which movies has the individual who attended The Wyndcroft School appeared in?",
+        "cot_result": "First, we need to identify the individual who attended The Wyndcroft School. Let's assume this individual is John Boyega, who is known for attending The Wyndcroft School. Second, John Boyega has appeared in movies such as \"Attack the Block,\" \"Star Wars: The Force Awakens,\" and \"Pacific Rim.\" The answer is {John Boyega}."
+    },
+    {
+        "question": "What to see in the country that has Gozo?",
+        "cot_result": "First, the country with Gozo is Malta. Second, popular sights in Malta include the Blue Grotto, the Mdina City, and the ancient temples of Gozo. The answer is {Malta}."
+    },
+    {
+        "question": "What country did the person who went to B Steyr control?",
+        "cot_result": "First, the person who went to B Steyr is Franz Joseph Haydn. Second, Franz Joseph Haydn controlled Austria. The answer is {Austria}."
+    },
+    {
+        "question": "Who are the founders of the educational institution where the sports team NYU Violets Men's Basketball plays?",
+        "cot_result": "First, New York University has the sports team NYU Violets Men's Basketball. Second, New York University was founded by Peter Stuyvesant and Peter Cooper. The answer is {Peter Stuyvesant and Peter Cooper}."
+    },
+    {
+        "question": "Who is the leader of the country that has national anthem Allhu Akbar?",
+        "cot_result": "First, the national anthem of Afghanistan is \"Allahu Akbar\". Second, the leader of Afghanistan is Ashraf Ghani. The answer is {Ashraf Ghani}."
+    },
+    {
+        "question": "The person who attended education institution Bundesrealgymnasium Linz controlled what country?",
+        "cot_result": "First, the person who attended Bundesrealgymnasium Linz is Wolfgang Sch\u00fcssel. Second, Wolfgang Sch\u00fcssel controlled Austria. The answer is {Austria}."
+    },
+    {
+        "question": "What religion with notable figure Athanasius of Alexandria is in the United States?",
+        "cot_result": "First, Athanasius of Alexandria is a notable figure in the Christian religion. Second, Christianity is practiced in the United States. The answer is {Christianity}."
+    },
+    {
+        "question": "What religion that is practiced in the United States has The Bible as its religious text?",
+        "cot_result": "First, Christianity is practiced in the United States and uses The Bible as its religious text. The answer is {Christianity}."
+    },
+    {
+        "question": "Which religion practiced in Afghanistan has a place of worship known as Ibrahim Mosque?",
+        "cot_result": "First, Islam is practiced in Afghanistan. Second, Islam has a place of worship known as Ibrahim Mosque. The answer is {Islam}."
+    },
+    {
+        "question": "What's the currency used in the country where the Jamaican dollar as money is called?",
+        "cot_result": "First, the Jamaican dollar is the currency used in Jamaica. Second, the currency used in Jamaica is the Jamaican dollar. The answer is {Jamaican dollar}."
+    },
+    {
+        "question": "What country uss the Swiss Franc as currency and shares a border with Germany?",
+        "cot_result": "First, Switzerland uses the Swiss Franc as currency. Second, Switzerland shares a border with Germany. The answer is {Switzerland}."
+    },
+    {
+        "question": "What are official colors of the champion of Super Bowl XXX?",
+        "cot_result": "First, the champion of Super Bowl XXX was the Dallas Cowboys. Second, the official colors of the Dallas Cowboys are blue and silver. The answer is {blue and silver}."
+    },
+    {
+        "question": "What happened to the person who went to BRG Steyr at the end of the war?",
+        "cot_result": "First, the person who went to BRG Steyr at the end of the war was Franz K\u00fcnstler. Second, Franz K\u00fcnstler was executed by the Allies. The answer is {executed by the Allies}."
+    },
+    {
+        "question": "Who are the main trading partners of China that use the Lao Kip as its currency?",
+        "cot_result": "First, China's main trading partners include countries like the United States, Japan, South Korea, and the European Union. Second, Laos is a country that uses the Lao Kip as its currency. However, China's main trading partners do not include countries that use the Lao Kip as their currency directly. The answer is {countries that use the Lao Kip as their currency are not among China's main trading partners}."
+    },
+    {
+        "question": "What all is there to do for fun in the nation represented by the anthem L-Innu Malti?",
+        "cot_result": "First, the nation represented by the anthem L-Innu Malti is Malta. Second, fun activities in Malta include visiting historical sites like the Valletta, exploring the Blue Grotto, enjoying the beaches, and experiencing the local culture and cuisine. The answer is {visiting historical sites, exploring beaches, experiencing local culture and cuisine}."
+    },
+    {
+        "question": "Which of JFK's brothers held his governmental position before November 6, 1962?",
+        "cot_result": "First, Robert F. Kennedy held his governmental position before November 6, 1962. Second, Robert F. Kennedy was JFK's brother. The answer is {Robert F. Kennedy}."
+    },
+    {
+        "question": "Who did the voice of character Kovu?",
+        "cot_result": "First, the actor who voiced character Kovu is Matthew Underwood. The answer is {Matthew Underwood}."
+    },
+    {
+        "question": "Where does the Ireland team that won the 2003 Rugby World Cup championship play?",
+        "cot_result": "First, the Ireland team that won the 2003 Rugby World Cup championship plays in the Aviva Stadium. Second, the Aviva Stadium is located in Dublin, Ireland. The answer is {Dublin, Ireland}."
+    },
+    {
+        "question": "What Hollywood studio produced the American Gladiators TV movie?",
+        "cot_result": "First, the American Gladiators TV movie was produced by NBC Studios. Second, NBC Studios is part of the larger NBCUniversal, which is a subsidiary of Comcast. The answer is {NBCUniversal}."
+    },
+    {
+        "question": "What countries are in the location that contains Terekti District?",
+        "cot_result": "First, Terekti District is located in Kyrgyzstan. The answer is {Kyrgyzstan}."
+    },
+    {
+        "question": "What is the currency used in the country of Brazil?",
+        "cot_result": "First, the currency used in Brazil is the Brazilian Real. The answer is {Brazilian Real}."
+    },
+    {
+        "question": "What popular Spanish sport has a basketball team with head coach Joan Plaza?",
+        "cot_result": "First, the popular Spanish sport with a basketball team is basketball. Second, the head coach of the basketball team is Joan Plaza. The answer is {basketball}."
+    },
+    {
+        "question": "What educational institution with football sports team named Temple Owls  did Kevin Hart go to?",
+        "cot_result": "First, Kevin Hart attended Temple University. Second, Temple University has a football sports team named Temple Owls. The answer is {Temple University}."
+    },
+    {
+        "question": "What are the official languages of used in the country that uses Ukrainian Hyrvnia?",
+        "cot_result": "First, Ukraine uses Ukrainian and Russian as its official languages. Second, Ukrainian Hyrvnia is used in Ukraine. The answer is {Ukrainian and Russian}."
+    },
+    {
+        "question": "Which type of religions practiced in the United States, where the religion place of worship is called, Candi Laras?",
+        "cot_result": "First, Hinduism is practiced in the United States. Second, Hindu temples are often referred to as \"Candi Laras\". The answer is {Hinduism}."
+    },
+    {
+        "question": "If you are visiting a country and in the San Pedro De Marcois Province, what form of currency would you spend?",
+        "cot_result": "First, the currency of France is the Euro. Second, San Pedro de Macoros is a commune in the Senegal. The answer is {CFA Franc} since Senegal uses the West African CFA Franc."
+    },
+    {
+        "question": "What country in the Caribbean contains Saint Michael Parish?",
+        "cot_result": "First, Saint Michael Parish is part of Barbados. Second, Barbados is located in the Caribbean. The answer is {Barbados}."
+    },
+    {
+        "question": "Who founded the college where Lindsay Zir is a grad student?",
+        "cot_result": "First, Lindsay Zir is a grad student at the University of California, Berkeley. Second, the University of California, Berkeley was founded by Leland Stanford and his wife, Jane, in 1868. The answer is {Leland Stanford and Jane}."
+    },
+    {
+        "question": "Of the major religions in the United States, which has the religion place of worship of  Candi Laras?",
+        "cot_result": "First, Buddhism is one of the major religions in the United States. Second, Candi Laras is a place of worship for Buddhism. The answer is {Buddhism}."
+    },
+    {
+        "question": "Which Canadian Province was the locatiuon for the TV show the Lottery?",
+        "cot_result": "First, the TV show The Lottery was set in the Canadian province of Saskatchewan. Second, Saskatchewan is a province in Canada. The answer is {Saskatchewan}."
+    },
+    {
+        "question": "What are the religions in the area whose major exports are from fruit and tree nut farming?",
+        "cot_result": "First, the area with major exports from fruit and tree nut farming is California, known for its agricultural production. Second, California has a diverse population with various religions practiced, including Christianity, Islam, Judaism, Hinduism, Buddhism, and others. The answer is {Christianity, Islam, Judaism, Hinduism, Buddhism, etc.}."
+    },
+    {
+        "question": "What colors do the school where Donald Stanley Marshall is a grad student use?",
+        "cot_result": "First, the University of Washington uses the colors crimson and gray. Second, Donald Stanley Marshall is a grad student at the University of Washington. The answer is {Crimson and Gray}."
+    },
+    {
+        "question": "What is the currency used in the country of Guatemala?",
+        "cot_result": "First, the currency used in Guatemala is the Guatemalan peso. The answer is {Guatemalan peso}."
+    },
+    {
+        "question": "What educational institution with the Cherwell newspaper did JRR Tolkien go to?",
+        "cot_result": "First, JRR Tolkien went to Oxford University. Second, Oxford University has a newspaper named The Oxford Tab. The answer is {Oxford University}."
+    },
+    {
+        "question": "What region is the country whose national anthem is Braban\u00c3\u00a7onne located in?",
+        "cot_result": "First, Braban\u00e7onne is the national anthem of Belgium. Second, Belgium is located in Western Europe. The answer is {Western Europe}."
+    },
+    {
+        "question": "Which nation is a major trading partner with China and has the Malagasy ariary as its unit of currency?",
+        "cot_result": "First, China trades with many nations, including Madagascar. Second, Madagascar uses the Malagasy ariary as its unit of currency. The answer is {Madagascar}."
+    },
+    {
+        "question": "Holding his governmental position from earliest, who founde New York University?",
+        "cot_result": "First, New York University was founded by Peter Stuyvesant. Second, Peter Stuyvesant held his governmental position from earliest. The answer is {Peter Stuyvesant}."
+    },
+    {
+        "question": "The person who attended Heritage Elementary School has been in what movies?",
+        "cot_result": "First, Tom Hanks attended Heritage Elementary School. Second, Tom Hanks has been in movies such as \"Forrest Gump,\" \"Saving Private Ryan,\" \"The Da Vinci Code,\" and \"Cast Away.\" The answer is {Tom Hanks}."
+    },
+    {
+        "question": "In what year did mascot Poe's team win the Super Bowl?",
+        "cot_result": "First, Poe is the mascot of the Baltimore Ravens. Second, the Baltimore Ravens won the Super Bowl in the year 2001. The answer is {2001}."
+    },
+    {
+        "question": "Who is governor of the place that contains part of the Uinta Mountains?",
+        "cot_result": "First, Utah contains part of the Uinta Mountains. Second, the governor of Utah is the person who governs the state. The answer is {Utah Governor}."
+    },
+    {
+        "question": "Which nation uses the CFP Franc as currency and is located in Oceania?",
+        "cot_result": "First, the nations that use the CFP Franc as currency are French Polynesia, New Caledonia, and Wallis and Futuna. Second, French Polynesia is located in Oceania. The answer is {French Polynesia}."
+    },
+    {
+        "question": "What movie was directed by the person who attended education institution  El Rodeo School?",
+        "cot_result": "First, the person who attended El Rodeo School is Steven Spielberg. Second, Steven Spielberg directed many movies, including \"Jaws,\" \"E.T. the Extra-Terrestrial,\" and \"Jurassic Park.\" The answer is {Jaws}."
+    },
+    {
+        "question": "When was the last World Series won by team owner Bill Neukom's sports team?",
+        "cot_result": "First, Bill Neukom is the owner of the San Francisco Giants. Second, the San Francisco Giants won the World Series in 2014. The answer is {2014}."
+    },
+    {
+        "question": "What form of currency is used in the country that observes the national anthem titled L'Abidjanaise?",
+        "cot_result": "First, L'Abidjanaise is the national anthem of Ivory Coast. Second, the form of currency used in Ivory Coast is the West African CFA franc. The answer is {West African CFA franc}."
+    },
+    {
+        "question": "What Portuguese=speaking country had the net migration number of -10000?",
+        "cot_result": "First, Portugal had a net migration number of -10000. Second, Portugal is a Portuguese-speaking country. The answer is {Portugal}."
+    },
+    {
+        "question": "What state, that the Colorado River flows through, appointed Bruce Babbitt to a governmental position?",
+        "cot_result": "First, the Colorado River flows through several states including Colorado, Utah, Wyoming, Arizona, New Mexico, and California. Second, Bruce Babbitt served as the Secretary of the Interior in the United States government. The answer is {Arizona}."
+    },
+    {
+        "question": "What country in Central America appointed Otto P\u00c3\u00a9rez Molina to a governmental position?",
+        "cot_result": "First, Guatemala appointed Otto P\u00e9rez Molina to a governmental position. Second, Guatemala is a country in Central America. The answer is {Guatemala}."
+    },
+    {
+        "question": "Who is the prime minister of the country that has national anthem March Forward, Dear Mother Ethiopia?",
+        "cot_result": "First, the country with the national anthem \"March Forward, Dear Mother Ethiopia\" is Ethiopia. Second, the current prime minister of Ethiopia is Abiy Ahmed. The answer is {Abiy Ahmed}."
+    },
+    {
+        "question": "Who was the Arizona's Governor in 2009 who also suffered with Breast cancer?",
+        "cot_result": "First, Jan Brewer was the Governor of Arizona in 2009. Second, Jan Brewer suffered from breast cancer. The answer is {Jan Brewer}."
+    },
+    {
+        "question": "What team's mascot is name Hank?",
+        "cot_result": "First, Hank is the mascot of the Kansas City Royals baseball team. The answer is {Kansas City Royals}."
+    },
+    {
+        "question": "What educational institution with men's basketball sports team named Temple Owls did Kevin Hart go to school?",
+        "cot_result": "First, Temple University has a men's basketball sports team named Temple Owls. Second, Kevin Hart attended Temple University. The answer is {Temple University}."
+    },
+    {
+        "question": "What college with men's basketball sports team named UMKC Kangaroos did Harry S. Truman attend?",
+        "cot_result": "First, Harry S. Truman attended the University of Missouri\u2013Kansas City. Second, the men's basketball sports team at the University of Missouri\u2013Kansas City is named the UMKC Kangaroos. The answer is {University of Missouri\u2013Kansas City}."
+    },
+    {
+        "question": "What educational institution with The Temple newspaper did Kevin Hart go to?",
+        "cot_result": "First, Temple University has a newspaper named \"The Temple News\". Second, Kevin Hart attended Temple University. The answer is {Temple University}."
+    },
+    {
+        "question": "The country that contains Africa Proconsularis has what political system ?",
+        "cot_result": "First, Africa Proconsularis is a historical region that corresponds to parts of modern-day Algeria, Tunisia, and Libya. Second, these countries have various political systems. Algeria is a democratic republic, Tunisia is a parliamentary democracy, and Libya has had a complex political history, currently being a de facto state with a variety of political entities. The answer is {various political systems}."
+    },
+    {
+        "question": "What currency is used in the country with Rio de Janeiro?",
+        "cot_result": "First, Brazil uses the Brazilian Real as its currency. Second, Rio de Janeiro is a city in Brazil. The answer is {Brazilian Real}."
+    },
+    {
+        "question": "What type of government is used in the country with Bac Lieu Province?",
+        "cot_result": "First, Bac Lieu Province is in Vietnam. Second, Vietnam uses a Socialist Republic form of government. The answer is {Socialist Republic}."
+    },
+    {
+        "question": "What states does the Colorado River run through in the Mountain Time Zone?",
+        "cot_result": "First, the Colorado River runs through Colorado, Utah, Wyoming, and New Mexico in the Mountain Time Zone. The answer is {Colorado, Utah, Wyoming, New Mexico}."
+    },
+    {
+        "question": "In which years did the team that has Magic Johnson among its ownership claim victory in the World Series?",
+        "cot_result": "First, the Los Angeles Dodgers, the team Magic Johnson is part of the ownership group, have won the World Series. Second, the Los Angeles Dodgers have won the World Series in 1959, 1963, 1965, 1977, 1981, and 2020. The answer is {1959, 1963, 1965, 1977, 1981, 2020}."
+    },
+    {
+        "question": "Which State's capital is Denver and the Colorado River runs through it?",
+        "cot_result": "First, Colorado has Denver as its capital and the Colorado River runs through it. The answer is {Colorado}."
+    },
+    {
+        "question": "In what year did a team win the superbowl and the 2013 AFC Championship Game ?",
+        "cot_result": "First, the Denver Broncos won the Super Bowl in 2015 and the 2013 AFC Championship Game. Second, the Denver Broncos won the Super Bowl and the 2013 AFC Championship Game in the year 2015. The answer is {2015}."
+    },
+    {
+        "question": "On what radio station in New York City would you find an organizational leader named Gary Knell?",
+        "cot_result": "First, Gary Knell was the CEO of National Public Radio (NPR) and Sesame Workshop. Second, NPR has a station in New York City. The answer is {NPR}."
+    },
+    {
+        "question": "When did the team led by Larry Baer win the World Series?",
+        "cot_result": "First, the San Francisco Giants team led by Larry Baer won the World Series. Second, the San Francisco Giants won the World Series in 2012. The answer is {2012}."
+    },
+    {
+        "question": "What Indonesia religion believes in the Virgin birth of Jesus?",
+        "cot_result": "First, Christianity believes in the Virgin birth of Jesus. Second, Christianity is practiced in Indonesia. The answer is {Christianity}."
+    },
+    {
+        "question": "The person who attended the education institution Colegio Alem\u00c3\u00a1n Alexander von Humboldt did what kind of paintings?",
+        "cot_result": "First, the person who attended Colegio Alem\u00e1n Alexander von Humboldt is Gustavo Adolfo Borges. Second, Gustavo Adolfo Borges is known for his landscape paintings. The answer is {landscape paintings}."
+    },
+    {
+        "question": "Who held his governmental position from December 12, 1808 and was Governor of Ohio in 2011?",
+        "cot_result": "First, William Henry Harrison held his governmental position from December 12, 1808. Second, William Henry Harrison was Governor of Ohio. The answer is {William Henry Harrison}."
+    },
+    {
+        "question": "What is the name of the state that has the elected official Jan Brewer and also has the colorado river flow through it?",
+        "cot_result": "First, Arizona has Jan Brewer as an elected official. Second, Arizona also has the Colorado River flowing through it. The answer is {Arizona}."
+    },
+    {
+        "question": "The capital of Cheyenne has who as governor of US state?",
+        "cot_result": "First, Wyoming is the state with Cheyenne as its capital. Second, Mark Gordon is the governor of Wyoming. The answer is {Mark Gordon}."
+    },
+    {
+        "question": "Who is the current head coach of the NFL squad owned by the Rooney family?",
+        "cot_result": "First, the Rooney family owns the Pittsburgh Steelers. Second, Mike Tomlin is the current head coach of the Pittsburgh Steelers. The answer is {Mike Tomlin}."
+    },
+    {
+        "question": "What college in Greeley, Colorado has a sports team called the Northern Colorado Bears?",
+        "cot_result": "First, the college in Greeley, Colorado with a sports team called the Northern Colorado Bears is the University of Northern Colorado. The answer is {University of Northern Colorado}."
+    },
+    {
+        "question": "Who was the governor in 2010 of the state that appointed Bruce Babbitt?",
+        "cot_result": "First, Bruce Babbitt was appointed by Governor Bill Ritter in Colorado. Second, Bill Ritter was governor in 2010. The answer is {Bill Ritter}."
+    },
+    {
+        "question": "What Superbowl was won by the team with the \"Baltimore Fight Song\"?",
+        "cot_result": "First, the Baltimore Fight Song is associated with the Baltimore Ravens. Second, the Baltimore Ravens won Super Bowl XLVII. The answer is {Super Bowl XLVII}."
+    },
+    {
+        "question": "What is the country that has national anthem Valiant Quisqueeyans a part of?",
+        "cot_result": "First, the national anthem of Canada is \"O Canada\". Second, the lyrics include \"Valiant Quisqueysans\". The answer is {Canada}."
+    },
+    {
+        "question": "What is the home field of the sports team whose mascot is named Fredbird?",
+        "cot_result": "First, the sports team with the mascot Fredbird is the St. Louis Cardinals. Second, the home field of the St. Louis Cardinals is Busch Stadium. The answer is {Busch Stadium}."
+    },
+    {
+        "question": "What Portuguese-speaking country's minimum wage was 356.72?",
+        "cot_result": "First, the minimum wage in Portugal was 356.72 euros. Second, Portugal is a Portuguese-speaking country. The answer is {Portugal}."
+    },
+    {
+        "question": "What actor played a kid in the film with a character named Veteran at War Rally?",
+        "cot_result": "First, the actor who played a kid in the film with a character named Veteran at War Rally is likely referring to the movie \"The Patriot\" where the character \"Young Thomas\" is portrayed by Alex D. Linz. Second, Alex D. Linz played the role of Young Thomas. The answer is {Alex D. Linz}."
+    },
+    {
+        "question": "Stelly McBeam is the team mascot for the sports team with who as head coach?",
+        "cot_result": "First, Stelly McBeam is the mascot for the University of North Carolina at Chapel Hill's men's basketball team. Second, Roy Williams is the head coach of the University of North Carolina at Chapel Hill's men's basketball team. The answer is {Roy Williams}."
+    },
+    {
+        "question": "In what countries is Portugese spoken and has A Portuguesa as its national anthem?",
+        "cot_result": "First, Portugal and Brazil are countries where Portuguese is spoken. Second, A Portuguesa is the national anthem of both Portugal and Brazil. The answer is {Portugal, Brazil}."
+    },
+    {
+        "question": "Who are brothers of the individual who was educated at Edward Devotion School?",
+        "cot_result": "First, the individual educated at Edward Devotion School is Barack Obama. Second, the brothers of Barack Obama are Mark Obama Ndeso and David Obama. The answer is {Mark Obama Ndeso, David Obama}."
+    },
+    {
+        "question": "The country with the national anthem Bilady, Bilady, Bilady required what currency in 2013?",
+        "cot_result": "First, the country with the national anthem \"Bilady, Bilady, Bilady\" is Egypt. Second, Egypt required the currency Egyptian Pound in 2013. The answer is {Egyptian Pound}."
+    },
+    {
+        "question": "What geographic regions is the country that has the San Pedro De Marcos province considered a part of?",
+        "cot_result": "First, the country with the San Pedro de Marcos province is Mexico. Second, Mexico is considered part of North America and the Americas. The answer is {North America, Americas}."
+    },
+    {
+        "question": "The country that contains Krasnodar Krai uses what type of currency?",
+        "cot_result": "First, Russia contains Krasnodar Krai. Second, Russia uses the Russian ruble as its currency. The answer is {Russian ruble}."
+    },
+    {
+        "question": "Who was the Governor of Ohio that held his position from before 1-10-2011?",
+        "cot_result": "First, Ted Strickland held his position as Governor of Ohio before January 10, 2011. Second, Ted Strickland held his position as Governor of Ohio from January 14, 2007, to January 10, 2011. The answer is {Ted Strickland}."
+    },
+    {
+        "question": "On what other date did the team won the 2010 World Series championship win the World Series?",
+        "cot_result": "First, the team that won the 2010 World Series championship is the Texas Rangers. Second, the Texas Rangers won the World Series again in 2011. The answer is {October 27, 2011}."
+    },
+    {
+        "question": "What is the most predominant religion in the country Benjamin Netanyahu holds a governmental position?",
+        "cot_result": "First, Benjamin Netanyahu holds a governmental position in Israel. Second, Judaism is the predominant religion in Israel. The answer is {Judaism}."
+    },
+    {
+        "question": "What religion in Afghanistan that worship in the mosque?",
+        "cot_result": "First, Islam is the predominant religion in Afghanistan and is practiced by the majority of the population. Second, Muslims worship in mosques. The answer is {Islam}."
+    },
+    {
+        "question": "What does the religion that believes in Transubstantiation call their God?",
+        "cot_result": "First, Catholicism believes in Transubstantiation. Second, Catholicism calls their God as God. The answer is {God}."
+    },
+    {
+        "question": "Where is Rome, Italy, and is a place that once had a population of 4,327,642?",
+        "cot_result": "First, Rome is the capital city of Italy. Second, Rome is not a place that had a population of 4,327,642. Rome has a much larger population. The answer is {Rome, Italy}."
+    },
+    {
+        "question": "What movies did the artist that had the concert tour called the Taylor Swift Fears 2009 Tour play in?",
+        "cot_result": "First, Taylor Swift did not act in movies. Second, Taylor Swift had the concert tour called the Taylor Swift Fearless Tour in 2009. The answer is {Taylor Swift Fearless Tour}."
+    },
+    {
+        "question": "When is the last time the team whose mascot is called Crazy Cab win the World Series?",
+        "cot_result": "First, the team with the mascot called Crazy Cab is the Colorado Rockies. Second, the Colorado Rockies won the World Series in 2020. The answer is {2020}."
+    },
+    {
+        "question": "The location that appointed Dmitry Medvedev to governmental position uses what kind of money?",
+        "cot_result": "First, Russia appointed Dmitry Medvedev to a governmental position. Second, Russia uses Ruble as its currency. The answer is {Ruble}."
+    },
+    {
+        "question": "Which diety is worshipped in the holy place of Santa Cecilia in Trastevere?",
+        "cot_result": "First, Santa Cecilia in Trastevere is associated with the Catholic Church. Second, Santa Cecilia is a Catholic saint. The answer is {Saint Cecilia}."
+    },
+    {
+        "question": "Which movie has a character named Margie and featured Kim Richards as an Actor?",
+        "cot_result": "First, \"The Bad Seed\" has a character named Margie and featured Kim Richards as an actor. The answer is {The Bad Seed}."
+    },
+    {
+        "question": "Which countries with a currency of Swiss Franc do people speak Germanic languages?",
+        "cot_result": "First, Switzerland, Liechtenstein, and parts of Italy and France have currencies of Swiss Franc. Second, people in Switzerland and Liechtenstein speak Germanic languages. The answer is {Switzerland, Liechtenstein}."
+    },
+    {
+        "question": "What major US religion has a notable figure named Athanasius of Alexandria?",
+        "cot_result": "First, Christianity has a notable figure named Athanasius of Alexandria. Second, Christianity is a major religion in the US. The answer is {Christianity}."
+    },
+    {
+        "question": "What money is used in the Ancash Region?",
+        "cot_result": "First, the Ancash Region is in Peru. Second, the currency used in Peru is the Peruvian sol. The answer is {Peruvian sol}."
+    },
+    {
+        "question": "What type of currency is used in the country with national anthem Swiss Psalm?",
+        "cot_result": "First, the country with the national anthem \"Swiss Psalm\" is Switzerland. Second, the type of currency used in Switzerland is the Swiss Franc. The answer is {Swiss Franc}."
+    }
+]
