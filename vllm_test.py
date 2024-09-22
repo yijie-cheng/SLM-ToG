@@ -14,6 +14,7 @@ Relations: dataworld.gardening_hint.last_referenced_by; kg.object_profile.promin
 A:'''
 
 # prompt = '''Hello.'''
+# prompt = "Lou Seal is the mascot for the team that last won the World Series when?"
 
 url = "http://localhost:8000/v1/chat/completions"
 headers = {
