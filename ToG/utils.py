@@ -103,9 +103,15 @@ def clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relat
         i+=1
     return True, relations
 
-def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine="gpt-3.5-turbo"):
+def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine, warning):
+    LLM_type = engine
+    with open('{}-log.txt'.format(LLM_type.replace("/", "-")), 'a') as file:
+        file.write("***START RUNING LLM***\n\n")
+        file.write("PROMPT: \n" + prompt + "\n")
+        file.write("\n")
+
     if "gpt" not in engine.lower():
-        print(f"USE OTHER MODEL: {engine}!!!")
+        # print(f"USE OTHER MODEL: {engine}!!!")
         client = OpenAI(
             api_key="EMPTY",
             base_url="http://localhost:8000/v1"
@@ -136,6 +142,21 @@ def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine="gpt-3.5-tu
             time.sleep(2)
     if engine == "casperhansen/vicuna-7b-v1.5-awq":
         return result.replace("\\", "") # fix vicuna output bug
+    
+    with open('{}-log.txt'.format(LLM_type.replace("/", "-")), 'a') as file:
+        file.write("RESULT: \n" + result + "\n")
+        file.write("\n")
+        file.write("PROMPT_TOKENS: " + str(response.usage.prompt_tokens) + "\n")
+        file.write("COMPLETION_TOKENS: " + str(response.usage.completion_tokens) + "\n")
+        file.write("TOTAL_TOKENS: " + str(response.usage.total_tokens) + "\n")
+        file.write("------------------------------------------------------------------------------------------------------\n")
+
+    if response.usage.completion_tokens == max_tokens or response.usage.total_tokens == 8192:
+        # print("Too long context: The generated response reached the maximum length and may be truncated.")
+        warning['long_context'] = True
+        with open('{}-log.txt'.format(LLM_type.replace("/", "-")), 'a') as file:
+            file.write("Too long context: The generated response reached the maximum length and may be truncated.\n")
+            file.write("------------------------------------------------------------------------------------------------------\n")
     return result
 
 
@@ -150,19 +171,23 @@ def del_unknown_entity(entity_candidates):
     return entity_candidates
 
 
-def clean_scores(string, entity_candidates):
+def clean_scores(string, entity_candidates, warning, args):
     scores = re.findall(r'\d+\.\d+', string)
     scores = [float(number) for number in scores]
     if len(scores) == len(entity_candidates):
         return scores
     else:
-        print("All entities are created equal.")
+        # print("All entities are created equal.")
+        warning['entities_cleaning_error']=True
+        with open('{}-log.txt'.format(args.LLM_type.replace("/", "-")), 'a') as file:
+            file.write("Entities cleaning failed.\n")
+            file.write("------------------------------------------------------------------------------------------------------\n")
         return [1/len(entity_candidates)] * len(entity_candidates)
 
 
-def save_2_jsonl(question, answer, cluster_chain_of_entities, file_name):
-    dict = {"question":question, "results": answer, "reasoning_chains": cluster_chain_of_entities}
-    with open("ToG_{}.jsonl".format(file_name), "a") as outfile:
+def save_2_jsonl(question, answer, cluster_chain_of_entities, warning, file_name, LLM_type):
+    dict = {"question":question, "results": answer, "reasoning_chains": cluster_chain_of_entities, "warning":warning}
+    with open("{}-ToG-{}.jsonl".format(LLM_type.replace("/", "-"), file_name), "a") as outfile:
         json_str = json.dumps(dict)
         outfile.write(json_str + "\n")
 
@@ -182,9 +207,10 @@ def if_true(prompt):
     return False
 
 
-def generate_without_explored_paths(question, args):
+def generate_without_explored_paths(question, warning, args):
+    warning['generate_without_explored_paths']=True
     prompt = cot_prompt + "\n\nQ: " + question + "\nA:"
-    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type)
+    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, warning)
     return response
 
 

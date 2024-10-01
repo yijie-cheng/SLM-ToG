@@ -108,8 +108,8 @@ def construct_entity_score_prompt(question, relation, entity_candidates):
     return score_entity_candidates_prompt.format(question, relation) + "; ".join(entity_candidates) + '\nScore: '
 
 
-def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, question, args):
-    print(f"\n\nStart relation_search_prune: \nentity_id: {entity_id}, \nentity_name: {entity_name}, \npre_relations: {pre_relations}, \npre_head: {pre_head}, \nquestion: {question}, \nargs: {args}")
+def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, question, warning, args):
+    # print(f"\n\nStart relation_search_prune: \nentity_id: {entity_id}, \nentity_name: {entity_name}, \npre_relations: {pre_relations}, \npre_head: {pre_head}, \nquestion: {question}, \nargs: {args}")
     sparql_relations_extract_head = sparql_head_relations % (entity_id)
     head_relations = execurte_sparql(sparql_relations_extract_head)
     head_relations = replace_relation_prefix(head_relations)
@@ -137,17 +137,17 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
     tail_relations = list(set(tail_relations))
     total_relations = head_relations+tail_relations
     total_relations.sort()  # make sure the order in prompt is always equal
-    print(f"Total relations after merging and sorting: {total_relations}")
+    # print(f"Total relations after merging and sorting: {total_relations}")
     
     if args.prune_tools == "llm":
         prompt = construct_relation_prune_prompt(question, entity_name, total_relations, args)
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        print(f"Prompt for LLM: \n{prompt}")
-        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-        result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type)
-        print(f"LLM result: {result}")
+        # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        # print(f"Prompt for LLM: \n{prompt}")
+        # print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, warning)
+        # print(f"LLM result: {result}")
         flag, retrieve_relations_with_scores = clean_relations(result, entity_id, head_relations) 
-        print(f"Cleaned relations with LLM: {retrieve_relations_with_scores}, \nflag: {flag}")
+        # print(f"Cleaned relations with LLM: {retrieve_relations_with_scores}, \nflag: {flag}")
         
     elif args.prune_tools == "bm25":
         topn_relations, topn_scores = compute_bm25_similarity(question, total_relations, args.width)
@@ -158,10 +158,14 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
         flag, retrieve_relations_with_scores = clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations) 
 
     if flag:
-        print(f"Final retrieved relations with scores: {retrieve_relations_with_scores}")
+        # print(f"Final retrieved relations with scores: {retrieve_relations_with_scores}")
         return retrieve_relations_with_scores
     else:
-        print("Returning empty list due to format error or too small max_length")
+        # print("Returning empty list due to format error or too small max_length")
+        warning['relations_cleaning_error'] = True
+        with open('{}-log.txt'.format(args.LLM_type.replace("/", "-")), 'a') as file:
+            file.write("Relations cleaning failed.\n")
+            file.write("------------------------------------------------------------------------------------------------------\n")
         return [] # format error or too small max_length
     
     
@@ -179,7 +183,7 @@ def entity_search(entity, relation, head=True):
     return new_entity
 
 
-def entity_score(question, entity_candidates_id, score, relation, args):
+def entity_score(question, entity_candidates_id, score, relation, warning, args):
     entity_candidates = [id2entity_name_or_type(entity_id) for entity_id in entity_candidates_id]
     if all_unknown_entity(entity_candidates):
         return [1/len(entity_candidates) * score] * len(entity_candidates), entity_candidates, entity_candidates_id
@@ -197,8 +201,8 @@ def entity_score(question, entity_candidates_id, score, relation, args):
     if args.prune_tools == "llm":
         prompt = construct_entity_score_prompt(question, relation, entity_candidates)
 
-        result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type)
-        return [float(x) * score for x in clean_scores(result, entity_candidates)], entity_candidates, entity_candidates_id
+        result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, warning)
+        return [float(x) * score for x in clean_scores(result, entity_candidates, warning, args)], entity_candidates, entity_candidates_id
 
     elif args.prune_tools == "bm25":
         topn_entities, topn_scores = compute_bm25_similarity(question, entity_candidates, args.width)
@@ -226,17 +230,21 @@ def update_history(entity_candidates, entity, scores, entity_candidates_id, tota
     return total_candidates, total_scores, total_relations, total_entities_id, total_topic_entities, total_head
 
 
-def half_stop(question, cluster_chain_of_entities, depth, args):
-    print("No new knowledge added during search depth %d, stop searching." % depth)
-    answer = generate_answer(question, cluster_chain_of_entities, args)
-    save_2_jsonl(question, answer, cluster_chain_of_entities, file_name=args.dataset)
+def half_stop(question, cluster_chain_of_entities, depth, warning, args):
+    # print("No new knowledge added during search depth %d, stop searching." % depth)
+    warning['dead_road'] = True
+    with open('{}-log.txt'.format(args.LLM_type.replace("/", "-")), 'a') as file:
+        file.write("No new knowledge added during search depth %d, stop searching.\n" % depth)
+        file.write("------------------------------------------------------------------------------------------------------\n")
+    answer = generate_answer(question, cluster_chain_of_entities, warning, args)
+    save_2_jsonl(question, answer, cluster_chain_of_entities, warning, file_name=args.dataset, LLM_type=args.LLM_type)
 
 
-def generate_answer(question, cluster_chain_of_entities, args): 
+def generate_answer(question, cluster_chain_of_entities, warning, args): 
     prompt = answer_prompt + question + '\n'
     chain_prompt = '\n'.join([', '.join([str(x) for x in chain]) for sublist in cluster_chain_of_entities for chain in sublist])
     prompt += "\nKnowledge Triplets: " + chain_prompt + 'A: '
-    result = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type)
+    result = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, warning)
     return result
 
 
@@ -257,13 +265,12 @@ def entity_prune(total_entities_id, total_relations, total_candidates, total_top
     return True, cluster_chain_of_entities, entities_id, relations, heads
 
 
-def reasoning(question, cluster_chain_of_entities, args):
+def reasoning(question, cluster_chain_of_entities, warning, args):
     prompt = prompt_evaluate + question
     chain_prompt = '\n'.join([', '.join([str(x) for x in chain]) for sublist in cluster_chain_of_entities for chain in sublist])
-    prompt += "\nKnowledge Triplets: " + chain_prompt + 'A: '
+    prompt += "\nKnowledge Triplets: " + chain_prompt + '\nA: '
 
-    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type)
-    
+    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, warning)
     result = extract_answer(response)
     if if_true(result):
         return True, response
