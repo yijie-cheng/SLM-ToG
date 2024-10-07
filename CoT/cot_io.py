@@ -11,7 +11,7 @@ if __name__ == '__main__':
     parser.add_argument("--prompt_methods", type=str,
                         default="cot", help="cot or io.")
     parser.add_argument("--max_length", type=int,
-                        default=256, help="the max length of LLMs output.")
+                        default=2048, help="the max length of LLMs output.")
     parser.add_argument("--temperature", type=int,
                         default=0, help="the temperature")
     parser.add_argument("--LLM_type", type=str,

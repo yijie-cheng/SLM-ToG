@@ -86,6 +86,7 @@ UnName_Entity, government.national_anthem_of_a_country.country, Bolivia
 Bolivia, location.country.national_anthem, UnName_Entity
 A: {No}. Based on the given knowledge triplets, we can infer that the National Anthem of Bolivia is the anthem of Bolivia. Therefore, the country with the National Anthem of Bolivia is Bolivia itself. However, the given knowledge triplets do not provide information about which nations border Bolivia. To answer this question, we need additional knowledge about the geography of Bolivia and its neighboring countries.
 
+Q: 
 """
 
 generate_directly = """Q: What state is home to the university that is represented in sports by George Washington Colonials men's basketball?

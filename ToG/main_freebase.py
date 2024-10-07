@@ -12,7 +12,7 @@ if __name__ == '__main__':
     parser.add_argument("--dataset", type=str,
                         default="cwq", help="choose the dataset.")
     parser.add_argument("--max_length", type=int,
-                        default=8192, help="the max length of LLMs output.")
+                        default=2048, help="the max length of LLMs output.")
     parser.add_argument("--temperature_exploration", type=float,
                         default=0.4, help="the temperature in exploration stage.")
     parser.add_argument("--temperature_reasoning", type=float,
