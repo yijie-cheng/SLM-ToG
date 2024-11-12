@@ -1,0 +1,802 @@
+[
+    {
+        "question": "who influenced samuel taylor coleridge?",
+        "cot_result": "Samuel Taylor Coleridge was influenced by several individuals, including William Wordsworth, who was a close friend and collaborator. Additionally, Coleridge was influenced by German philosophers and poets, such as Immanuel Kant and Friedrich Schiller, as well as the works of John Milton and the Romantic movement in general. The answer is {William Wordsworth}."
+    },
+    {
+        "question": "who did viggo mortensen play in lord of the rings?",
+        "cot_result": "Viggo Mortensen played the character Aragorn in the \"Lord of the Rings\" film series."
+    },
+    {
+        "question": "what county is st. louis park in?",
+        "cot_result": "St. Louis Park is located in Hennepin County, Minnesota. The answer is {Hennepin County}."
+    },
+    {
+        "question": "what are the catholic holy days?",
+        "cot_result": "Catholic holy days, also known as holy days of obligation, are specific days in the liturgical calendar when Catholics are required to attend Mass. The main holy days include:\n\n1. **Solemnity of Mary, Mother of God** - January 1\n2. **Ascension of Jesus** - 40 days after Easter (varies each year)\n3. **Assumption of the Blessed Virgin Mary** - August 15\n4. **All Saints' Day** - November 1\n5. **Immaculate Conception** - December 8\n6. **Christmas** - December 25\n\nIn addition to these, some countries may have additional holy days that are recognized based on local traditions or the decisions of the local bishops' conference."
+    },
+    {
+        "question": "where does the columbia river start?",
+        "cot_result": "The Columbia River starts in the Rocky Mountains of British Columbia, Canada. Specifically, it begins at Columbia Lake in the Kootenay region."
+    },
+    {
+        "question": "what school did michael jordan attend?",
+        "cot_result": "Michael Jordan attended the University of North Carolina at Chapel Hill. The answer is {University of North Carolina at Chapel Hill}."
+    },
+    {
+        "question": "what type of art does marc chagall do?",
+        "cot_result": "Marc Chagall is known for his work in various forms of art, including painting, stained glass, and illustration. He is particularly recognized for his colorful and dreamlike paintings that often incorporate elements of folklore, religion, and personal symbolism. His style is often associated with modernism and surrealism. The answer is {painting, stained glass, illustration}."
+    },
+    {
+        "question": "what language do chinese people write in?",
+        "cot_result": "Chinese people primarily write in Chinese characters, known as Hanzi. The most commonly used writing systems are Simplified Chinese, which is used in mainland China and Singapore, and Traditional Chinese, which is used in Taiwan, Hong Kong, and Macau."
+    },
+    {
+        "question": "where do the appalachian mountains run?",
+        "cot_result": "The Appalachian Mountains run primarily through the eastern United States, extending from Canada in the north down to central Alabama in the south. They pass through several states, including Maine, New Hampshire, Vermont, Massachusetts, Connecticut, New York, New Jersey, Pennsylvania, Maryland, West Virginia, Virginia, Kentucky, Tennessee, North Carolina, South Carolina, Georgia, and Alabama."
+    },
+    {
+        "question": "when did bill clinton go to college?",
+        "cot_result": "Bill Clinton attended college at Georgetown University, where he enrolled in 1964. He graduated in 1968. He later attended Oxford University as a Rhodes Scholar from 1968 to 1970 and then earned his law degree from Yale Law School in 1973."
+    },
+    {
+        "question": "what is there to do for fun in kansas city?",
+        "cot_result": "Kansas City offers a variety of fun activities and attractions, including:\n\n1. **Visit the Nelson-Atkins Museum of Art** - Known for its impressive collection of art and beautiful sculpture park.\n2. **Explore the Country Club Plaza** - A shopping district with Spanish-inspired architecture, featuring shops, restaurants, and art galleries.\n3. **Enjoy the Kansas City Zoo** - Home to a wide range of animals and interactive exhibits.\n4. **Check out the National World War I Museum and Memorial** - A comprehensive museum dedicated to World War I, with an impressive memorial tower.\n5. **Experience the local music scene** - Kansas City is famous for its jazz and blues music, with many clubs and live performances.\n6. **Visit Union Station** - A historic train station that features shops, restaurants, and exhibits.\n7. **Take a stroll in Loose Park** - A large park with beautiful gardens, walking trails, and a pond.\n8. **Try Kansas City barbecue** - The city is known for its unique style of barbecue, with many famous restaurants to choose from.\n9. **Attend a sporting event** - Home to the Kansas City Chiefs (NFL) and Kansas City Royals (MLB), you can catch a game depending on the season.\n10. **Explore the Power and Light District** - A vibrant area with nightlife, dining, and entertainment options.\n\nThese activities provide a mix of culture, history, and entertainment for visitors and locals alike."
+    },
+    {
+        "question": "where did drew brees go to college wikianswers?",
+        "cot_result": "Drew Brees attended Purdue University, where he played college football before entering the NFL."
+    },
+    {
+        "question": "what money do they use in spain?",
+        "cot_result": "The currency used in Spain is the Euro (\u20ac)."
+    },
+    {
+        "question": "what type of government did soviet union have?",
+        "cot_result": "The Soviet Union had a one-party socialist state government, which was characterized by a centralized economy and the dominance of the Communist Party. The government was based on Marxist-Leninist principles."
+    },
+    {
+        "question": "where did hugo chavez go to school?",
+        "cot_result": "Hugo Ch\u00e1vez attended the Military Academy of Venezuela, where he graduated as a second lieutenant. He also studied at Sim\u00f3n Bol\u00edvar University, where he pursued a degree in sociology."
+    },
+    {
+        "question": "what university did romney graduated from?",
+        "cot_result": "Mitt Romney graduated from Brigham Young University (BYU). The answer is {Brigham Young University}."
+    },
+    {
+        "question": "what countries does the panama canal go through?",
+        "cot_result": "The Panama Canal goes through Panama. It connects the Atlantic Ocean (via the Caribbean Sea) to the Pacific Ocean. The answer is {Panama}."
+    },
+    {
+        "question": "where did clay matthews go to school?",
+        "cot_result": "Clay Matthews attended the University of Southern California (USC)."
+    },
+    {
+        "question": "where all did picasso live?",
+        "cot_result": "Pablo Picasso lived in several places throughout his life, including:\n\n1. **M\u00e1laga, Spain** - His birthplace.\n2. **Barcelona, Spain** - Where he spent his youth and developed his early artistic style.\n3. **Paris, France** - He moved to Paris in 1900, where he became a central figure in the art world and lived for many years.\n4. **Gouda, Netherlands** - He spent some time here during World War II.\n5. **Antibes, France** - He lived in a villa in Antibes during the summer months in the 1940s.\n6. **Cannes, France** - He also spent time in Cannes later in his life.\n7. **Mougins, France** - He lived in Mougins until his death in 1973.\n\nThese locations reflect the various phases of his life and career, influencing his work and artistic development."
+    },
+    {
+        "question": "what ocean is around hawaii?",
+        "cot_result": "The ocean around Hawaii is the Pacific Ocean. The answer is {Pacific Ocean}."
+    },
+    {
+        "question": "what did michael crabtree do?",
+        "cot_result": "Michael Crabtree is a professional American football player known for his career as a wide receiver in the National Football League (NFL). He played for teams such as the San Francisco 49ers, Oakland Raiders, and the Buffalo Bills. Crabtree gained recognition for his skills in catching passes, making significant contributions to his teams, and achieving notable statistics throughout his career. He was also a standout player in college football at Texas Tech University, where he won the Biletnikoff Award as the nation's top receiver."
+    },
+    {
+        "question": "what did hayes do?",
+        "cot_result": "To provide a specific answer, I need more context about which \"Hayes\" you are referring to, as there are many individuals with that name in various fields such as politics, sports, or entertainment. Could you please clarify?"
+    },
+    {
+        "question": "what kind of government does libya have today?",
+        "cot_result": "As of October 2023, Libya has a complex political situation characterized by a transitional government. The country has been divided among various factions and militias since the fall of Muammar Gaddafi in 2011. The Government of National Unity (GNU) was established in 2021 as a result of a UN-led process to unify the country, but political instability and conflict continue to affect governance. Therefore, Libya is currently considered to have a transitional government with ongoing challenges in establishing a stable and unified political system."
+    },
+    {
+        "question": "what country borders slovakia?",
+        "cot_result": "Slovakia shares borders with the following countries: Austria, Czech Republic, Poland, Ukraine, and Hungary."
+    },
+    {
+        "question": "who won the 2000 fa cup final?",
+        "cot_result": "The 2000 FA Cup Final was won by Chelsea, who defeated Aston Villa 1-0. The only goal of the match was scored by Roberto Di Matteo."
+    },
+    {
+        "question": "who does owen schmitt play for?",
+        "cot_result": "Owen Schmitt is a former professional American football player who played as a fullback. He played in the NFL for the Seattle Seahawks and the Philadelphia Eagles. The answer is {Seattle Seahawks, Philadelphia Eagles}."
+    },
+    {
+        "question": "what instrument does louis armstrong?",
+        "cot_result": "Louis Armstrong was a renowned jazz musician primarily known for playing the trumpet. He was also a talented vocalist. The answer is {trumpet}."
+    },
+    {
+        "question": "who plays blaine in batman?",
+        "cot_result": "The character Blaine in the Batman series is portrayed by actor **Michael Cera** in the animated series \"Batman: The Brave and the Bold.\" However, if you are referring to a different adaptation or character, please provide more context."
+    },
+    {
+        "question": "who does michael oher play for in 2010?",
+        "cot_result": "In 2010, Michael Oher played for the Baltimore Ravens in the NFL. The answer is {Baltimore Ravens}."
+    },
+    {
+        "question": "who was philip in acts chapter 8?",
+        "cot_result": "In Acts chapter 8 of the New Testament, Philip is one of the seven deacons appointed by the apostles to help with the distribution of food and aid to the early Christian community. He is known for his evangelistic work, particularly in Samaria, where he preached the gospel and performed miracles. Philip is also recognized for his encounter with the Ethiopian eunuch, where he explained the Scriptures and baptized him. This Philip is often referred to as Philip the Evangelist."
+    },
+    {
+        "question": "what are the major cities in ukraine?",
+        "cot_result": "The major cities in Ukraine include:\n\n1. Kyiv (Kiev) - the capital and largest city\n2. Kharkiv - the second-largest city\n3. Odesa - a major port city on the Black Sea\n4. Dnipro - an important industrial city\n5. Donetsk - a significant city in the eastern part of the country\n6. Lviv - known for its cultural heritage\n7. Zaporizhzhia - home to the Dnieper Hydroelectric Station\n8. Kryvyi Rih - an industrial city known for its mining\n9. Mykolaiv - a shipbuilding center\n10. Vinnytsia - known for its historical significance and cultural sites\n\nThese cities play important roles in Ukraine's economy, culture, and history."
+    },
+    {
+        "question": "who plays bob kelso in scrubs?",
+        "cot_result": "The character Bob Kelso in the television show \"Scrubs\" is played by actor Ken Jenkins."
+    },
+    {
+        "question": "what baseball team was jackie robinson on?",
+        "cot_result": "Jackie Robinson played for the Brooklyn Dodgers. The answer is {Brooklyn Dodgers}."
+    },
+    {
+        "question": "what other movies is josh hutcherson in?",
+        "cot_result": "Josh Hutcherson has appeared in several movies besides his well-known role in \"The Hunger Games\" series. Some of his other films include:\n\n1. \"Bridge to Terabithia\" (2007)\n2. \"Journey to the Center of the Earth\" (2008)\n3. \"The Kids Are All Right\" (2010)\n4. \"The Disaster Artist\" (2017)\n5. \"Future Man\" (2017-2020) - although this is a TV series, it is notable.\n6. \"The Polar Express\" (2004) - voice role\n7. \"Cirque du Freak: The Vampire's Assistant\" (2009)\n\nThese are just a few examples of his work in film and television."
+    },
+    {
+        "question": "who plays charlie in the santa clause movies?",
+        "cot_result": "The character Charlie in \"The Santa Clause\" movies is played by actor Eric Lloyd."
+    },
+    {
+        "question": "how many languages do they speak in switzerland?",
+        "cot_result": "In Switzerland, four national languages are spoken: German, French, Italian, and Romansh. The majority of the population speaks German, followed by French and Italian, with Romansh being the least common."
+    },
+    {
+        "question": "what county is san antonio in?",
+        "cot_result": "San Antonio is located in Bexar County, Texas. The answer is {Bexar County}."
+    },
+    {
+        "question": "who is robin roberts father?",
+        "cot_result": "Robin Roberts' father is Colonel Lawrence E. Roberts."
+    },
+    {
+        "question": "what are dallas cowboys colors?",
+        "cot_result": "The colors of the Dallas Cowboys are navy blue, silver, and white."
+    },
+    {
+        "question": "who plays timon's voice in the lion king?",
+        "cot_result": "The character Timon in \"The Lion King\" is voiced by Nathan Lane in the original animated film. The answer is {Nathan Lane}."
+    },
+    {
+        "question": "what year did the seahawks win the superbowl?",
+        "cot_result": "The Seattle Seahawks won the Super Bowl in the year 2014, specifically Super Bowl XLVIII, which took place on February 2, 2014."
+    },
+    {
+        "question": "what kind of guitar john mayer?",
+        "cot_result": "John Mayer is known for playing a variety of guitars, but he is particularly associated with Fender Stratocasters. He has also used other brands and models, including Martin acoustic guitars. His choice of guitars often reflects his blues and rock influences."
+    },
+    {
+        "question": "what religion was king louis xiv?",
+        "cot_result": "King Louis XIV was a Roman Catholic."
+    },
+    {
+        "question": "what planet did luke skywalker came from?",
+        "cot_result": "Luke Skywalker came from the planet Tatooine. The answer is {Tatooine}."
+    },
+    {
+        "question": "what kind of government does poland have?",
+        "cot_result": "Poland has a parliamentary republic government. This means that it has a system where the executive branch derives its democratic legitimacy from, and is directly accountable to, the legislature (parliament). The President of Poland serves as the head of state, while the Prime Minister is the head of government."
+    },
+    {
+        "question": "where do florida panthers play?",
+        "cot_result": "The Florida Panthers play at the BB&T Center, located in Sunrise, Florida."
+    },
+    {
+        "question": "what did charles babbage discover?",
+        "cot_result": "Charles Babbage is best known for his work in the development of the concept of a programmable computer. He designed the Analytical Engine, which is considered a precursor to modern computers due to its ability to perform any calculation and its use of punched cards for input. Babbage also made significant contributions to the field of mathematics and is often referred to as the \"father of the computer.\""
+    },
+    {
+        "question": "who were mary shelley?",
+        "cot_result": "Mary Shelley was an English novelist best known for her groundbreaking work \"Frankenstein; or, The Modern Prometheus,\" published in 1818. She was born on August 30, 1797, in London, England, to the political philosopher William Godwin and the feminist writer Mary Wollstonecraft. Shelley is often regarded as one of the early pioneers of science fiction. In addition to \"Frankenstein,\" she wrote several other novels, short stories, and essays throughout her life. She was also the wife of the Romantic poet Percy Bysshe Shelley. Mary Shelley passed away on February 1, 1851."
+    },
+    {
+        "question": "who does amy stiller play in dodgeball?",
+        "cot_result": "Amy Stiller plays the character Marcia in the movie \"Dodgeball: A True Underdog Story.\""
+    },
+    {
+        "question": "where did benjamin franklin went to school?",
+        "cot_result": "Benjamin Franklin did not attend formal school in the traditional sense. He had a brief formal education at a grammar school in Boston, but he left at the age of 10 to help his father with his candle-making business. Much of his education came from self-study and reading extensively on his own."
+    },
+    {
+        "question": "in which continent is germany?",
+        "cot_result": "Germany is located in Europe. The answer is {Europe}."
+    },
+    {
+        "question": "who was queen elizabeth ii mom?",
+        "cot_result": "Queen Elizabeth II's mother was Elizabeth Bowes-Lyon, who was known as the Queen Mother after her husband's death and her daughter's ascension to the throne. The answer is {Elizabeth Bowes-Lyon}."
+    },
+    {
+        "question": "where is the arizona cardinals stadium located?",
+        "cot_result": "The Arizona Cardinals stadium, known as State Farm Stadium, is located in Glendale, Arizona."
+    },
+    {
+        "question": "where was osama bin laden killed?",
+        "cot_result": "Osama bin Laden was killed in Abbottabad, Pakistan. The answer is {Abbottabad, Pakistan}."
+    },
+    {
+        "question": "where did hank marvin come from?",
+        "cot_result": "Hank Marvin is from Newcastle upon Tyne, England."
+    },
+    {
+        "question": "what was wayne gretzky's first team?",
+        "cot_result": "Wayne Gretzky's first professional team was the Indianapolis Racers in the World Hockey Association (WHA) during the 1978-1979 season. However, he is most famously known for his time with the Edmonton Oilers in the National Hockey League (NHL), which he joined later in the same season after being traded from the Racers."
+    },
+    {
+        "question": "when was the last time the toronto maple leafs win the stanley cup?",
+        "cot_result": "The last time the Toronto Maple Leafs won the Stanley Cup was in 1967."
+    },
+    {
+        "question": "who is angelina jolie mom and dad?",
+        "cot_result": "Angelina Jolie's mother is Marcheline Bertrand, and her father is Jon Voight."
+    },
+    {
+        "question": "what kind of leukemia did jill clayburgh have?",
+        "cot_result": "Jill Clayburgh had chronic lymphocytic leukemia (CLL)."
+    },
+    {
+        "question": "what all does google now do?",
+        "cot_result": "Google Now, which was part of the Google Search app, provided users with personalized information and updates based on their preferences and habits. Some of its key features included:\n\n1. **Personalized Cards**: Google Now displayed cards with information relevant to the user, such as weather updates, traffic conditions, sports scores, and reminders.\n\n2. **Contextual Information**: It provided information based on the user's location and time, such as nearby restaurants, events, and public transport schedules.\n\n3. **Voice Commands**: Users could interact with Google Now using voice commands to ask questions, set reminders, or get directions.\n\n4. **Integration with Other Google Services**: Google Now integrated with other Google services like Gmail, Calendar, and Google Maps to provide relevant updates and notifications.\n\n5. **Search Functionality**: It allowed users to perform searches and get answers to questions quickly.\n\nGoogle Now has since evolved into Google Assistant, which offers even more advanced features, including smart home control, more conversational interactions, and integration with a wider range of services and devices."
+    },
+    {
+        "question": "what to do and see in vienna austria?",
+        "cot_result": "Vienna, Austria, is a city rich in history, culture, and art. Here are some top things to do and see:\n\n1. **Sch\u00f6nbrunn Palace**: Explore this stunning baroque palace and its beautiful gardens. Don't miss the Gloriette for a panoramic view of the city.\n\n2. **St. Stephen's Cathedral (Stephansdom)**: Visit this iconic Gothic cathedral located in the heart of Vienna. You can climb the tower for a great view of the city.\n\n3. **Belvedere Palace**: This historic complex houses an impressive collection of Austrian art, including works by Gustav Klimt.\n\n4. **Vienna State Opera (Wiener Staatsoper)**: Attend a performance or take a guided tour of one of the world's most famous opera houses.\n\n5. **MuseumsQuartier**: Explore this cultural complex that includes several museums, such as the Leopold Museum and the Museum of Modern Art.\n\n6. **Ringstrasse**: Take a stroll along this grand boulevard that encircles the city center, featuring impressive buildings like the Vienna City Hall and the Austrian Parliament.\n\n7. **Naschmarkt**: Visit this vibrant market for fresh produce, local delicacies, and international cuisine.\n\n8. **Prater Park**: Enjoy a day at this large public park, home to the famous Giant Ferris Wheel (Wiener Riesenrad).\n\n9. **Karlskirche**: Admire the stunning baroque architecture of this church and consider taking the elevator to the dome for a closer look at the frescoes.\n\n10. **Caf\u00e9 Culture**: Experience Vienna's famous coffee house culture by visiting traditional caf\u00e9s like Caf\u00e9 Central or Caf\u00e9 Sacher for a slice of Sachertorte.\n\n11. **Vienna Zoo (Tiergarten Sch\u00f6nbrunn)**: The oldest zoo in the world, located within the Sch\u00f6nbrunn Palace grounds, is a great place for families.\n\n12. **Mozart's House**: Visit the apartment where Wolfgang Amadeus Mozart lived and learn about his life and work.\n\nThese attractions offer a mix of history, art, and local culture, making Vienna a wonderful destination to explore."
+    },
+    {
+        "question": "where is the carpathian mountain range located?",
+        "cot_result": "The Carpathian mountain range is located in Central and Eastern Europe, stretching across several countries including Poland, Slovakia, Ukraine, Romania, and Hungary."
+    },
+    {
+        "question": "where did robert kardashian go to college?",
+        "cot_result": "Robert Kardashian attended the University of Southern California (USC)."
+    },
+    {
+        "question": "what does barbara bush do for work?",
+        "cot_result": "Barbara Bush, the daughter of former President George W. Bush and former First Lady Laura Bush, is known for her work in public service and philanthropy. She co-founded the Global Health Corps, an organization that aims to improve health equity by mobilizing a diverse group of young leaders to work in the health sector. Additionally, she has been involved in various initiatives related to education and literacy. As of my last knowledge update in October 2023, she continues to be active in these areas."
+    },
+    {
+        "question": "where is the sony ericsson company?",
+        "cot_result": "Sony Ericsson was a joint venture between Sony Corporation and Ericsson, primarily known for producing mobile phones. The company was headquartered in London, United Kingdom. However, in 2012, Sony acquired Ericsson's stake in the joint venture, and it became a wholly-owned subsidiary of Sony, rebranding itself as Sony Mobile Communications."
+    },
+    {
+        "question": "what did shannon hoon die from?",
+        "cot_result": "Shannon Hoon, the lead singer of the band Blind Melon, died from a drug overdose. The official cause of death was determined to be a combination of cocaine and heroin."
+    },
+    {
+        "question": "what language do people from bosnia speak?",
+        "cot_result": "People from Bosnia primarily speak Bosnian, which is one of the three official languages of Bosnia and Herzegovina, alongside Croatian and Serbian. The language is part of the South Slavic language group."
+    },
+    {
+        "question": "what is malaysian currency?",
+        "cot_result": "The currency of Malaysia is the Malaysian Ringgit, abbreviated as MYR."
+    },
+    {
+        "question": "what tv series did mark harmon star in?",
+        "cot_result": "Mark Harmon starred in the TV series \"NCIS.\""
+    },
+    {
+        "question": "what are the sights to see in madrid?",
+        "cot_result": "Madrid, the capital of Spain, is rich in history, culture, and art. Here are some must-see sights in Madrid:\n\n1. **Prado Museum (Museo del Prado)** - One of the world's premier art galleries, featuring works by Spanish masters like Vel\u00e1zquez and Goya.\n\n2. **Royal Palace of Madrid (Palacio Real)** - The official residence of the Spanish royal family, offering opulent architecture and beautiful gardens.\n\n3. **Retiro Park (Parque del Retiro)** - A large and popular park in the city center, perfect for a leisurely stroll, boating, or enjoying the various sculptures and gardens.\n\n4. **Plaza Mayor** - A grand central square surrounded by historic buildings, cafes, and shops, ideal for people-watching.\n\n5. **Puerta del Sol** - A bustling public square known for the famous \"Bear and the Strawberry Tree\" statue and as a central hub of the city.\n\n6. **Thyssen-Bornemisza Museum** - An art museum that complements the Prado with a diverse collection ranging from the Middle Ages to the 20th century.\n\n7. **Mercado de San Miguel** - A vibrant market where you can sample a variety of Spanish foods and tapas.\n\n8. **Temple of Debod** - An ancient Egyptian temple that was relocated to Madrid, offering stunning views, especially at sunset.\n\n9. **Gran V\u00eda** - A major street known for its shopping, dining, and impressive early 20th-century architecture.\n\n10. **Santiago Bernab\u00e9u Stadium** - Home to Real Madrid, this stadium offers tours and is a must-visit for football fans.\n\nThese sights provide a glimpse into the rich cultural heritage and vibrant life of Madrid."
+    },
+    {
+        "question": "where is perpignan located?",
+        "cot_result": "Perpignan is located in the southern part of France, near the border with Spain. It is the capital of the Pyr\u00e9n\u00e9es-Orientales department in the Occitanie region."
+    },
+    {
+        "question": "what was franklin pierce famous for?",
+        "cot_result": "Franklin Pierce was famous for being the 14th President of the United States, serving from 1853 to 1857. He is known for his support of the Kansas-Nebraska Act, which allowed for the possibility of slavery in territories where it had been previously prohibited, leading to significant political conflict and violence known as \"Bleeding Kansas.\" Pierce's presidency is often criticized for his inability to address the growing tensions over slavery, which ultimately contributed to the onset of the Civil War. Additionally, he was a soldier in the Mexican-American War and served in various political roles before his presidency, including as a U.S. Senator from New Hampshire."
+    },
+    {
+        "question": "through which countries of the sahel does the niger river flow?",
+        "cot_result": "The Niger River flows through several countries in the Sahel region, including:\n\n1. Mali\n2. Niger\n3. Benin\n\nThese countries are part of the Sahel, which is a semi-arid region in Africa that lies between the Sahara Desert to the north and the more humid savannas to the south."
+    },
+    {
+        "question": "what art movement did leonardo da vinci belong to?",
+        "cot_result": "Leonardo da Vinci is primarily associated with the Renaissance art movement. The answer is {Renaissance}."
+    },
+    {
+        "question": "what the language spoken in indonesia?",
+        "cot_result": "The language spoken in Indonesia is Indonesian, which is based on Malay. The answer is {Indonesian}."
+    },
+    {
+        "question": "who played on the jeffersons?",
+        "cot_result": "The main cast of \"The Jeffersons\" included:\n\n- Sherman Hemsley as George Jefferson\n- Isabel Sanford as Louise \"Weezy\" Jefferson\n- Marla Gibbs as Florence Johnston\n- Roxie Roker as Helen Willis\n- Franklin Cover as Tom Willis\n- Mike Evans as Lionel Jefferson\n- Berlinda Tolbert as Jenny Willis Jefferson\n\nThese actors were key figures in the show's success, which aired from 1975 to 1985."
+    },
+    {
+        "question": "what county is utica ny in?",
+        "cot_result": "Utica, NY is located in Oneida County. The answer is {Oneida County}."
+    },
+    {
+        "question": "what character did billy d williams play in star wars?",
+        "cot_result": "Billy Dee Williams played the character Lando Calrissian in Star Wars. The answer is {Lando Calrissian}."
+    },
+    {
+        "question": "who are the judges appointed in the supreme court?",
+        "cot_result": "The judges appointed to the Supreme Court of the United States are known as Justices. As of October 2023, the Supreme Court consists of the following Justices:\n\n1. John Roberts (Chief Justice)\n2. Clarence Thomas\n3. Samuel Alito\n4. Sonia Sotomayor\n5. Elena Kagan\n6. Neil Gorsuch\n7. Brett Kavanaugh\n8. Amy Coney Barrett\n9. Ketanji Brown Jackson\n\nThese Justices are nominated by the President and confirmed by the Senate."
+    },
+    {
+        "question": "who won fa cup 1976?",
+        "cot_result": "The winner of the FA Cup in 1976 was Southampton. They defeated Manchester United 1-0 in the final."
+    },
+    {
+        "question": "what countries have english as their official language?",
+        "cot_result": "Countries where English is an official language include:\n\n1. United States\n2. United Kingdom\n3. Canada\n4. Australia\n5. New Zealand\n6. Ireland\n7. South Africa\n8. Nigeria\n9. India (along with Hindi and other languages)\n10. Philippines (along with Filipino)\n11. Singapore\n12. Jamaica\n13. Barbados\n14. Trinidad and Tobago\n15. Bahamas\n16. Belize\n17. Guyana\n18. Malta\n\nThis is not an exhaustive list, as there are other countries and territories where English is an official language or widely used."
+    },
+    {
+        "question": "what was the cause of death for huell howser?",
+        "cot_result": "Huell Howser passed away due to complications from cancer. The answer is {cancer}."
+    },
+    {
+        "question": "what kind of currency does the dominican republic have?",
+        "cot_result": "The currency of the Dominican Republic is the Dominican peso. The symbol for the Dominican peso is \"RD$\" or simply \"$\"."
+    },
+    {
+        "question": "what county is st paul va in?",
+        "cot_result": "St. Paul, VA is located in Wise County. The answer is {Wise County}."
+    },
+    {
+        "question": "what do you call members of the senate?",
+        "cot_result": "Members of the Senate are called \"Senators.\""
+    },
+    {
+        "question": "who does nolan ryan play for?",
+        "cot_result": "Nolan Ryan played for several Major League Baseball teams during his career, including the New York Mets, California Angels, Houston Astros, and Texas Rangers."
+    },
+    {
+        "question": "who plays juni cortez?",
+        "cot_result": "The character Juni Cortez is played by Daryl Sabara."
+    },
+    {
+        "question": "who was the leader of the us during wwii?",
+        "cot_result": "The leader of the United States during World War II was President Franklin D. Roosevelt."
+    },
+    {
+        "question": "what countries have german as the official language?",
+        "cot_result": "The countries where German is an official language are:\n\n1. Germany\n2. Austria\n3. Switzerland\n4. Luxembourg\n5. Liechtenstein\n\nAdditionally, German is also recognized as a minority language in some regions of other countries, but the above five are the primary countries where it is an official language."
+    },
+    {
+        "question": "who are the senators of hawaii 2012?",
+        "cot_result": "In 2012, the senators of Hawaii were Daniel Inouye and Mazie Hirono. Daniel Inouye was a long-serving Democratic senator, while Mazie Hirono was elected to the Senate in 2012, becoming the first Asian American woman elected to the U.S. Senate."
+    },
+    {
+        "question": "who does donnie wahlberg play in the sixth sense?",
+        "cot_result": "Donnie Wahlberg plays the character Vincent Grey in the film \"The Sixth Sense.\""
+    },
+    {
+        "question": "where was the temple of karnak built?",
+        "cot_result": "The Temple of Karnak was built in Egypt, specifically located near Luxor (ancient Thebes). The answer is {Egypt}."
+    },
+    {
+        "question": "what language is spoken in haiti today?",
+        "cot_result": "The languages spoken in Haiti today are Haitian Creole (Krey\u00f2l Ayisyen) and French. The majority of the population speaks Haitian Creole, while French is used in government, media, and education."
+    },
+    {
+        "question": "what province is toronto in ( 7 letters )?",
+        "cot_result": "The province that Toronto is in is Ontario. The answer is {Ontario}."
+    },
+    {
+        "question": "who does peter griffin voice?",
+        "cot_result": "Peter Griffin is a character voiced by Seth MacFarlane in the animated television series \"Family Guy.\""
+    },
+    {
+        "question": "where did harry s truman go to school?",
+        "cot_result": "Harry S. Truman attended several schools during his education, but he graduated from Independence High School in Independence, Missouri. He did not attend college. The answer is {Independence High School}."
+    },
+    {
+        "question": "who was the soviet leader during world war ii?",
+        "cot_result": "The Soviet leader during World War II was Joseph Stalin. The answer is {Joseph Stalin}."
+    },
+    {
+        "question": "what is claire danes famous for?",
+        "cot_result": "Claire Danes is famous for her work as an actress in film and television. She gained prominence for her role in the television series \"My So-Called Life,\" for which she received critical acclaim. Danes is also well-known for her performances in films such as \"Romeo + Juliet,\" \"The Hours,\" and \"Terminator 3: Rise of the Machines.\" Additionally, she has received multiple awards for her role in the television series \"Homeland,\" where she played the character Carrie Mathison."
+    },
+    {
+        "question": "what movies did christopher plummer play in?",
+        "cot_result": "Christopher Plummer had a prolific career and appeared in numerous films. Some notable movies he played in include:\n\n1. **The Sound of Music** (1965) - as Captain Georg von Trapp\n2. **Beginners** (2010) - as Hal Fields\n3. **The Insider** (1999) - as 60 Minutes producer Don Hewitt\n4. **A Beautiful Mind** (2001) - as Dr. Rosen\n5. **The Last Station** (2009) - as Leo Tolstoy\n6. **All the Money in the World** (2017) - as J. Paul Getty\n7. **The Girl with the Dragon Tattoo** (2011) - as Henrik Vanger\n\nThese are just a few examples, and his filmography includes many more performances across various genres."
+    },
+    {
+        "question": "what is the zip code for newark california?",
+        "cot_result": "The zip code for Newark, California is 94560."
+    },
+    {
+        "question": "who plays eowyn in lord of the rings?",
+        "cot_result": "The character \u00c9owyn in \"The Lord of the Rings\" is played by actress Miranda Otto."
+    },
+    {
+        "question": "what state does romney live in?",
+        "cot_result": "First, Mitt Romney is known to live in Utah. The answer is {Utah}."
+    },
+    {
+        "question": "what is london uk time zone?",
+        "cot_result": "London, UK is in the Greenwich Mean Time Zone (GMT) during standard time and in the British Summer Time Zone (BST), which is GMT+1, during daylight saving time. Daylight saving time typically runs from the last Sunday in March to the last Sunday in October."
+    },
+    {
+        "question": "what is the money of switzerland called?",
+        "cot_result": "The currency of Switzerland is called the Swiss Franc. The answer is {Swiss Franc}."
+    },
+    {
+        "question": "what district does nancy pelosi represent?",
+        "cot_result": "Nancy Pelosi represents California's 11th congressional district. The answer is {California's 11th congressional district}."
+    },
+    {
+        "question": "where did scott fitzgerald go to college?",
+        "cot_result": "Scott Fitzgerald attended Princeton University. The answer is {Princeton University}."
+    },
+    {
+        "question": "what is kentucky state slogan?",
+        "cot_result": "The state slogan of Kentucky is \"United We Stand, Divided We Fall.\""
+    },
+    {
+        "question": "where did william morris go to college?",
+        "cot_result": "William Morris attended Exeter College, Oxford. The answer is {Exeter College, Oxford}."
+    },
+    {
+        "question": "where did tim tebow grow up?",
+        "cot_result": "Tim Tebow grew up in Jacksonville, Florida. The answer is {Jacksonville, Florida}."
+    },
+    {
+        "question": "which countries speak germanic languages?",
+        "cot_result": "Countries that speak Germanic languages include:\n\n1. Germany\n2. Austria\n3. Switzerland\n4. Netherlands\n5. Belgium\n6. Denmark\n7. Norway\n8. Sweden\n9. Iceland\n10. United Kingdom\n11. United States (due to English)\n12. Canada (due to English)\n13. Australia (due to English)\n14. New Zealand (due to English)\n\nThese countries primarily speak languages that belong to the Germanic language family, which includes German, English, Dutch, Swedish, Danish, Norwegian, and Icelandic, among others."
+    },
+    {
+        "question": "what language does egyptian people speak?",
+        "cot_result": "Egyptian people primarily speak Arabic, specifically Egyptian Arabic, which is a dialect of the Arabic language."
+    },
+    {
+        "question": "what to see in christchurch new zealand?",
+        "cot_result": "In Christchurch, New Zealand, there are several attractions and sights to see, including:\n\n1. **Christchurch Botanic Gardens** - A beautiful collection of gardens featuring a wide variety of plants, trees, and flowers, perfect for a leisurely stroll.\n\n2. **Canterbury Museum** - Offers insights into the natural and cultural history of the region, including exhibits on M\u0101ori culture and Antarctic exploration.\n\n3. **Christchurch Art Gallery** - A contemporary art gallery showcasing both local and international artists.\n\n4. **Avon River** - You can take a punting tour on the river, which offers a unique perspective of the city and its gardens.\n\n5. **Cardboard Cathedral** - A unique architectural structure built after the original cathedral was damaged in the 2011 earthquake.\n\n6. **Quake City** - An interactive exhibition that tells the story of the 2010 and 2011 earthquakes and their impact on the city.\n\n7. **Sumner Beach** - A popular beach area for swimming, sunbathing, and enjoying coastal views.\n\n8. **Port Hills** - Offers hiking trails and stunning views of the city and the Southern Alps.\n\n9. **Willowbank Wildlife Reserve** - A wildlife park that focuses on New Zealand's unique fauna, including the kiwi bird.\n\n10. **The Christchurch Gondola** - Provides panoramic views of the city and surrounding areas from the top of the Port Hills.\n\nThese attractions highlight the natural beauty and cultural heritage of Christchurch, making it a great destination for visitors."
+    },
+    {
+        "question": "what is the capital of modern egypt?",
+        "cot_result": "The capital of modern Egypt is Cairo."
+    },
+    {
+        "question": "what are the names of michael jackson's 3 children?",
+        "cot_result": "Michael Jackson's three children are named Michael Joseph Jackson Jr. (commonly known as Prince), Paris-Michael Katherine Jackson, and Prince Michael Jackson II (commonly known as Blanket)."
+    },
+    {
+        "question": "what was dr seuss education?",
+        "cot_result": "Dr. Seuss, whose real name was Theodor Seuss Geisel, attended Dartmouth College, where he graduated in 1925. He later studied at the Oxford University in England, where he pursued a graduate program in literature. However, he did not complete his degree at Oxford. His education played a significant role in shaping his career as a writer and illustrator of children's books."
+    },
+    {
+        "question": "what is monta ellis career high points?",
+        "cot_result": "Monta Ellis's career-high points in a single game is 53, which he achieved on December 23, 2010, while playing for the Golden State Warriors against the New York Knicks."
+    },
+    {
+        "question": "what timezone is tucson arizona in right now?",
+        "cot_result": "Tucson, Arizona is in the Mountain Standard Time (MST) zone. However, it does not observe Daylight Saving Time, so it remains on MST year-round."
+    },
+    {
+        "question": "who is louisiana state senator?",
+        "cot_result": "As of my last knowledge update in October 2023, the Louisiana State Senate has multiple members, and the specific senator can vary based on the district. For the most accurate and current information, please check the official Louisiana State Senate website or a reliable news source. If you have a specific district in mind, I can help you find the senator for that district."
+    },
+    {
+        "question": "where did richard nixon die?",
+        "cot_result": "Richard Nixon died in New York City. The answer is {New York City}."
+    },
+    {
+        "question": "where is the fukushima daiichi nuclear power station?",
+        "cot_result": "The Fukushima Daiichi Nuclear Power Station is located in Japan, specifically in the Fukushima Prefecture."
+    },
+    {
+        "question": "what do people speak in germany?",
+        "cot_result": "People in Germany primarily speak German."
+    },
+    {
+        "question": "who was esther's husband?",
+        "cot_result": "Esther's husband was King Ahasuerus, also known as Xerxes I, in the biblical Book of Esther. The answer is {Ahasuerus}."
+    },
+    {
+        "question": "who was judi dench married to?",
+        "cot_result": "Judi Dench was married to Michael Williams. They were married from 1971 until his death in 2001."
+    },
+    {
+        "question": "who is the head coach of inter milan?",
+        "cot_result": "As of October 2023, the head coach of Inter Milan is Simone Inzaghi."
+    },
+    {
+        "question": "what currency is accepted in new zealand?",
+        "cot_result": "The currency accepted in New Zealand is the New Zealand Dollar (NZD)."
+    },
+    {
+        "question": "which continents were part of the roman empire?",
+        "cot_result": "The Roman Empire spanned across three continents: Europe, Africa, and Asia. The empire included territories in regions that are now part of modern-day countries in these continents."
+    },
+    {
+        "question": "who was queen isabella's mother?",
+        "cot_result": "Queen Isabella's mother was Queen Isabella I of Castile. She was the daughter of John II of Castile and his second wife, Isabella of Portugal. The answer is {Isabella of Portugal}."
+    },
+    {
+        "question": "who did scarlett johansson date?",
+        "cot_result": "Scarlett Johansson has dated several individuals over the years. Some of her notable relationships include:\n\n1. **Josh Hartnett** - They dated briefly in the early 2000s.\n2. **Ryan Reynolds** - They were married from 2008 to 2011.\n3. **Nate Naylor** - They dated for about a year in 2012.\n4. **Romain Dauriac** - They were married from 2014 to 2017 and have a daughter together.\n5. **Colin Jost** - They became engaged in 2019 and married in 2020.\n\nThese are just a few of the people she has been linked to romantically."
+    },
+    {
+        "question": "who was demi lovato dating?",
+        "cot_result": "Demi Lovato has dated several people over the years. As of my last knowledge update in October 2023, they were reported to be dating Jutes, a musician. However, relationships can change frequently, so it's best to check the latest news for the most current information."
+    },
+    {
+        "question": "what was hitler the leader of?",
+        "cot_result": "Adolf Hitler was the leader of Nazi Germany. He served as Chancellor from 1933 to 1945 and was the F\u00fchrer (leader) of the National Socialist German Workers' Party (Nazi Party)."
+    },
+    {
+        "question": "who was gerald ford vp?",
+        "cot_result": "Gerald Ford's Vice President was Nelson Rockefeller. The answer is {Nelson Rockefeller}."
+    },
+    {
+        "question": "where is jason mraz from?",
+        "cot_result": "Jason Mraz is from Mechanicsville, Virginia, USA."
+    },
+    {
+        "question": "what was the book written by charles darwin?",
+        "cot_result": "The book written by Charles Darwin is \"On the Origin of Species.\""
+    },
+    {
+        "question": "who is in the american league in baseball?",
+        "cot_result": "The American League (AL) is one of the two major leagues in Major League Baseball (MLB) and consists of 15 teams. The teams in the American League are:\n\n1. Baltimore Orioles\n2. Boston Red Sox\n3. Chicago White Sox\n4. Cleveland Guardians\n5. Detroit Tigers\n6. Houston Astros\n7. Kansas City Royals\n8. Los Angeles Angels\n9. Minnesota Twins\n10. New York Yankees\n11. Oakland Athletics\n12. Seattle Mariners\n13. Tampa Bay Rays\n14. Texas Rangers\n15. Toronto Blue Jays\n\nThese teams compete in various divisions within the league."
+    },
+    {
+        "question": "what type of political system is brazil?",
+        "cot_result": "Brazil has a federal presidential constitutional republic political system. This means that it is a federation of states with a president serving as both the head of state and the head of government, operating under a constitution that outlines the structure of government and the rights of citizens."
+    },
+    {
+        "question": "who is tatyana ali parents?",
+        "cot_result": "Tatyana Ali's parents are Sonia Ali and Sheriff Ali."
+    },
+    {
+        "question": "what made richard hammond famous?",
+        "cot_result": "Richard Hammond became famous primarily as a television presenter and journalist, particularly for his work on the BBC television show \"Top Gear,\" where he co-hosted alongside Jeremy Clarkson and James May. His engaging personality, humor, and expertise in automobiles contributed to the show's immense popularity. Additionally, he has hosted other programs, including \"The Grand Tour\" and various documentaries, further establishing his reputation in the automotive and entertainment industries."
+    },
+    {
+        "question": "what is the capital of republic of ireland?",
+        "cot_result": "The capital of the Republic of Ireland is {Dublin}."
+    },
+    {
+        "question": "what is the current time in kauai hawaii?",
+        "cot_result": "I am unable to provide real-time information such as the current time. However, Kauai, Hawaii is in the Hawaii-Aleutian Standard Time Zone (HAST), which is UTC-10:00. You can check the current time by looking it up online or using a world clock."
+    },
+    {
+        "question": "what are the school colors for harvard university?",
+        "cot_result": "The school colors for Harvard University are crimson."
+    },
+    {
+        "question": "where did eleanor roosevelt die?",
+        "cot_result": "Eleanor Roosevelt died in New York City. The answer is {New York City}."
+    },
+    {
+        "question": "where did the latin language originate from?",
+        "cot_result": "The Latin language originated in ancient Rome, which is located in present-day Italy. The answer is {Italy}."
+    },
+    {
+        "question": "what kind of money do they use in germany?",
+        "cot_result": "The currency used in Germany is the Euro (\u20ac)."
+    },
+    {
+        "question": "where did john franklin live?",
+        "cot_result": "John Franklin, the British explorer, was born in Spilsby, Lincolnshire, England. He spent much of his life in various locations due to his explorations, but he is most commonly associated with England. If you are referring to a different John Franklin, please provide more context."
+    },
+    {
+        "question": "what did jesse owens won?",
+        "cot_result": "Jesse Owens won four gold medals at the 1936 Berlin Olympics. He achieved victories in the 100 meters, 200 meters, long jump, and 4x100 meter relay events."
+    },
+    {
+        "question": "what are some of leonardo da vinci most famous inventions?",
+        "cot_result": "Some of Leonardo da Vinci's most famous inventions include:\n\n1. **Flying Machine** - Often referred to as the \"ornithopter,\" this design was inspired by the study of birds and aimed to achieve human flight.\n2. **Parachute** - Da Vinci sketched a pyramid-shaped parachute that he believed could allow a person to safely descend from great heights.\n3. **Armored Vehicle** - Sometimes considered a precursor to the modern tank, this design featured a covered, armored vehicle with cannons.\n4. **Helicopter** - Known as the \"aerial screw,\" this invention was an early concept of a helicopter, utilizing a screw-like design to lift off the ground.\n5. **Anemometer** - Da Vinci designed a device to measure wind speed, which is a fundamental tool in meteorology.\n6. **Self-Propelled Cart** - This invention is considered an early version of the automobile, powered by a spring mechanism.\n7. **Mechanical Knight** - A robotic knight that could sit, wave, and move its arms, showcasing da Vinci's understanding of mechanics and anatomy.\n\nThese inventions reflect his genius in combining art and science, as well as his visionary ideas that were ahead of his time."
+    },
+    {
+        "question": "what is the islamic belief?",
+        "cot_result": "Islamic belief, or Iman, is centered around the belief in the oneness of God (Allah) and encompasses several key tenets known as the Six Articles of Faith. These are:\n\n1. **Belief in One God (Allah)**: The fundamental concept of monotheism in Islam.\n2. **Belief in Angels**: Muslims believe in the existence of angels created by God, who perform various tasks.\n3. **Belief in the Holy Books**: Muslims believe in the scriptures revealed to prophets, including the Torah (to Moses), Psalms (to David), Gospel (to Jesus), and the Quran (to Muhammad).\n4. **Belief in Prophets**: Muslims believe that God has sent prophets to guide humanity, with Muhammad being the final prophet.\n5. **Belief in the Day of Judgment**: Muslims believe in a day when all individuals will be resurrected and held accountable for their actions.\n6. **Belief in Divine Decree (Qadar)**: This includes the belief that God has knowledge of everything that happens and that He has a divine plan.\n\nThese beliefs form the foundation of a Muslim's faith and practice, guiding their actions and understanding of the world."
+    },
+    {
+        "question": "what jamaican money called?",
+        "cot_result": "The currency of Jamaica is called the Jamaican Dollar, abbreviated as JMD."
+    },
+    {
+        "question": "what did coretta scott king died from?",
+        "cot_result": "Coretta Scott King died from complications related to ovarian cancer. The answer is {ovarian cancer}."
+    },
+    {
+        "question": "what does bolivia border?",
+        "cot_result": "Bolivia borders five countries in South America. These countries are Brazil to the north and east, Paraguay to the southeast, Argentina to the south, Chile to the southwest, and Peru to the west."
+    },
+    {
+        "question": "under what political system does the united states government operate?",
+        "cot_result": "The United States government operates under a federal system, specifically a constitutional republic. This means that it is governed by elected representatives and an elected leader (the president) under a system that is defined by the Constitution."
+    },
+    {
+        "question": "what is arkansas state capitol?",
+        "cot_result": "The state capital of Arkansas is Little Rock."
+    },
+    {
+        "question": "what is the milwaukee brewers mascot?",
+        "cot_result": "The Milwaukee Brewers mascot is named \"Bernie Brewer.\""
+    },
+    {
+        "question": "where does toronto get its water from?",
+        "cot_result": "Toronto gets its water primarily from Lake Ontario. The city has a comprehensive water treatment and distribution system that processes water from the lake to supply its residents."
+    },
+    {
+        "question": "who is the king of cambodia now?",
+        "cot_result": "The current king of Cambodia is Norodom Sihamoni. He has been the king since October 29, 2004."
+    },
+    {
+        "question": "what style of music does michael jackson perform?",
+        "cot_result": "Michael Jackson is known for performing a variety of music styles, including pop, rock, soul, and R&B. The answer is {pop, rock, soul, R&B}."
+    },
+    {
+        "question": "what to visit in atlanta?",
+        "cot_result": "Atlanta offers a variety of attractions to visit, including:\n\n1. **Georgia Aquarium** - One of the largest aquariums in the world, featuring thousands of marine animals.\n2. **World of Coca-Cola** - A museum showcasing the history of the Coca-Cola brand, with interactive exhibits and tastings.\n3. **Atlanta Botanical Garden** - A beautiful garden featuring a variety of plant collections and seasonal displays.\n4. **Martin Luther King Jr. National Historical Park** - A site dedicated to the life and legacy of Dr. King, including his childhood home and church.\n5. **The Fox Theatre** - A historic theater known for its stunning architecture and hosting Broadway shows and concerts.\n6. **Centennial Olympic Park** - A public park built for the 1996 Olympics, featuring fountains, gardens, and event spaces.\n7. **High Museum of Art** - An art museum with a diverse collection of classic and contemporary works.\n8. **Piedmont Park** - A large urban park offering walking trails, sports facilities, and beautiful views of the Atlanta skyline.\n9. **The BeltLine** - A network of trails and parks that connects various neighborhoods, perfect for walking, biking, and enjoying public art.\n\nThese are just a few highlights, and there are many more cultural, historical, and recreational sites to explore in Atlanta!"
+    },
+    {
+        "question": "what is the most common language spoken in argentina?",
+        "cot_result": "The most common language spoken in Argentina is Spanish."
+    },
+    {
+        "question": "who originally voiced meg on family guy?",
+        "cot_result": "The character Meg Griffin on \"Family Guy\" was originally voiced by Lacey Chabert in the first season. Later, the role was taken over by Mila Kunis, who has voiced the character since the second season. The answer is {Lacey Chabert}."
+    },
+    {
+        "question": "who plays edward scissorhands?",
+        "cot_result": "The character Edward Scissorhands is played by Johnny Depp. The answer is {Johnny Depp}."
+    },
+    {
+        "question": "what is jamie oliver children names?",
+        "cot_result": "Jamie Oliver has five children, and their names are Poppy, Daisy, Petal, Buddy, and River."
+    },
+    {
+        "question": "where was mission san rafael located?",
+        "cot_result": "Mission San Rafael was located in what is now San Rafael, California. It was established in 1817 as a part of the California mission system."
+    },
+    {
+        "question": "what is the zip code for concord?",
+        "cot_result": "The zip code for Concord, California is 94518. However, there are multiple zip codes for different areas within Concord, including 94519 and 94520. If you are looking for a specific area or state, please provide more details."
+    },
+    {
+        "question": "where does airtran airways fly?",
+        "cot_result": "AirTran Airways primarily operated domestic flights within the United States and had some international routes to destinations in the Caribbean and Mexico. However, please note that AirTran Airways was acquired by Southwest Airlines in 2011, and its operations were fully integrated into Southwest by 2014. Therefore, AirTran Airways no longer exists as a separate airline. For current flight options, you would need to check Southwest Airlines."
+    },
+    {
+        "question": "where did abraham and his descendants live?",
+        "cot_result": "Abraham and his descendants lived in the region known as Canaan, which is often associated with parts of modern-day Israel, Palestine, Lebanon, and Jordan. The answer is {Canaan}."
+    },
+    {
+        "question": "what is the zip code for wyoming michigan?",
+        "cot_result": "The zip code for Wyoming, Michigan is 49509."
+    },
+    {
+        "question": "what county is west st paul in?",
+        "cot_result": "West St. Paul is located in Dakota County, Minnesota. The answer is {Dakota County}."
+    },
+    {
+        "question": "what city and state is yale located in?",
+        "cot_result": "Yale University is located in New Haven, Connecticut. The answer is {New Haven, Connecticut}."
+    },
+    {
+        "question": "when the atlanta braves won the world series?",
+        "cot_result": "The Atlanta Braves won the World Series in 1995, 2021, and they also had victories in 1914 and 1957 when they were known as the Boston Braves and Milwaukee Braves, respectively."
+    },
+    {
+        "question": "where is mount st helens volcano?",
+        "cot_result": "Mount St. Helens is located in the state of Washington, USA."
+    },
+    {
+        "question": "who played carlton lassiter on psych?",
+        "cot_result": "The character Carlton Lassiter on the television show \"Psych\" was played by actor Timothy Omundson."
+    },
+    {
+        "question": "what russian language called?",
+        "cot_result": "The Russian language is called \"\u0440\u0443\u0441\u0441\u043a\u0438\u0439 \u044f\u0437\u044b\u043a\" (transliterated as \"russkiy yazyk\")."
+    },
+    {
+        "question": "who is sir james dyson?",
+        "cot_result": "Sir James Dyson is a British inventor, industrial designer, and entrepreneur, best known for founding Dyson Ltd. He is renowned for his innovative designs in household appliances, particularly for his development of the bagless vacuum cleaner, which uses cyclonic separation to remove dust and debris. Dyson has also created other products, including hand dryers, air purifiers, and bladeless fans. He has received numerous awards for his contributions to design and technology and was knighted in 1998 for his services to industrial design and innovation."
+    },
+    {
+        "question": "who was vice president after kennedy died?",
+        "cot_result": "First, Lyndon B. Johnson was the vice president at the time of John F. Kennedy's assassination. Second, after Kennedy died, Lyndon B. Johnson became the president. The answer is {Lyndon B. Johnson}."
+    },
+    {
+        "question": "what type of religions are in the united states?",
+        "cot_result": "The United States is home to a diverse range of religions. Some of the major types include:\n\n1. **Christianity** - The largest religion in the U.S., with various denominations such as Protestantism (including Baptists, Methodists, Lutherans, etc.), Catholicism, and Orthodoxy.\n2. **Judaism** - A significant religious group with various branches, including Reform, Conservative, and Orthodox Judaism.\n3. **Islam** - A growing religion in the U.S., with Sunni and Shia branches.\n4. **Buddhism** - Represented by various schools, including Zen, Theravada, and Tibetan Buddhism.\n5. **Hinduism** - Practiced by a smaller but notable population, with various traditions and practices.\n6. **Sikhism** - A religion with a growing presence in the U.S.\n7. **Unitarian Universalism** - A liberal religion that encourages a free and responsible search for truth and meaning.\n8. **Paganism and Neo-Paganism** - Includes various earth-centered spiritual practices and beliefs.\n9. **Atheism and Agnosticism** - While not religions in the traditional sense, these belief systems are also present in the U.S.\n\nAdditionally, there are many other smaller religious groups and indigenous spiritual practices. The U.S. is known for its religious pluralism and freedom of belief."
+    },
+    {
+        "question": "where do american bulldogs originate from?",
+        "cot_result": "American Bulldogs originate from the United States. They are descended from the Old English Bulldog and were bred for various purposes, including farm work and as a companion animal."
+    },
+    {
+        "question": "where did the mississippi river end?",
+        "cot_result": "The Mississippi River ends at the Gulf of Mexico. The answer is {Gulf of Mexico}."
+    },
+    {
+        "question": "what rainforest is in south america?",
+        "cot_result": "The rainforest in South America is the Amazon Rainforest. The answer is {Amazon Rainforest}."
+    },
+    {
+        "question": "what club does cristiano ronaldo play for in 2010?",
+        "cot_result": "In 2010, Cristiano Ronaldo played for Real Madrid. The answer is {Real Madrid}."
+    },
+    {
+        "question": "what awards gary paulsen won?",
+        "cot_result": "Gary Paulsen won several awards throughout his writing career, including the following:\n\n1. The Margaret A. Edwards Award (1997) for his significant and lasting contribution to young adult literature.\n2. The Laura Ingalls Wilder Award (1997) for his lifetime contribution to children's literature.\n3. The ALA Best Books for Young Adults awards for several of his works.\n4. The International Reading Association Children's Book Award.\n\nThese are just a few examples of the recognition he received for his contributions to literature, particularly in the realm of children's and young adult books."
+    },
+    {
+        "question": "which country in north america is divided into provinces?",
+        "cot_result": "The country in North America that is divided into provinces is Canada. The answer is {Canada}."
+    },
+    {
+        "question": "what team did aguero play for?",
+        "cot_result": "First, Sergio Ag\u00fcero played for several teams during his career, including Independiente, Atl\u00e9tico Madrid, and Manchester City. The answer is {Manchester City}."
+    },
+    {
+        "question": "what is utah's state capitol?",
+        "cot_result": "The state capital of Utah is Salt Lake City. The answer is {Salt Lake City}."
+    },
+    {
+        "question": "where is mission san buenaventura located?",
+        "cot_result": "Mission San Buenaventura is located in Ventura, California."
+    },
+    {
+        "question": "what is the name of the currency used in italy?",
+        "cot_result": "The currency used in Italy is the Euro. The answer is {Euro}."
+    },
+    {
+        "question": "who are the senators of virginia 2013?",
+        "cot_result": "In 2013, the senators of Virginia were Mark Warner and Tim Kaine. Mark Warner is a member of the Democratic Party, and Tim Kaine is also a member of the Democratic Party."
+    },
+    {
+        "question": "what college did albert einstein go to?",
+        "cot_result": "Albert Einstein attended the Polytechnic Institute of Zurich, which is now known as ETH Zurich (Eidgen\u00f6ssische Technische Hochschule Z\u00fcrich). The answer is {ETH Zurich}."
+    },
+    {
+        "question": "what was jesse owens education?",
+        "cot_result": "Jesse Owens attended Ohio State University, where he excelled in track and field. He was a standout athlete and won four gold medals at the 1936 Berlin Olympics."
+    },
+    {
+        "question": "where is tupac from originally?",
+        "cot_result": "Tupac Shakur, also known as 2Pac, was originally from East Harlem, New York City. He later moved to Baltimore, Maryland, and then to the West Coast, where he became associated with the California hip-hop scene."
+    },
+    {
+        "question": "what other books did louis sachar write?",
+        "cot_result": "Louis Sachar is known for several other books in addition to his popular work \"Holes.\" Some of his notable books include:\n\n1. \"Sideways Stories from Wayside School\"\n2. \"There's a Boy in the Girls' Bathroom\"\n3. \"The Cardturner\"\n4. \"Fuzzy Mud\"\n5. \"The Marvin Redpost\" series\n6. \"The Wayside School\" series\n\nThese are just a few examples of his works. Sachar has written many children's and young adult books throughout his career."
+    },
+    {
+        "question": "what are the names of harry potter movies in order?",
+        "cot_result": "The names of the Harry Potter movies in order are:\n\n1. Harry Potter and the Sorcerer's Stone (also known as Harry Potter and the Philosopher's Stone in some regions)\n2. Harry Potter and the Chamber of Secrets\n3. Harry Potter and the Prisoner of Azkaban\n4. Harry Potter and the Goblet of Fire\n5. Harry Potter and the Order of the Phoenix\n6. Harry Potter and the Half-Blood Prince\n7. Harry Potter and the Deathly Hallows \u2013 Part 1\n8. Harry Potter and the Deathly Hallows \u2013 Part 2"
+    },
+    {
+        "question": "where is the galapagos islands located on a world map?",
+        "cot_result": "The Galapagos Islands are located in the Pacific Ocean, approximately 600 miles (about 1,000 kilometers) west of Ecuador, which is the nearest mainland country. They are situated along the equator and are part of Ecuador's territory. On a world map, you would find them to the west of South America."
+    },
+    {
+        "question": "what to do this weekend in manchester with kids?",
+        "cot_result": "Here are some family-friendly activities you can consider for a weekend in Manchester with kids:\n\n1. **Visit the Museum of Science and Industry**: This museum offers interactive exhibits and activities that are great for children, including steam trains and a working replica of the world's first railway station.\n\n2. **Explore the Manchester Art Gallery**: The gallery often has family-friendly activities and workshops, and the art collections can be engaging for kids.\n\n3. **Take a trip to the Manchester Aquatics Centre**: If your kids enjoy swimming, this facility has pools and water activities suitable for all ages.\n\n4. **Go to Heaton Park**: This large park has playgrounds, a petting farm, and plenty of space for picnics and outdoor games.\n\n5. **Visit LEGOLAND Discovery Centre**: Located at the Trafford Centre, this indoor attraction features rides, a 4D cinema, and plenty of LEGO building opportunities.\n\n6. **Check out the Sea Life Manchester**: An aquarium that offers a chance to see a variety of marine life, with interactive exhibits and feeding sessions.\n\n7. **Take a tram ride**: The Metrolink tram system is a fun way to explore the city, and kids often enjoy the experience of riding on public transport.\n\n8. **Attend a family-friendly show or event**: Check local listings for any performances, workshops, or events happening over the weekend that are suitable for children.\n\nMake sure to check the opening hours and any booking requirements in advance!"
+    },
+    {
+        "question": "what party was abe lincoln part of?",
+        "cot_result": "Abe Lincoln was part of the Republican Party. The answer is {Republican Party}."
+    },
+    {
+        "question": "where is ibrahim afellay from?",
+        "cot_result": "Ibrahim Afellay is from the Netherlands."
+    },
+    {
+        "question": "what language turkey people speak?",
+        "cot_result": "The primary language spoken by the people of Turkey is Turkish. The answer is {Turkish}."
+    },
+    {
+        "question": "what are the predominant religions in russia?",
+        "cot_result": "The predominant religions in Russia are Russian Orthodoxy, which is the largest denomination of Christianity in the country, followed by Islam, particularly among ethnic groups in the North Caucasus region. Other religions present in Russia include Buddhism, Judaism, and various folk religions."
+    },
+    {
+        "question": "where do ireland play rugby union?",
+        "cot_result": "Ireland plays rugby union at various venues, with the primary home ground being Aviva Stadium, located in Dublin. The stadium hosts international matches, including those of the Irish national rugby team."
+    },
+    {
+        "question": "what did pamela courson die from?",
+        "cot_result": "Pamela Courson died from an overdose of heroin and morphine."
+    },
+    {
+        "question": "what are the major languages spoken in greece?",
+        "cot_result": "The major language spoken in Greece is Greek. It is the official language of the country and is used in government, education, and daily communication. Additionally, English is widely spoken, especially in tourist areas and among younger generations. Other languages, such as Albanian, Macedonian, and Turkish, may also be spoken by minority communities."
+    }
+]

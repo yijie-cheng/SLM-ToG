@@ -11,7 +11,7 @@ if __name__ == '__main__':
     parser.add_argument("--prompt_methods", type=str,
                         default="cot", help="cot or io.")
     parser.add_argument("--max_length", type=int,
-                        default=2048, help="the max length of LLMs output.")
+                        default=1024, help="the max length of LLMs output.")
     parser.add_argument("--temperature", type=int,
                         default=0, help="the temperature")
     parser.add_argument("--LLM_type", type=str,
@@ -20,9 +20,9 @@ if __name__ == '__main__':
                         default="", help="if the LLM_type is gpt-3.5-turbo or gpt-4, you need add your own openai api keys.")
     args = parser.parse_args()
 
-with open("cot_{}.jsonl".format(args.dataset), 'a+', encoding="UTF-8") as out:
+with open("{}-{}-CoT.jsonl".format(args.LLM_type.replace("/", "-"), args.dataset), 'a+', encoding="UTF-8") as out:
     datas, question_string = prepare_dataset(args.dataset)
-    for i in tqdm(datas, total=len(datas)):
+    for i in tqdm(datas[:200], total=len(datas[:200])):
         if args.prompt_methods == "cot":
             prompt = cot_prompt + "\n\nQ: " + i[question_string] + "\nA: "
         else:

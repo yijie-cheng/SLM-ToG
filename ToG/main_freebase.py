@@ -12,7 +12,7 @@ if __name__ == '__main__':
     parser.add_argument("--dataset", type=str,
                         default="cwq", help="choose the dataset.")
     parser.add_argument("--max_length", type=int,
-                        default=2048, help="the max length of LLMs output.")
+                        default=1024, help="the max length of LLMs output.")
     parser.add_argument("--temperature_exploration", type=float,
                         default=0.4, help="the temperature in exploration stage.")
     parser.add_argument("--temperature_reasoning", type=float,
@@ -46,7 +46,7 @@ if __name__ == '__main__':
         }
         topic_entity = data['topic_entity']
 
-        with open('{}-log.txt'.format(args.LLM_type.replace("/", "-")), 'a') as file:
+        with open('{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
             file.write("question: " + question + "\n")
             file.write("topic_entity: " + str(topic_entity) + "\n")
             file.write("------------------------------------------------------------------------------------------------------\n")
@@ -101,7 +101,7 @@ if __name__ == '__main__':
                 stop, results = reasoning(question, cluster_chain_of_entities, warning, args)
                 if stop:
                     # print("ToG stoped at depth %d." % depth)
-                    with open('{}-log.txt'.format(args.LLM_type.replace("/", "-")), 'a') as file:
+                    with open('{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
                         file.write("ToG stoped at depth %d.\n" % depth)
                         file.write("------------------------------------------------------------------------------------------------------\n")
                     save_2_jsonl(question, results, cluster_chain_of_entities, warning, file_name=args.dataset, LLM_type=args.LLM_type)
@@ -109,7 +109,7 @@ if __name__ == '__main__':
                     break
                 else:
                     # print("depth %d still not find the answer." % depth)
-                    with open('{}-log.txt'.format(args.LLM_type.replace("/", "-")), 'a') as file:
+                    with open('{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
                         file.write("depth %d still not find the answer.\n" % depth)
                         file.write("------------------------------------------------------------------------------------------------------\n")
                     flag_finish, entities_id = if_finish_list(entities_id)
@@ -127,7 +127,7 @@ if __name__ == '__main__':
             results = generate_without_explored_paths(question, warning, args)
             save_2_jsonl(question, results, [], warning, file_name=args.dataset, LLM_type=args.LLM_type)
         
-        with open('{}-log.txt'.format(args.LLM_type.replace("/", "-")), 'a') as file:
+        with open('{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
             file.write("\nWarning:\n")
             file.write("relations_cleaning_error: {}\n".format(warning['relations_cleaning_error']))
             file.write("entities_cleaning_error: {}\n".format(warning['entities_cleaning_error']))

@@ -3,7 +3,7 @@ import re
 
 
 def prepare_dataset_for_eval(dataset_name, output_file):
-    if dataset_name == 'cwq' or 'cwq_20' or 'cwq_353':
+    if dataset_name == 'cwq':
         with open('../data/cwq.json',encoding='utf-8') as f:
             datas = json.load(f)
         question_string = 'question'
@@ -49,8 +49,9 @@ def prepare_dataset_for_eval(dataset_name, output_file):
 
 def align(dataset_name, question_string, data, ground_truth_datas):
     answer_list= []
-    origin_data = [j for j in ground_truth_datas if j[question_string] == data[question_string]][0]
-    if dataset_name == 'cwq' or 'cwq_20' or 'cwq_353':
+    # origin_data = [j for j in ground_truth_datas if j[question_string] == data[question_string]][0]
+    if dataset_name == 'cwq':
+        origin_data = [j for j in ground_truth_datas if j[question_string] == data[question_string]][0]
         if 'answers' in origin_data:
             answers = origin_data["answers"]
         else:
@@ -63,6 +64,7 @@ def align(dataset_name, question_string, data, ground_truth_datas):
         answer_list.append(answers) # debug by YJ
 
     elif dataset_name == 'webqsp':
+        origin_data = [j for j in ground_truth_datas if j[question_string] == data['question']][0]
         answers = origin_data["Parses"]
         for answer in answers:
             for name in answer['Answers']:
