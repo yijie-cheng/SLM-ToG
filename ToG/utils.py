@@ -63,45 +63,60 @@ def compute_bm25_similarity(query, corpus, width=3):
     return relations, doc_scores
 
 
-def clean_relations(string, entity_id, head_relations):
-    pattern = r"{\s*(?P<relation>[^()]+)\s+\(Score:\s+(?P<score>[0-9.]+)\)}"
-    relations=[]
-    for match in re.finditer(pattern, string):
-        relation = match.group("relation").strip()
-        if ';' in relation:
-            continue
-        score = match.group("score")
-        if not relation or not score:
-            return False, "output uncompleted.."
-        try:
-            score = float(score)
-        except ValueError:
-            return False, "Invalid score"
-        if relation in head_relations:
-            relations.append({"entity": entity_id, "relation": relation, "score": score, "head": True})
-        else:
-            relations.append({"entity": entity_id, "relation": relation, "score": score, "head": False})
-    if not relations:
-        return False, "No relations found"
-    return True, relations
+# def clean_relations(json_string, entity_id, head_relations):
+#     print("clean relations:")
+#     try:
+#         data = json.loads(json_string)
+#     except json.JSONDecodeError:
+#         print("Invalid JSON format")
+#         return False, "Invalid JSON format"
+    
+#     if "relations" not in data or not isinstance(data["relations"], list):
+#         print("No relations found in JSON")
+#         return False, "No relations found in JSON"
+
+#     relations = []
+    
+#     for relation_info in data["relations"]:
+#         relation = relation_info.get("relation", "").strip()
+#         score = relation_info.get("score")
+        
+#         if not relation or score is None:
+#             print("Output uncompleted..")
+#             return False, "Output uncompleted.."
+        
+#         try:
+#             score = float(score)
+#         except ValueError:
+#             print("Invalid score")
+#             return False, "Invalid score"
+        
+#         is_head = relation in head_relations
+#         relations.append({"entity": entity_id, "relation": relation, "score": score, "head": is_head})
+    
+#     if not relations:
+#         print("No relations found")
+#         return False, "No relations found"
+    
+#     return True, relations
 
 
-def if_all_zero(topn_scores):
-    return all(score == 0 for score in topn_scores)
+# def if_all_zero(topn_scores):
+#     return all(score == 0 for score in topn_scores)
 
 
-def clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations):
-    relations = []
-    if if_all_zero(topn_scores):
-        topn_scores = [float(1/len(topn_scores))] * len(topn_scores)
-    i=0
-    for relation in topn_relations:
-        if relation in head_relations:
-            relations.append({"entity": entity_id, "relation": relation, "score": topn_scores[i], "head": True})
-        else:
-            relations.append({"entity": entity_id, "relation": relation, "score": topn_scores[i], "head": False})
-        i+=1
-    return True, relations
+# def clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations):
+#     relations = []
+#     if if_all_zero(topn_scores):
+#         topn_scores = [float(1/len(topn_scores))] * len(topn_scores)
+#     i=0
+#     for relation in topn_relations:
+#         if relation in head_relations:
+#             relations.append({"entity": entity_id, "relation": relation, "score": topn_scores[i], "head": True})
+#         else:
+#             relations.append({"entity": entity_id, "relation": relation, "score": topn_scores[i], "head": False})
+#         i+=1
+#     return True, relations
 
 def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine, dataset, warning):
     LLM_type = engine
@@ -171,18 +186,44 @@ def del_unknown_entity(entity_candidates):
     return entity_candidates
 
 
-def clean_scores(string, entity_candidates, warning, args):
-    scores = re.findall(r'\d+\.\d+', string)
-    scores = [float(number) for number in scores]
+def clean_scores(json_string, entity_candidates, warning, args):
+    try:
+        data = json.loads(json_string)
+    except json.JSONDecodeError:
+        warning['entities_cleaning_error'] = True
+        with open(f"{args.LLM_type.replace('/', '-')}-{args.dataset}-ToG-log.txt", 'a') as file:
+            file.write("Entities cleaning failed: Invalid JSON format.\n")
+            file.write("------------------------------------------------------------------------------------------------------\n")
+        return [1 / len(entity_candidates)] * len(entity_candidates)
+    
+    if "entities" not in data or not isinstance(data["entities"], list):
+        warning['entities_cleaning_error'] = True
+        with open(f"{args.LLM_type.replace('/', '-')}-{args.dataset}-ToG-log.txt", 'a') as file:
+            file.write("Entities cleaning failed: 'entities' field missing or not a list.\n")
+            file.write("------------------------------------------------------------------------------------------------------\n")
+        return [1 / len(entity_candidates)] * len(entity_candidates)
+    
+    scores = []
+    entity_map = {entity['name']: entity['score'] for entity in data["entities"] if "name" in entity and "score" in entity}
+    
+    for candidate in entity_candidates:
+        score = entity_map.get(candidate, None)
+        if score is None:
+            warning['entities_cleaning_error'] = True
+            with open(f"{args.LLM_type.replace('/', '-')}-{args.dataset}-ToG-log.txt", 'a') as file:
+                file.write(f"Entities cleaning failed: '{candidate}' missing in JSON output.\n")
+                file.write("------------------------------------------------------------------------------------------------------\n")
+            return [1 / len(entity_candidates)] * len(entity_candidates)
+        scores.append(float(score))
+    
     if len(scores) == len(entity_candidates):
         return scores
     else:
-        # print("All entities are created equal.")
-        warning['entities_cleaning_error']=True
-        with open('{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
-            file.write("Entities cleaning failed.\n")
+        warning['entities_cleaning_error'] = True
+        with open(f"{args.LLM_type.replace('/', '-')}-{args.dataset}-ToG-log.txt", 'a') as file:
+            file.write("Entities cleaning failed: Incorrect number of scores.\n")
             file.write("------------------------------------------------------------------------------------------------------\n")
-        return [1/len(entity_candidates)] * len(entity_candidates)
+        return [1 / len(entity_candidates)] * len(entity_candidates)
 
 
 def save_2_jsonl(question, answer, cluster_chain_of_entities, warning, file_name, LLM_type):

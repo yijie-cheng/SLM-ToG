@@ -1,23 +1,53 @@
-extract_relation_prompt = """Please retrieve %s relations (separated by semicolon) that contribute to the question and rate their contribution on a scale from 0 to 1 (the sum of the scores of %s relations is 1).
+extract_relation_prompt = """Please retrieve 3 relations that contribute to the question and rate their contribution on a scale from 0 to 1 (the sum of the scores of 3 relations is 1). Provide the output in JSON format.
+
 Q: Name the president of the country whose main spoken language was Brahui in 1980?
 Topic Entity: Brahui Language
 Relations: language.human_language.main_country; language.human_language.language_family; language.human_language.iso_639_3_code; base.rosetta.languoid.parent; language.human_language.writing_system; base.rosetta.languoid.languoid_class; language.human_language.countries_spoken_in; kg.object_profile.prominent_type; base.rosetta.languoid.document; base.ontologies.ontology_instance.equivalent_instances; base.rosetta.languoid.local_name; language.human_language.region
-A: 1. {language.human_language.main_country (Score: 0.4))}: This relation is highly relevant as it directly relates to the country whose president is being asked for, and the main country where Brahui language is spoken in 1980.
-2. {language.human_language.countries_spoken_in (Score: 0.3)}: This relation is also relevant as it provides information on the countries where Brahui language is spoken, which could help narrow down the search for the president.
-3. {base.rosetta.languoid.parent (Score: 0.2)}: This relation is less relevant but still provides some context on the language family to which Brahui belongs, which could be useful in understanding the linguistic and cultural background of the country in question.
 
+A: {
+  "relations": [
+    {
+      "relation": "language.human_language.main_country",
+      "score": 0.4,
+      "description": "This relation is highly relevant as it directly relates to the country whose president is being asked for, and the main country where Brahui language is spoken in 1980."
+    },
+    {
+      "relation": "language.human_language.countries_spoken_in",
+      "score": 0.3,
+      "description": "This relation is also relevant as it provides information on the countries where Brahui language is spoken, which could help narrow down the search for the president."
+    },
+    {
+      "relation": "base.rosetta.languoid.parent",
+      "score": 0.2,
+      "description": "This relation is less relevant but still provides some context on the language family to which Brahui belongs, which could be useful in understanding the linguistic and cultural background of the country in question."
+    }
+  ]
+}
+
+Please retrieve %s relations that contribute to the question and rate their contribution on a scale from 0 to 1 (the sum of the scores of %s relations is 1). Provide the output in JSON format.
 Q: """
 
-score_entity_candidates_prompt = """Please score the entities' contribution to the question on a scale from 0 to 1 (the sum of the scores of all entities is 1).
+score_entity_candidates_prompt = """Please score each entity's contribution to the question on a scale from 0 to 1 (the sum of the scores of all entities should be 1). Provide the output in JSON format.
+
 Q: The movie featured Miley Cyrus and was produced by Tobin Armbrust?
 Relation: film.producer.film
-Entites: The Resident; So Undercover; Let Me In; Begin Again; The Quiet Ones; A Walk Among the Tombstones
-Score: 0.0, 1.0, 0.0, 0.0, 0.0, 0.0
-The movie that matches the given criteria is "So Undercover" with Miley Cyrus and produced by Tobin Armbrust. Therefore, the score for "So Undercover" would be 1, and the scores for all other entities would be 0.
+Entities: The Resident; So Undercover; Let Me In; Begin Again; The Quiet Ones; A Walk Among the Tombstones
+
+A: {{
+  "entities": [
+    {{"name": "The Resident", "score": 0.0}},
+    {{"name": "So Undercover", "score": 1.0}},
+    {{"name": "Let Me In", "score": 0.0}},
+    {{"name": "Begin Again", "score": 0.0}},
+    {{"name": "The Quiet Ones", "score": 0.0}},
+    {{"name": "A Walk Among the Tombstones", "score": 0.0}}
+  ],
+  "explanation": "The movie that matches the given criteria is \"So Undercover,\" which features Miley Cyrus and was produced by Tobin Armbrust. Therefore, the score for \"So Undercover\" is 1, and the scores for all other entities are 0."
+}}
 
 Q: {}
 Relation: {}
-Entites: """
+Entities: """
 
 answer_prompt = """Given a question and the associated retrieved knowledge graph triplets (entity, relation, entity), you are asked to answer the question with these triplets and your knowledge.
 Q: Find the person who said \"Taste cannot be controlled by law\", what did this person die from?

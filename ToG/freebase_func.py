@@ -57,26 +57,40 @@ from sentence_transformers import util
 from sentence_transformers import SentenceTransformer
 
 
-def clean_relations(string, entity_id, head_relations):
-    pattern = r"{\s*(?P<relation>[^()]+)\s+\(Score:\s+(?P<score>[0-9.]+)\)}"
-    relations=[]
-    for match in re.finditer(pattern, string):
-        relation = match.group("relation").strip()
-        if ';' in relation:
-            continue
-        score = match.group("score")
-        if not relation or not score:
-            return False, "output uncompleted.."
+def clean_relations(json_string, entity_id, head_relations):
+    try:
+        data = json.loads(json_string)
+    except json.JSONDecodeError:
+        print("Invalid JSON format")
+        return False, "Invalid JSON format"
+    
+    if "relations" not in data or not isinstance(data["relations"], list):
+        print("No relations found in JSON")
+        return False, "No relations found in JSON"
+
+    relations = []
+    
+    for relation_info in data["relations"]:
+        relation = relation_info.get("relation", "").strip()
+        score = relation_info.get("score")
+        
+        if not relation or score is None:
+            print("Output uncompleted..")
+            return False, "Output uncompleted.."
+        
         try:
             score = float(score)
         except ValueError:
+            print("Invalid score")
             return False, "Invalid score"
-        if relation in head_relations:
-            relations.append({"entity": entity_id, "relation": relation, "score": score, "head": True})
-        else:
-            relations.append({"entity": entity_id, "relation": relation, "score": score, "head": False})
+        
+        is_head = relation in head_relations
+        relations.append({"entity": entity_id, "relation": relation, "score": score, "head": is_head})
+    
     if not relations:
+        print("No relations found")
         return False, "No relations found"
+    
     return True, relations
 
 
@@ -146,6 +160,12 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
         # print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
         # print(f"LLM result: {result}")
+        json_match = re.search(r'\{.*\}', result, re.DOTALL)
+        if json_match:
+            result = json_match.group(0)
+        # print(f"JSON result: {result}")
+        # result = re.sub(r'(?<=: )"(.*?)"(?![:,}])', r'\"\1\"', result)
+        # print(f"FIXED result: {result}")
         flag, retrieve_relations_with_scores = clean_relations(result, entity_id, head_relations) 
         # print(f"Cleaned relations with LLM: {retrieve_relations_with_scores}, \nflag: {flag}")
         
@@ -202,6 +222,9 @@ def entity_score(question, entity_candidates_id, score, relation, warning, args)
         prompt = construct_entity_score_prompt(question, relation, entity_candidates)
 
         result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
+        json_match = re.search(r'\{.*\}', result, re.DOTALL)
+        if json_match:
+            result = json_match.group(0)
         return [float(x) * score for x in clean_scores(result, entity_candidates, warning, args)], entity_candidates, entity_candidates_id
 
     elif args.prune_tools == "bm25":
