@@ -39,6 +39,14 @@ def prepare_dataset_for_eval(dataset_name, output_file):
         with open('../data/creak.json',encoding='utf-8') as f:
             datas = json.load(f)
         question_string = 'sentence'
+    elif dataset_name == 'hotpotadv':
+        with open('../data/hotpotadv_dev.json',encoding='utf-8') as f:
+            datas = json.load(f)
+        question_string = 'question'
+    elif dataset_name == 'fever':
+        with open('../data/fever_1000.json', encoding='utf-8') as f:
+            datas = json.load(f)
+        question_string = 'claim'
     else:
         print("dataset not found, you should pick from {cwq, webqsp, grailqa, simpleqa, qald, webquestions, trex, zeroshotre, creak}.")
         exit(-1)
@@ -100,6 +108,27 @@ def align(dataset_name, question_string, data, ground_truth_datas):
     elif dataset_name == 'creak':
         answer = origin_data['label']
         answer_list.append(answer)
+
+    elif dataset_name == 'hotpotadv':
+        origin_data = [j for j in ground_truth_datas if j[question_string] == data[question_string]][0]
+        if 'answers' in origin_data:
+            answers = origin_data["answers"]
+        else:
+            answers = origin_data["answer"]
+        answer_list.append(answers)
+
+    elif dataset_name == 'fever':
+        answer = origin_data['label']
+        possible_answer_dict = {
+            'REFUTES': ['refutes', 'refute', 'false', 'incorrect', 'not accurate', 'not true', 'not correct',
+                        'does not make sense', 'not entirely accurate', 'incomplete'],
+            'SUPPORTS': ['supports', 'support', 'true', 'correct'],
+            'NOT ENOUGH INFO': ['not enough information', 'not enough info']
+        }
+        alt_ans = possible_answer_dict[answer]
+        answer_list.append(answer)
+        for ans in alt_ans:
+            answer_list.append(ans)
 
     return list(set(answer_list))
     

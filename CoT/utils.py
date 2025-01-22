@@ -74,6 +74,14 @@ def prepare_dataset(dataset_name):
         with open('../data/creak.json',encoding='utf-8') as f:
             datas = json.load(f)
         question_string = 'sentence'
+    elif dataset_name == 'hotpotadv':
+        with open('../data/hotpotadv_dev.json',encoding='utf-8') as f:
+            datas = json.load(f)
+        question_string = 'question'
+    elif dataset_name == 'fever':
+        with open('../data/fever_1000.json', encoding='utf-8') as f:
+            datas = json.load(f)
+        question_string = 'claim'
     else:
         print("dataset not found")
         exit(-1)
