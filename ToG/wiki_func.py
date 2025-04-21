@@ -54,8 +54,11 @@ def construct_entity_score_prompt(question, relation, entity_candidates):
     return score_entity_candidates_prompt_wiki.format(question, relation) + "; ".join(entity_candidates) + '\nScore: '
 
 
-def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, question, args, wiki_client):
-    relations = wiki_client.query_all("get_all_relations_of_an_entity", entity_id)
+def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, question, args, wiki_client, warning):
+    # relations = wiki_client.query_all("get_all_relations_of_an_entity", entity_id)
+    relations = wiki_client.get_all_relations_of_an_entity(entity_id)
+    if not isinstance(relations, dict):
+        return []
     head_relations = [rel['label'] for rel in relations['head']]
     tail_relations = [rel['label'] for rel in relations['tail']]
     if args.remove_unnecessary_rel:
@@ -73,7 +76,7 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
     
     prompt = construct_relation_prune_prompt(question, entity_name, total_relations, args)
 
-    result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type)
+    result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
     flag, retrieve_relations_with_scores = clean_relations(result, entity_id, head_relations) 
 
     if flag:
@@ -83,13 +86,13 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
     
 
 def del_all_unknown_entity(entity_candidates_id, entity_candidates_name):
-    if len(entity_candidates_name) == 1 and entity_candidates_name[0] == "N/A":
+    if len(entity_candidates_name) == 1 and entity_candidates_name[0] == "":
         return entity_candidates_id, entity_candidates_name
 
     new_candidates_id = []
     new_candidates_name = []
     for i, candidate in enumerate(entity_candidates_name):
-        if candidate != "N/A":
+        if candidate != "":
             new_candidates_id.append(entity_candidates_id[i])
             new_candidates_name.append(candidate)
 
@@ -101,13 +104,14 @@ def all_zero(topn_scores):
 
 
 def entity_search(entity, relation, wiki_client, head):
-    rid = wiki_client.query_all("label2pid", relation)
+    rid = wiki_client.label2pid(relation)
     if not rid or rid == "Not Found!":
         return [], []
     
     rid_str = rid.pop()
 
-    entities = wiki_client.query_all("get_tail_entities_given_head_and_relation", entity, rid_str)
+    entities = wiki_client.get_tail_entities_given_head_and_relation(entity, rid_str)
+    # print(f"get_tail_entities_given_head_and_relation: {entities}")
     
     if head:
         entities_set = entities['tail']
@@ -115,8 +119,10 @@ def entity_search(entity, relation, wiki_client, head):
         entities_set = entities['head']
 
     if not entities_set:
-        values = wiki_client.query_all("get_tail_values_given_head_and_relation", entity, rid_str)
-        return [], list(values)
+        # values = wiki_client.query_all("get_tail_values_given_head_and_relation", entity, rid_str)
+        # values = wiki_client.get_tail_entities_given_head_and_relation(entity, rid_str)
+        # print(list(values))
+        return [], []
 
     id_list = [item['qid'] for item in entities_set]
     name_list = [item['label'] if item['label'] != "N/A" else "Unname_Entity" for item in entities_set]
@@ -124,7 +130,7 @@ def entity_search(entity, relation, wiki_client, head):
     return id_list, name_list
 
 
-def entity_score(question, entity_candidates_id, entity_candidates, score, relation, args):
+def entity_score(question, entity_candidates_id, entity_candidates, score, relation, args, warning):
     if len(entity_candidates) == 1:
         return [score], entity_candidates, entity_candidates_id
     if len(entity_candidates) == 0:
@@ -138,8 +144,8 @@ def entity_score(question, entity_candidates_id, entity_candidates, score, relat
 
     prompt = construct_entity_score_prompt(question, relation, entity_candidates)
 
-    result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type)
-    entity_scores = clean_scores(result, entity_candidates)
+    result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
+    entity_scores = clean_scores(result, entity_candidates, warning, args)
     if all_zero(entity_scores):
         return [1/len(entity_candidates) * score] * len(entity_candidates), entity_candidates, entity_candidates_id
     else:
@@ -161,17 +167,17 @@ def update_history(entity_candidates, entity, scores, entity_candidates_id, tota
     return total_candidates, total_scores, total_relations, total_entities_id, total_topic_entities, total_head
 
 
-def half_stop(question, cluster_chain_of_entities, depth, args):
+def half_stop(question, cluster_chain_of_entities, depth, args, warning):
     print("No new knowledge added during search depth %d, stop searching." % depth)
-    answer = generate_answer(question, cluster_chain_of_entities, args)
-    save_2_jsonl(question, answer, cluster_chain_of_entities, file_name=args.dataset)
+    answer = generate_answer(question, cluster_chain_of_entities, args, warning)
+    save_2_jsonl(question, answer, cluster_chain_of_entities, warning, args.dataset, args.LLM_type)
 
 
-def generate_answer(question, cluster_chain_of_entities, args): 
+def generate_answer(question, cluster_chain_of_entities, args, warning): 
     prompt = answer_prompt_wiki + question + '\n'
     chain_prompt = '\n'.join([', '.join([str(x) for x in chain]) for sublist in cluster_chain_of_entities for chain in sublist])
     prompt += "\nKnowledge Triplets: " + chain_prompt + 'A: '
-    result = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type)
+    result = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
     return result
 
 
@@ -186,17 +192,23 @@ def entity_prune(total_entities_id, total_relations, total_candidates, total_top
     if len(filtered_list) ==0:
         return False, [], [], [], []
     entities_id, relations, candidates, tops, heads, scores = map(list, zip(*filtered_list))
-    tops = [wiki_client.query_all("qid2label", entity_id).pop() if (entity_name := wiki_client.query_all("qid2label", entity_id)) != "Not Found!" else "Unname_Entity" for entity_id in tops]
+    # tops = [wiki_client.query_all("qid2label", entity_id).pop() if (entity_name := wiki_client.query_all("qid2label", entity_id)) != "Not Found!" else "Unname_Entity" for entity_id in tops]
+    # tops = [wiki_client.pid2label(entity_id).pop() if (entity_name := wiki_client.pid2label(entity_id)) != "Not Found!" else "Unname_Entity" for entity_id in tops]
+    tops = [
+        label_list.pop() if label_list not in ([], "Not Found!") else "Unname_Entity"
+        for entity_id in tops
+        if (label_list := wiki_client.pid2label(entity_id)) is not None
+    ]
     cluster_chain_of_entities = [[(tops[i], relations[i], candidates[i]) for i in range(len(candidates))]]
     return True, cluster_chain_of_entities, entities_id, relations, heads
 
 
-def reasoning(question, cluster_chain_of_entities, args):
+def reasoning(question, cluster_chain_of_entities, args, warning):
     prompt = prompt_evaluate_wiki + question
     chain_prompt = '\n'.join([', '.join([str(x) for x in chain]) for sublist in cluster_chain_of_entities for chain in sublist])
     prompt += "\nKnowledge Triplets: " + chain_prompt + 'A: '
 
-    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type)
+    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
     
     result = extract_answer(response)
     if if_true(result):

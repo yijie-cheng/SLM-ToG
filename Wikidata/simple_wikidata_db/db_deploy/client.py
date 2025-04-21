@@ -4,7 +4,7 @@ import typing as tp
 from dataclasses import dataclass
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
-from simple_wikidata_db.db_deploy.utils import Entity, Relation, a_factory
+from utils import Entity, Relation, a_factory
 import requests
 
 

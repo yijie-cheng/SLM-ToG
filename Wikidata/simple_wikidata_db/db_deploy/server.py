@@ -8,7 +8,7 @@ from multiprocessing import Pool
 from xmlrpc.server import SimpleXMLRPCRequestHandler, SimpleXMLRPCServer
 from numpy import require
 from sqlalchemy import true
-from simple_wikidata_db.db_deploy.utils import (
+from utils import (
     Entity,
     Relation,
     a_factory,

@@ -137,19 +137,33 @@ A: First, China, Norway, Finland, Estonia and Georgia is close to Russia. Second
 Q: What drug did the actor who portrayed the character Urethane Wheels Guy overdosed on?
 A: First, Mitchell Lee Hedberg portrayed character Urethane Wheels Guy. Second, Mitchell Lee Hedberg overdose Heroin. The answer is {Heroin}."""
 
-score_entity_candidates_prompt_wiki = """Please score the entities' contribution to the question on a scale from 0 to 1 (the sum of the scores of all entities is 1).
+score_entity_candidates_prompt_wiki = """Please score the entities' contribution to the question on a scale from 0 to 1 (the sum of the scores of all entities is 1). Provide the output in JSON format.
 Q: Staten Island Summer, starred what actress who was a cast member of "Saturday Night Live"?
 Relation: cast member
-Entites: Ashley Greene; Bobby Moynihan; Camille Saviola; Cecily Strong; Colin Jost; Fred Armisen; Gina Gershon; Graham Phillips; Hassan Johnson; Jackson Nicoll; Jim Gaffigan; John DeLuca; Kate Walsh; Mary Birdsong
-Score: 0.0, 0.0, 0.0, 0.4, 0.0, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.0
-To score the entities\' contribution to the question, we need to determine which entities are relevant to the question and have a higher likelihood of being the correct answer.
-In this case, we are looking for an actress who was a cast member of "Saturday Night Live" and starred in the movie "Staten Island Summer." Based on this information, we can eliminate entities that are not actresses or were not cast members of "Saturday Night Live."
-The relevant entities that meet these criteria are:\n- Ashley Greene\n- Cecily Strong\n- Fred Armisen\n- Gina Gershon\n- Kate Walsh\n\nTo distribute the scores, we can assign a higher score to entities that are more likely to be the correct answer. In this case, the most likely answer would be an actress who was a cast member of "Saturday Night Live" around the time the movie was released.
-Based on this reasoning, the scores could be assigned as follows:\n- Ashley Greene: 0\n- Cecily Strong: 0.4\n- Fred Armisen: 0.2\n- Gina Gershon: 0\n- Kate Walsh: 0.4
+Entities: Ashley Greene; Bobby Moynihan; Camille Saviola; Cecily Strong; Colin Jost; Fred Armisen; Gina Gershon; Graham Phillips; Hassan Johnson; Jackson Nicoll; Jim Gaffigan; John DeLuca; Kate Walsh; Mary Birdsong
+
+A: {{
+  "entities": [
+    {{"name": "Ashley Greene", "score": 0.0}},
+    {{"name": "Bobby Moynihan", "score": 0.0}},
+    {{"name": "Camille Saviola", "score": 0.0}},
+    {{"name": "Cecily Strong", "score": 0.4}},
+    {{"name": "Colin Jost", "score": 0.0}},
+    {{"name": "Fred Armisen", "score": 0.2}},
+    {{"name": "Gina Gershon", "score": 0.0}},
+    {{"name": "Graham Phillips", "score": 0.0}},
+    {{"name": "Hassan Johnson", "score": 0.0}},
+    {{"name": "Jackson Nicoll", "score": 0.0}},
+    {{"name": "Jim Gaffigan", "score": 0.0}},
+    {{"name": "John DeLuca", "score": 0.0}},
+    {{"name": "Kate Walsh", "score": 0.4}},
+    {{"name": "Mary Birdsong", "score": 0.0}},
+  ]
+}}
 
 Q: {}
 Relation: {}
-Entites: """
+Entities: """
 
 prompt_evaluate_wiki="""Given a question and the associated retrieved knowledge graph triplets (entity, relation, entity), you are asked to answer whether it's sufficient for you to answer the question with these triplets and your knowledge (Yes or No).
 Q: Viscount Yamaji Motoharu was a general in the early Imperial Japanese Army which belonged to which Empire?

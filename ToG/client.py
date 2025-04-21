@@ -1,290 +1,394 @@
-import itertools
-import xmlrpc.client
 import typing as tp
 from dataclasses import dataclass
 from concurrent.futures import ThreadPoolExecutor
-from tqdm import tqdm
 import requests
 from bs4 import BeautifulSoup
+import time
+import itertools
+import random
+from tqdm import tqdm
+from SPARQLWrapper import SPARQLWrapper, JSON
+
+
+def _normalize_qid(entity_url: str) -> str:
+    """
+    將形如 'http://www.wikidata.org/entity/Qxxx' 的 URI 截斷成 'Qxxx'
+    """
+    return entity_url.rsplit('/', 1)[-1]
+
+
+def _normalize_pid(property_url: str) -> str:
+    """
+    將形如 'http://www.wikidata.org/entity/Pxxx' 的 URI 截斷成 'Pxxx'
+    """
+    return property_url.rsplit('/', 1)[-1]
 
 
 class WikidataQueryClient:
-    def __init__(self, url: str):
+    """
+    以原本 client.py 的結構和方法命名為基礎，透過 Wikidata 官方 SPARQL Endpoint 實作。
+    """
+    def __init__(self, url: str, max_retries: int = 3, timeout: int = 60):
+        """
+        原本是接收 XMLRPC 伺服器的 url，如 "http://localhost:xxxx"。
+        為了兼容原本參數，在此直接將 url 存起來，但實際都會連到官方 Endpoint。
+
+        - max_retries: 設定最大重試次數，預設 3 次
+        - timeout: 設定 SPARQL 查詢的超時時間（秒），預設 30 秒
+        """
         self.url = url
-        self.server = xmlrpc.client.ServerProxy(url)
+        self.sparql_endpoint = "https://query.wikidata.org/sparql"
+        self.max_retries = max_retries
+        self.timeout = timeout  # 設定超時時間
 
-    def label2qid(self, label: str) -> str:
-        return self.server.label2qid(label)
+    def _run_query(self, query: str) -> tp.Optional[tp.Dict]:
+        """
+        封裝對 SPARQL Endpoint 的查詢，並加入超時與重試機制。
+        """
+        for attempt in range(self.max_retries):
+            try:
+                sparql = SPARQLWrapper(self.sparql_endpoint)
+                sparql.setTimeout(self.timeout)  # 設定超時時間
+                sparql.setReturnFormat(JSON)
+                sparql.setQuery(query)
+                
+                # 設定 User-Agent，避免被 Wikidata 限制
+                sparql.addCustomHttpHeader("User-Agent", "MyWikidataClient/1.0 (https://mywebsite.com)")
 
-    def label2pid(self, label: str) -> str:
-        return self.server.label2pid(label)
+                results = sparql.query().convert()
+                return results  # 查詢成功時回傳結果
 
-    def pid2label(self, pid: str) -> str:
-        return self.server.pid2label(pid)
+            except Exception as e:
+                error_message = str(e)
+                
+                # 檢查是否是 Rate Limit 或 伺服器超載
+                if "429" in error_message or "Too Many Requests" in error_message:
+                    print(f"Rate limit reached. Retrying in {2**attempt} seconds... ({attempt+1}/{self.max_retries})")
+                    time.sleep(2**attempt + random.uniform(0, 2))  # 指數退避增加等待時間
+                
+                elif "503" in error_message or "Service Unavailable" in error_message:
+                    print(f"Service Unavailable. Retrying in {2**attempt} seconds... ({attempt+1}/{self.max_retries})")
+                    time.sleep(2**attempt + random.uniform(0, 2))
 
-    def qid2label(self, qid: str) -> str:
-        return self.server.qid2label(qid)
+                elif "Timeout" in error_message:
+                    print(f"SPARQL Query Timeout. Retrying in {2**attempt} seconds... ({attempt+1}/{self.max_retries})")
+                    time.sleep(2**attempt + random.uniform(0, 2))
+
+                else:
+                    print(f"SPARQL Query Error: {e}")
+                    return None  # 其他錯誤則不重試，直接返回 None
+        
+        print("SPARQL Query failed after multiple retries.")
+        return None  # 多次嘗試失敗後返回 None
+
+    def label2qid(self, label: str) -> tp.Union[list, str]:
+        """
+        以給定文字 (label) 查詢所有符合該 label 的 QID；若無，回傳 'Not Found!'
+        原本 server 會回傳 list[Entity] 或 'Not Found!',
+        這裡以 list[ { 'qid': 'Qxx', 'label': 'xxx' } ] 或空清單來模擬。
+        為簡化，這裡僅回傳 ['Qxx', 'Qyy', ...]。
+        """
+        query = f"""
+        SELECT DISTINCT ?item WHERE {{
+          ?item rdfs:label ?lbl .
+          FILTER(STR(?lbl) = "{label}")
+        }}
+        """
+        data = self._run_query(query)
+        if not data or "results" not in data:
+            return "Not Found!"
+
+        qids = []
+        for row in data["results"]["bindings"]:
+            item_uri = row["item"]["value"]
+            qids.append(_normalize_qid(item_uri))
+
+        return qids if qids else "Not Found!"
+
+    def label2pid(self, label: str) -> tp.Union[list, str]:
+        """
+        查詢所有 label 符合的 Property (PID)；若無，回傳 'Not Found!'.
+        """
+        query = f"""
+        SELECT DISTINCT ?prop WHERE {{
+          ?prop rdfs:label ?lbl .
+          ?prop rdf:type wikibase:Property .
+          FILTER(STR(?lbl) = "{label}")
+        }}
+        """
+        data = self._run_query(query)
+        if not data or "results" not in data:
+            return "Not Found!"
+
+        pids = []
+        for row in data["results"]["bindings"]:
+            prop_uri = row["prop"]["value"]
+            pids.append(_normalize_pid(prop_uri))
+
+        return pids if pids else "Not Found!"
+
+    def pid2label(self, pid):
+        """
+        根據 Wikidata 屬性 ID (PID) 獲取標籤。
+        輸入: pid (如 'P749')
+        輸出: List[Dict[str, str]]，符合 { "pid": "P749", "label": "parent organization" } 格式
+        """
+        query = f"""
+        SELECT ?label WHERE {{
+        wd:{pid} rdfs:label ?label.
+        FILTER (lang(?label) = "en")
+        }}
+        """
+        results = self._run_query(query)
+
+        if not results or "results" not in results or "bindings" not in results["results"]:
+            return []
+
+        return [{"pid": pid, "label": r["label"]["value"]} for r in results["results"]["bindings"]]
+
 
     def get_all_relations_of_an_entity(
         self, entity_qid: str
-    ) -> tp.Dict[str, tp.List]:
-        return self.server.get_all_relations_of_an_entity(entity_qid)
+    ) -> tp.Union[dict, str]:
+        """
+        回傳格式：
+        {
+        "head": [ { "pid": "Pxx", "label": "PropertyLabel" }, ... ],
+        "tail": [ { "pid": "Pyy", "label": "PropertyLabel" }, ... ]
+        }
+        若查無任何關係則回傳 "Not Found!"。
+        """
+
+        query_head = f"""
+        SELECT DISTINCT ?propID ?propLabel
+        WHERE {{
+        wd:{entity_qid} ?p ?o .
+        FILTER(STRSTARTS(STR(?p), "http://www.wikidata.org/prop/direct/"))
+        BIND(STRAFTER(STR(?p), "http://www.wikidata.org/prop/direct/") AS ?propID).
+
+        ?property wikibase:directClaim ?p .
+        ?property rdfs:label ?propLabel .
+        FILTER(LANG(?propLabel) = "" || LANG(?propLabel) = "en")
+        }}
+        """
+
+        query_tail = f"""
+        SELECT DISTINCT ?propID ?propLabel
+        WHERE {{
+        ?s ?p wd:{entity_qid} .
+        FILTER(STRSTARTS(STR(?p), "http://www.wikidata.org/prop/direct/"))
+        BIND(STRAFTER(STR(?p), "http://www.wikidata.org/prop/direct/") AS ?propID).
+
+        ?property wikibase:directClaim ?p .
+        ?property rdfs:label ?propLabel .
+        FILTER(LANG(?propLabel) = "" || LANG(?propLabel) = "en")
+        }}
+        """
+
+        data_head = self._run_query(query_head)
+        data_tail = self._run_query(query_tail)
+
+        if not data_head or "results" not in data_head:
+            data_head = {"results": {"bindings": []}}
+        if not data_tail or "results" not in data_tail:
+            data_tail = {"results": {"bindings": []}}
+
+        head_list = []
+        for row in data_head["results"]["bindings"]:
+            pid = row["propID"]["value"]
+            label = row["propLabel"]["value"]
+            head_list.append({"pid": pid, "label": label})
+
+        tail_list = []
+        for row in data_tail["results"]["bindings"]:
+            pid = row["propID"]["value"]
+            label = row["propLabel"]["value"]
+            tail_list.append({"pid": pid, "label": label})
+
+        if not head_list and not tail_list:
+            return "Not Found!"
+
+        return {
+            "head": head_list,
+            "tail": tail_list
+        }
 
     def get_tail_entities_given_head_and_relation(
-        self, head_qid: str, relation_pid: str
-    ) -> tp.Dict[str, tp.List]:
-        return self.server.get_tail_entities_given_head_and_relation(
-            head_qid, relation_pid
-        )
+            self, head_qid: str, relation_pid: str
+        ) -> dict:
+            query_tail = f"""
+            SELECT DISTINCT ?entity ?entityLabel WHERE {{
+            wd:{head_qid} wdt:{relation_pid} ?entity .
+            OPTIONAL {{ ?entity rdfs:label ?entityLabel FILTER(LANG(?entityLabel) = "en") }}
+            }}
+            """
+            tails = []
+            data_tail = self._run_query(query_tail)
+            if data_tail and "results" in data_tail:
+                for row in data_tail["results"]["bindings"]:
+                    ent_url = row["entity"]["value"]
+                    ent_label = row.get("entityLabel", {}).get("value", "")
+                    tails.append({"qid": _normalize_qid(ent_url), "label": ent_label})
+
+            query_head = f"""
+            SELECT DISTINCT ?entity ?entityLabel WHERE {{
+            ?entity wdt:{relation_pid} wd:{head_qid} .
+            OPTIONAL {{ ?entity rdfs:label ?entityLabel FILTER(LANG(?entityLabel) = "en") }}
+            }}
+            """
+            heads = []
+            data_head = self._run_query(query_head)
+            if data_head and "results" in data_head:
+                for row in data_head["results"]["bindings"]:
+                    ent_url = row["entity"]["value"]
+                    ent_label = row.get("entityLabel", {}).get("value", "")
+                    heads.append({"qid": _normalize_qid(ent_url), "label": ent_label})
+
+            return {
+                "head": heads,
+                "tail": tails
+            }
 
     def get_tail_values_given_head_and_relation(
         self, head_qid: str, relation_pid: str
-    ) -> tp.List[str]:
-        return self.server.get_tail_values_given_head_and_relation(
-            head_qid, relation_pid
-        )
+    ) -> tp.Union[list, str]:
+        """
+        回傳 literal list，如果沒有則 'Not Found!'.
+        """
+        query = f"""
+        SELECT DISTINCT ?val WHERE {{
+          wd:{head_qid} wdt:{relation_pid} ?val .
+          FILTER(isLiteral(?val))
+        }}
+        """
+        data = self._run_query(query)
+        if not data or "results" not in data:
+            return "Not Found!"
+
+        values = []
+        for row in data["results"]["bindings"]:
+            val = row["val"]["value"]
+            values.append(val)
+
+        return values if values else "Not Found!"
 
     def get_external_id_given_head_and_relation(
         self, head_qid: str, relation_pid: str
-    ) -> tp.List[str]:
-        return self.server.get_external_id_given_head_and_relation(
-            head_qid, relation_pid
-        )
+    ) -> tp.Union[list, str]:
+        """
+        與 get_tail_values_given_head_and_relation 類似，但命名區分用於外部 ID。
+        """
+        query = f"""
+        SELECT DISTINCT ?val WHERE {{
+          wd:{head_qid} wdt:{relation_pid} ?val .
+        }}
+        """
+        data = self._run_query(query)
+        if not data or "results" not in data:
+            return "Not Found!"
+
+        # 通常外部ID是 literal，但有些可能是URI，統一先取字串
+        values = []
+        for row in data["results"]["bindings"]:
+            val = row["val"]["value"]
+            values.append(val)
+
+        return values if values else "Not Found!"
+
+    def mid2qid(self, mid: str) -> tp.Union[list, str]:
+        """
+        給定 Freebase MID (如 '/m/0k8z')，查詢對應 Wikidata QID；無則 'Not Found!'.
+        即對應 P646 (Freebase ID).
+        """
+        query = f"""
+        SELECT DISTINCT ?item WHERE {{
+          ?item wdt:P646 "{mid}" .
+        }}
+        """
+        data = self._run_query(query)
+        if not data or "results" not in data:
+            return "Not Found!"
+
+        qids = []
+        for row in data["results"]["bindings"]:
+            item_uri = row["item"]["value"]
+            qids.append(_normalize_qid(item_uri))
+
+        return qids if qids else "Not Found!"
 
     def get_wikipedia_page(self, qid: str, section: str = None) -> str:
-        wikipedia_url = self.server.get_wikipedia_link(qid)
-        if wikipedia_url == "Not Found!":
+        """
+        原本是假設 server 會回傳一個 Wikipedia link；這裡改由 SPARQL 取得對應英文維基文章。
+        然後用 requests + BeautifulSoup 取得頁面內容。
+        如果找不到就回傳 "Not Found!"。
+        """
+        # 先找出對應的英語維基條目
+        query = f"""
+        SELECT ?article WHERE {{
+          wd:{qid} schema:about ?item ;
+                   schema:isPartOf <https://en.wikipedia.org/> .
+          BIND(wd:{qid} AS ?item)
+        }}
+        """
+        data = self._run_query(query)
+        if not data or "results" not in data or not data["results"]["bindings"]:
             return "Not Found!"
-        else:
-            response = requests.get(wikipedia_url)
-            if response.status_code != 200:
-                raise Exception(f"Failed to retrieve page: {wikipedia_url}")
 
-            soup = BeautifulSoup(response.content, "html.parser")
-            content_div = soup.find("div", {"id": "bodyContent"})
+        # 取第一個 article link
+        article_url = data["results"]["bindings"][0]["article"]["value"]
+        # 發送 requests 取得 HTML
+        resp = requests.get(article_url)
+        if resp.status_code != 200:
+            return f"Failed to retrieve page: {article_url}"
 
-            # Remove script and style elements
-            for script_or_style in content_div.find_all(["script", "style"]):
-                script_or_style.decompose()
+        soup = BeautifulSoup(resp.content, "html.parser")
+        content_div = soup.find("div", {"id": "bodyContent"})
+        if not content_div:
+            return "Not Found!"
 
-            if section:
-                header = content_div.find(
-                    lambda tag: tag.name == "h2" and section in tag.get_text()
-                )
-                if header:
-                    content = ""
-                    for sibling in header.find_next_siblings():
-                        if sibling.name == "h2":
-                            break
-                        content += sibling.get_text()
-                    return content.strip()
-                else:
-                    # If the specific section is not found, return an empty string or a message.
-                    return f"Section '{section}' not found."
+        # 移除 script & style
+        for script_or_style in content_div.find_all(["script", "style"]):
+            script_or_style.decompose()
 
-            # Fetch the header summary (before the first h2)
-            summary_content = ""
-            for element in content_div.find_all(recursive=False):
-                if element.name == "h2":
-                    break
-                summary_content += element.get_text()
-
-            return summary_content.strip()
-
-    def mid2qid(self, mid: str) -> str:
-        return self.server.mid2qid(mid)
-
-
-import time
-import typing as tp
-from concurrent.futures import ThreadPoolExecutor
-
-
-class MultiServerWikidataQueryClient:
-    def __init__(self, urls: tp.List[str]):
-        self.clients = [WikidataQueryClient(url) for url in urls]
-        self.executor = ThreadPoolExecutor(max_workers=len(urls))
-        # # test connections
-        # start_time = time.perf_counter()
-        # self.test_connections()
-        # end_time = time.perf_counter()
-        # print(f"Connection testing took {end_time - start_time} seconds")
-
-    def test_connections(self):
-        def test_url(client):
-            try:
-                # Check if server provides the system.listMethods function.
-                client.server.system.listMethods()
-                return True
-            except Exception as e:
-                print(f"Failed to connect to {client.url}. Error: {str(e)}")
-                return False
-
-        start_time = time.perf_counter()
-        futures = [
-            self.executor.submit(test_url, client) for client in self.clients
-        ]
-        results = [f.result() for f in futures]
-        end_time = time.perf_counter()
-        # print(f"Testing connections took {end_time - start_time} seconds")
-        # Remove clients that failed to connect
-        self.clients = [
-            client for client, result in zip(self.clients, results) if result
-        ]
-        if not self.clients:
-            raise Exception("Failed to connect to all URLs")
-
-    def query_all(self, method, *args):
-        start_time = time.perf_counter()
-        futures = [
-            self.executor.submit(getattr(client, method), *args)
-            for client in self.clients
-        ]
-        # Retrieve results and filter out 'Not Found!'
-        is_dict_return = method in [
-            "get_all_relations_of_an_entity",
-            "get_tail_entities_given_head_and_relation",
-        ]
-        results = [f.result() for f in futures]
-        end_time = time.perf_counter()
-        # print(f"HTTP Queries took {end_time - start_time} seconds")
-
-        start_time = time.perf_counter()
-        real_results = (
-            set() if not is_dict_return else {"head": [], "tail": []}
-        )
-        for res in results:
-            if isinstance(res, str) and res == "Not Found!":
-                continue
-            elif isinstance(res, tp.List):
-                if len(res) == 0:
-                    continue
-                if isinstance(res[0], tp.List):
-                    res_flattened = itertools.chain(*res)
-                    real_results.update(res_flattened)
-                    continue
-                real_results.update(res)
-            elif is_dict_return:
-                real_results["head"].extend(res["head"])
-                real_results["tail"].extend(res["tail"])
+        if section:
+            # 嘗試抓取指定 section
+            header = content_div.find(
+                lambda tag: tag.name == "h2" and section in tag.get_text()
+            )
+            if header:
+                content = []
+                for sibling in header.find_next_siblings():
+                    if sibling.name == "h2":
+                        break
+                    content.append(sibling.get_text())
+                return "\n".join(content).strip() if content else ""
             else:
-                real_results.add(res)
-        end_time = time.perf_counter()
-        # print(f"Querying all took {end_time - start_time} seconds")
+                return f"Section '{section}' not found."
 
-        return real_results if len(real_results) > 0 else "Not Found!"
+        # 如果沒有指定 section，就回傳文章開頭(在第一個 h2 之前)
+        summary_content = []
+        for elem in content_div.children:
+            # 一旦遇到 <h2> 就停止
+            if elem.name == "h2":
+                break
+            if hasattr(elem, "get_text"):
+                summary_content.append(elem.get_text())
+        return "\n".join(summary_content).strip()
+
 
 
 if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--addr_list",
-        type=str,
-        required=True,
-        help="path to server address list",
-    )
-    args = parser.parse_args()
-
-    with open(args.addr_list, "r") as f:
-        server_addrs = f.readlines()
-        server_addrs = [addr.strip() for addr in server_addrs]
-    print(f"Server addresses: {server_addrs}")
-    client = MultiServerWikidataQueryClient(server_addrs)
-    print(
-        f'MSFT\'s ticker code is  {client.query_all("get_tail_values_given_head_and_relation","Q2283","P249",)}'
-    )
-    # exit(0)
-    exchange_qids = {
-        "NYSE": "Q13677",
-        "NASDAQ": "Q82059",
-        "XSHG": "Q739514",
-        "XSHE": "Q517750",
-        "AMEX": "Q846626",
-        "Euronext Paris": "Q2385849",
-        "HKEX": "Q496672",
-        "Tokyo": "Q217475",
-        "Osaka": "Q1320224",
-        "London": "Q171240",
-    }
-
-    for xchg in exchange_qids:
-        xchg_name = xchg
-        stocks = client.query_all(
-            "get_tail_entities_given_head_and_relation",
-            exchange_qids[xchg_name],
-            "P414",
-        )
-        stocks = stocks["head"]
-
-        acs = {}
-        for stock_record in tqdm(stocks):
-            ticker_id = client.query_all(
-                "get_tail_values_given_head_and_relation",
-                stock_record["qid"],
-                "P249",
-            )
-            acs[stock_record["qid"]] = {
-                "label": stock_record["label"],
-                "ticker": ticker_id,
-            }
-        import yaml
-
-        with open(f"{xchg_name}.yaml", "w") as f:
-            yaml.safe_dump(acs, f)
-
-    # am = {}
-    # for s in stocks:
-    #     am[s] = client.query_all("qid2label", s)
-
-    # import yaml
-    # with open(f"{xchg_name}.yaml", "w") as f:
-    #     yaml.safe_dump(am, f)
-
-    # print(client.query_all("get_all_relations_of_an_entity", "Q312",))
-    # print(
-    #     f'MSFT\'s Freebase MID is {client.query_all("get_external_id_given_head_and_relation", "Q2283", "P646")}'
-    # )
-    # print(
-    #     f'MID /m/0k8z corresponds to QID {client.query_all("mid2qid", "/m/0k8z")}'
-    # )
-    # print(client.query_all("label2pid", 'spouse'))  # P26
-
-    # print(f'Carrollton => {client.query_all("label2qid", "Carrollton")}')
-    # print(client.query_all("label2pid", "crosses"))
-
-    # print(client.query_all(
-    #         "get_tail_entities_given_head_and_relation", "Q6792298", "P106"
-    #     )
-    # )
-    # print(
-    #     client.query_all(
-    #         "get_tail_entities_given_head_and_relation", "Q42869", "P161"
-    #     )
-    # )  # (Q507306, 'NASDAQ-100'), (Q180816, DJIA), ...
-    # print(
-    #     client.query_all(
-    #         "get_tail_values_given_head_and_relation", "Q2283", "P2139"
-    #     )
-    # )  # MS revenue
-
-    # # Speed profiling
-    # for i in tqdm(range(1000)):
-    #     # print(client.query_all("label2qid", "Microsoft"))  # Q2283
-    #     client.query_all("label2qid", "Microsoft")
-    #     # print(client.query_all("qid2label", "Q2283"))  # Microsoft
-    #     client.query_all("qid2label", "Q2283")
-    #     # print(
-    #     client.query_all("get_all_relations_of_an_entity", "Q2283")
-    #     # )  # (P31, 'instance of'), (P361, 'part of'), ...
-    #     # print(
-    #     client.query_all(
-    #         "get_tail_entities_given_head_and_relation", "Q2283", "P361"
-    #     )
-    #     # )  # (Q507306, 'NASDAQ-100'), (Q180816, DJIA), ...
-    #     # print(
-    #     client.query_all(
-    #         "get_tail_values_given_head_and_relation", "Q2283", "P2139"
-    #     )
-    #     # )  # MS revenue
+    client = WikidataQueryClient("dummy_url")
+    # print("label2qid('Microsoft') =>", client.label2qid("Microsoft"))
+    # print("label2pid('spouse') =>", client.label2pid("spouse"))
+    print("pid2label('Q54766749') =>", client.pid2label("Q54766749"))
+    # print("qid2label('Q42') =>", client.qid2label("Q42"))
+    print("get_all_relations_of_an_entity('Q163727') =>", client.get_all_relations_of_an_entity("Q163727"))
+    # print("get_tail_entities_given_head_and_relation('Q163727', 'P69') =>",
+    #       client.get_tail_entities_given_head_and_relation("Q163727", "P69"))
+    # print("get_tail_values_given_head_and_relation('Q2283', 'P2139') =>",
+    #       client.get_tail_values_given_head_and_relation("Q2283", "P2139"))
+    # print("get_external_id_given_head_and_relation('Q2283', 'P646') =>",
+    #       client.get_external_id_given_head_and_relation("Q2283", "P646"))
+    # print("mid2qid('/m/0k8z') =>", client.mid2qid("/m/0k8z"))
+    # print("get_wikipedia_page('Q42') =>", client.get_wikipedia_page("Q42"))

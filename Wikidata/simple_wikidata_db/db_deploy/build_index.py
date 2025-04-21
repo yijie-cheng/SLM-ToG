@@ -8,7 +8,7 @@ from tqdm import tqdm
 import math
 from dataclasses import dataclass
 import ujson as json
-from simple_wikidata_db.db_deploy.utils import (
+from utils import (
     a_factory,
     Entity,
     Relation,

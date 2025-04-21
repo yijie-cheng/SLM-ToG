@@ -129,7 +129,7 @@ def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine, dataset, w
         # print(f"USE OTHER MODEL: {engine}!!!")
         client = OpenAI(
             api_key="EMPTY",
-            base_url="http://localhost:8000/v1"
+            base_url="http://localhost:8001/v1"
         )
         engine = client.models.list().data[0].id
     else:
@@ -187,6 +187,7 @@ def del_unknown_entity(entity_candidates):
 
 
 def clean_scores(json_string, entity_candidates, warning, args):
+    json_string = re.sub(r'```json|```', '', json_string).strip()
     try:
         data = json.loads(json_string)
     except json.JSONDecodeError:
