@@ -55,10 +55,10 @@ def construct_entity_score_prompt(question, relation, entity_candidates):
 
 
 def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, question, args, wiki_client, warning):
-    # relations = wiki_client.query_all("get_all_relations_of_an_entity", entity_id)
-    relations = wiki_client.get_all_relations_of_an_entity(entity_id)
-    if not isinstance(relations, dict):
-        return []
+    relations = wiki_client.query_all("get_all_relations_of_an_entity", entity_id)
+    # relations = wiki_client.get_all_relations_of_an_entity(entity_id)
+    # if not isinstance(relations, dict):
+    #     return []
     head_relations = [rel['label'] for rel in relations['head']]
     tail_relations = [rel['label'] for rel in relations['tail']]
     if args.remove_unnecessary_rel:
@@ -92,7 +92,7 @@ def del_all_unknown_entity(entity_candidates_id, entity_candidates_name):
     new_candidates_id = []
     new_candidates_name = []
     for i, candidate in enumerate(entity_candidates_name):
-        if candidate != "":
+        if candidate != "N/A":
             new_candidates_id.append(entity_candidates_id[i])
             new_candidates_name.append(candidate)
 
@@ -104,25 +104,34 @@ def all_zero(topn_scores):
 
 
 def entity_search(entity, relation, wiki_client, head):
-    rid = wiki_client.label2pid(relation)
+    rid = wiki_client.query_all("label2pid", relation)
+    # rid = wiki_client.label2pid(relation)
     if not rid or rid == "Not Found!":
         return [], []
     
     rid_str = rid.pop()
-
-    entities = wiki_client.get_tail_entities_given_head_and_relation(entity, rid_str)
-    # print(f"get_tail_entities_given_head_and_relation: {entities}")
+    # entities = wiki_client.query_all("get_tail_entities_given_head_and_relation", entity, rid_str)
+    # # entities = wiki_client.get_tail_entities_given_head_and_relation(entity, rid_str)
+    # # print(f"get_tail_entities_given_head_and_relation: {entities}")
     
-    if head:
-        entities_set = entities['tail']
-    else:
-        entities_set = entities['head']
+    # if head:
+    #     entities_set = entities['tail']
+    # else:
+    #     entities_set = entities['head']
+    entities = wiki_client.query_all("get_tail_entities_given_head_and_relation", entity, rid_str)
+    # if the call failed or returned "Not Found!", bail out
+    if not isinstance(entities, dict):
+        return [], []
+    # now it's safe to pull out the side you want
+    entities_set = entities['tail'] if head else entities['head']
 
     if not entities_set:
+        values = wiki_client.query_all("get_tail_values_given_head_and_relation", entity, rid_str)
+        return [], list(values)
         # values = wiki_client.query_all("get_tail_values_given_head_and_relation", entity, rid_str)
         # values = wiki_client.get_tail_entities_given_head_and_relation(entity, rid_str)
         # print(list(values))
-        return [], []
+        # return [], []
 
     id_list = [item['qid'] for item in entities_set]
     name_list = [item['label'] if item['label'] != "N/A" else "Unname_Entity" for item in entities_set]
@@ -192,13 +201,13 @@ def entity_prune(total_entities_id, total_relations, total_candidates, total_top
     if len(filtered_list) ==0:
         return False, [], [], [], []
     entities_id, relations, candidates, tops, heads, scores = map(list, zip(*filtered_list))
-    # tops = [wiki_client.query_all("qid2label", entity_id).pop() if (entity_name := wiki_client.query_all("qid2label", entity_id)) != "Not Found!" else "Unname_Entity" for entity_id in tops]
+    tops = [wiki_client.query_all("qid2label", entity_id).pop() if (entity_name := wiki_client.query_all("qid2label", entity_id)) != "Not Found!" else "Unname_Entity" for entity_id in tops]
     # tops = [wiki_client.pid2label(entity_id).pop() if (entity_name := wiki_client.pid2label(entity_id)) != "Not Found!" else "Unname_Entity" for entity_id in tops]
-    tops = [
-        label_list.pop() if label_list not in ([], "Not Found!") else "Unname_Entity"
-        for entity_id in tops
-        if (label_list := wiki_client.pid2label(entity_id)) is not None
-    ]
+    # tops = [
+    #     label_list.pop() if label_list not in ([], "Not Found!") else "Unname_Entity"
+    #     for entity_id in tops
+    #     if (label_list := wiki_client.pid2label(entity_id)) is not None
+    # ]
     cluster_chain_of_entities = [[(tops[i], relations[i], candidates[i]) for i in range(len(candidates))]]
     return True, cluster_chain_of_entities, entities_id, relations, heads
 

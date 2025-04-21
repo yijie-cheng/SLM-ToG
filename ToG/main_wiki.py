@@ -36,7 +36,7 @@ if __name__ == '__main__':
         
     datas, question_string = prepare_dataset(args.dataset)
     print("Start Running ToG on %s dataset." % args.dataset)
-    for data in tqdm(datas[0:200]):
+    for data in tqdm(datas[0:10]):
         question = data[question_string]
         warning = {
             "relations_cleaning_error": False,
@@ -127,8 +127,8 @@ if __name__ == '__main__':
                         half_stop(question, cluster_chain_of_entities, depth, args, warning)
                         flag_printed = True
                     else:
-                        # topic_entity = {qid: topic for qid, topic in zip(entities_id, [wiki_client.query_all("qid2label", entity).pop() for entity in entities_id])}
-                        topic_entity = {qid: next((entry["label"] for entry in wiki_client.pid2label(entity) if "label" in entry), "Unname_Entity") for qid, entity in zip(entities_id, entities_id)}
+                        topic_entity = {qid: topic for qid, topic in zip(entities_id, [wiki_client.query_all("qid2label", entity).pop() for entity in entities_id])}
+                        # topic_entity = {qid: next((entry["label"] for entry in wiki_client.pid2label(entity) if "label" in entry), "Unname_Entity") for qid, entity in zip(entities_id, entities_id)}
                         continue
             else:
                 half_stop(question, cluster_chain_of_entities, depth, args, warning)
