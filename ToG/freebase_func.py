@@ -1,4 +1,5 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
+import torch
 from utils import *
 
 SPARQLPATH = "http://localhost:8890/sparql"  # depend on your own internal address and port, shown in Freebase folder's readme.md
@@ -172,10 +173,34 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
     elif args.prune_tools == "bm25":
         topn_relations, topn_scores = compute_bm25_similarity(question, total_relations, args.width)
         flag, retrieve_relations_with_scores = clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations) 
-    else:
-        model = SentenceTransformer('sentence-transformers/msmarco-distilbert-base-tas-b')
+    elif args.prune_tools == "sentencebert":
+        model = SentenceTransformer('sentence-transformers/msmarco-distilbert-base-tas-b', device='cpu')
         topn_relations, topn_scores = retrieve_top_docs(question, total_relations, model, args.width)
         flag, retrieve_relations_with_scores = clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations) 
+    elif args.prune_tools == "gtr":
+        model = SentenceTransformer("sentence-transformers/gtr-t5-base", device="cpu")  # 或 gtr-t5-large / gtr-t5-xl 等
+        topn_relations, topn_scores = retrieve_top_docs(question, total_relations, model, args.width)
+        flag, retrieve_relations_with_scores = clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations)
+    elif args.prune_tools == "e5":
+        model = SentenceTransformer("intfloat/e5-base", device="cpu")
+        e5_query = "query: " + question
+        relation_map = {f"passage: {r}": r for r in total_relations}
+        e5_passages = list(relation_map.keys())
+        with torch.no_grad():
+            topn_passages, topn_scores = retrieve_top_docs(e5_query, e5_passages, model, args.width)
+        topn_relations = [relation_map[p] for p in topn_passages]
+        del model
+        torch.cuda.empty_cache()
+        flag, retrieve_relations_with_scores = clean_relations_bm25_sent(
+            topn_relations, topn_scores, entity_id, head_relations
+        )
+
+    else:
+        print("Prune tool not found! Use bm25!")
+        topn_relations, topn_scores = compute_bm25_similarity(question, total_relations, args.width)
+        flag, retrieve_relations_with_scores = clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations) 
+
+
 
     if flag:
         # print(f"Final retrieved relations with scores: {retrieve_relations_with_scores}")
@@ -229,9 +254,26 @@ def entity_score(question, entity_candidates_id, score, relation, warning, args)
 
     elif args.prune_tools == "bm25":
         topn_entities, topn_scores = compute_bm25_similarity(question, entity_candidates, args.width)
-    else:
-        model = SentenceTransformer('sentence-transformers/msmarco-distilbert-base-tas-b')
+    elif args.prune_tools == "sentencebert":
+        model = SentenceTransformer('sentence-transformers/msmarco-distilbert-base-tas-b', device="cpu")
         topn_entities, topn_scores = retrieve_top_docs(question, entity_candidates, model, args.width)
+    elif args.prune_tools == "gtr":
+        model = SentenceTransformer("sentence-transformers/gtr-t5-base", device="cpu")  # 或 gtr-t5-large / gtr-t5-xl 等
+        topn_entities, topn_scores = retrieve_top_docs(question, entity_candidates, model, args.width)
+    elif args.prune_tools == "e5":
+        model = SentenceTransformer("intfloat/e5-base", device="cpu")
+        e5_query = "query: " + question
+        relation_map = {f"passage: {r}": r for r in entity_candidates}
+        e5_passages = list(relation_map.keys())
+        with torch.no_grad():
+            topn_passages, topn_scores = retrieve_top_docs(e5_query, e5_passages, model, args.width)
+        topn_entities = [relation_map[p] for p in topn_passages]
+        del model
+        torch.cuda.empty_cache()
+    else:
+        print("Prune tool not found! Use bm25!")
+        topn_entities, topn_scores = compute_bm25_similarity(question, entity_candidates, args.width)
+
     if if_all_zero(topn_scores):
         topn_scores = [float(1/len(topn_scores))] * len(topn_scores)
     return [float(x) * score for x in topn_scores], topn_entities, entity_candidates_id
