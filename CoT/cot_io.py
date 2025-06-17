@@ -15,14 +15,17 @@ if __name__ == '__main__':
     parser.add_argument("--temperature", type=int,
                         default=0, help="the temperature")
     parser.add_argument("--LLM_type", type=str,
-                        default="gpt-3.5-turbo", help="base LLM model.")
+                        default="gpt-3.5", help="base LLM model.")
     parser.add_argument("--opeani_api_keys", type=str,
                         default="", help="if the LLM_type is gpt-3.5-turbo or gpt-4, you need add your own openai api keys.")
     args = parser.parse_args()
 
-with open("{}-{}-CoT.jsonl".format(args.LLM_type.replace("/", "-"), args.dataset), 'a+', encoding="UTF-8") as out:
+STARTDATA = 200
+ENDDATA = 1000
+
+with open("results/{}/{}-{}-CoT.jsonl".format(args.LLM_type.replace("/", "-"), args.LLM_type.replace("/", "-"), args.dataset), 'a+', encoding="UTF-8") as out:
     datas, question_string = prepare_dataset(args.dataset)
-    for i in tqdm(datas[:200], total=len(datas[:200])):
+    for i in tqdm(datas[STARTDATA:], total=len(datas[STARTDATA:])):
         if args.prompt_methods == "cot":
             prompt = cot_prompt + "\n\nQ: " + i[question_string] + "\nA: "
         else:

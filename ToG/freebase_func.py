@@ -1,4 +1,4 @@
-from SPARQLWrapper import SPARQLWrapper, JSON
+from SPARQLWrapper import SPARQLWrapper, JSON, SPARQLExceptions
 import torch
 from utils import *
 
@@ -24,8 +24,17 @@ def execurte_sparql(sparql_query):
     sparql = SPARQLWrapper(SPARQLPATH)
     sparql.setQuery(sparql_query)
     sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
-    return results["results"]["bindings"]
+    # results = sparql.query().convert()
+    # return results["results"]["bindings"]
+    try:
+        results = sparql.query().convert()
+        return results["results"]["bindings"]
+    except SPARQLExceptions.QueryBadFormed as e:
+        print("SPARQL syntax error:", e)
+        return []
+    except Exception as e:
+        print("Unexpected error during SPARQL query:", e)
+        return []
 
 
 def replace_relation_prefix(relations):
@@ -153,13 +162,16 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
     total_relations = head_relations+tail_relations
     total_relations.sort()  # make sure the order in prompt is always equal
     # print(f"Total relations after merging and sorting: {total_relations}")
+
+    if not total_relations:
+        return []
     
     if args.prune_tools == "llm":
         prompt = construct_relation_prune_prompt(question, entity_name, total_relations, args)
         # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         # print(f"Prompt for LLM: \n{prompt}")
         # print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-        result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
+        result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning, args)
         # print(f"LLM result: {result}")
         json_match = re.search(r'\{.*\}', result, re.DOTALL)
         if json_match:
@@ -178,7 +190,7 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
         topn_relations, topn_scores = retrieve_top_docs(question, total_relations, model, args.width)
         flag, retrieve_relations_with_scores = clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations) 
     elif args.prune_tools == "gtr":
-        model = SentenceTransformer("sentence-transformers/gtr-t5-base", device="cpu")  # 或 gtr-t5-large / gtr-t5-xl 等
+        model = SentenceTransformer("sentence-transformers/gtr-t5-base", device = "cuda:1")  # 或 gtr-t5-large / gtr-t5-xl 
         topn_relations, topn_scores = retrieve_top_docs(question, total_relations, model, args.width)
         flag, retrieve_relations_with_scores = clean_relations_bm25_sent(topn_relations, topn_scores, entity_id, head_relations)
     elif args.prune_tools == "e5":
@@ -208,7 +220,7 @@ def relation_search_prune(entity_id, entity_name, pre_relations, pre_head, quest
     else:
         # print("Returning empty list due to format error or too small max_length")
         warning['relations_cleaning_error'] = True
-        with open('{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
+        with open('results/paper_results/{}/{}/{}-{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
             file.write("Relations cleaning failed.\n")
             file.write("------------------------------------------------------------------------------------------------------\n")
         return [] # format error or too small max_length
@@ -246,7 +258,7 @@ def entity_score(question, entity_candidates_id, score, relation, warning, args)
     if args.prune_tools == "llm":
         prompt = construct_entity_score_prompt(question, relation, entity_candidates)
 
-        result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
+        result = run_llm(prompt, args.temperature_exploration, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning, args)
         json_match = re.search(r'\{.*\}', result, re.DOTALL)
         if json_match:
             result = json_match.group(0)
@@ -258,7 +270,7 @@ def entity_score(question, entity_candidates_id, score, relation, warning, args)
         model = SentenceTransformer('sentence-transformers/msmarco-distilbert-base-tas-b', device="cpu")
         topn_entities, topn_scores = retrieve_top_docs(question, entity_candidates, model, args.width)
     elif args.prune_tools == "gtr":
-        model = SentenceTransformer("sentence-transformers/gtr-t5-base", device="cpu")  # 或 gtr-t5-large / gtr-t5-xl 等
+        model = SentenceTransformer("sentence-transformers/gtr-t5-base", device = "cuda:1")  # 或 gtr-t5-large / gtr-t5-xl 等
         topn_entities, topn_scores = retrieve_top_docs(question, entity_candidates, model, args.width)
     elif args.prune_tools == "e5":
         model = SentenceTransformer("intfloat/e5-base", device="cpu")
@@ -298,18 +310,18 @@ def update_history(entity_candidates, entity, scores, entity_candidates_id, tota
 def half_stop(question, cluster_chain_of_entities, depth, warning, args):
     # print("No new knowledge added during search depth %d, stop searching." % depth)
     warning['dead_road'] = True
-    with open('{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
+    with open('results/paper_results/{}/{}/{}-{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
         file.write("No new knowledge added during search depth %d, stop searching.\n" % depth)
         file.write("------------------------------------------------------------------------------------------------------\n")
     answer = generate_answer(question, cluster_chain_of_entities, warning, args)
-    save_2_jsonl(question, answer, cluster_chain_of_entities, warning, file_name=args.dataset, LLM_type=args.LLM_type)
+    save_2_jsonl(question, answer, cluster_chain_of_entities, warning, args, file_name=args.dataset, LLM_type=args.LLM_type)
 
 
 def generate_answer(question, cluster_chain_of_entities, warning, args): 
     prompt = answer_prompt + question + '\n'
     chain_prompt = '\n'.join([', '.join([str(x) for x in chain]) for sublist in cluster_chain_of_entities for chain in sublist])
     prompt += "\nKnowledge Triplets: " + chain_prompt + 'A: '
-    result = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
+    result = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning, args)
     return result
 
 
@@ -335,7 +347,7 @@ def reasoning(question, cluster_chain_of_entities, warning, args):
     chain_prompt = '\n'.join([', '.join([str(x) for x in chain]) for sublist in cluster_chain_of_entities for chain in sublist])
     prompt += "\nKnowledge Triplets: " + chain_prompt + '\nA: '
 
-    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
+    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning, args)
     result = extract_answer(response)
     if if_true(result):
         return True, response

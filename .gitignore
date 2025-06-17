@@ -169,3 +169,7 @@ cython_debug/
 ###################
 # Project Spcific #
 ###################
+
+# Local experiment outputs (not for version control)
+CoT/results/
+ToG/results/

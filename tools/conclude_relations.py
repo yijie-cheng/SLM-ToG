@@ -83,8 +83,8 @@ def update_json_with_results(input_json, log_txt, model):
         question = item["question"]
         topic_entity = item["topic_entity"]
         relations = item.get("relations", [])
-        gpt4o_mini_results = extract_results(log_txt, question, topic_entity, relations)
-        item["results"][model] = gpt4o_mini_results
+        gpt41_results = extract_results(log_txt, question, topic_entity, relations)
+        item["results"][model] = gpt41_results
 
     with open(input_json, 'w', encoding='utf-8') as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=4)
@@ -114,11 +114,11 @@ def update_json_with_ce(input_json):
 
     for item in data:
         relations = item["relations"]
-        ground_truth = item["results"].get("gpt-4o-mini", [])
+        ground_truth = item["results"].get("gpt-4.1", [])
         item["CE"] = {}
         
         for model, predictions in item["results"].items():
-            if model != "gpt-4o-mini":
+            if model != "gpt-4.1":
                 cross_entropy = calculate_cross_entropy_with_binarizer(relations, ground_truth, predictions)
                 item["CE"][model] = cross_entropy
 
@@ -164,18 +164,18 @@ def calculate_average_ce(input_json):
 
 input_json_path = "../data/cwq.json" 
 output_json_path = "./compare_relations.json" 
-ground_truth_file = "../ToG/results/ori2_results/gpt-4o-mini-cwq-ToG-log.txt"
+ground_truth_file = "../ToG/results/prunetool_results/gpt4.1-gpt4.1-cwq-ToG-log.txt"
 
 transform_json(input_json_path, output_json_path, 200)
 update_json_with_relations(output_json_path, ground_truth_file, output_json_path)
 models_and_logs = {
-    "gpt-4o-mini": "../ToG/results/ori2_results/gpt-4o-mini-cwq-ToG-log.txt",
-    "Qwen2-0.5B": "../ToG/results/ori2_results/Qwen-Qwen2-0.5B-Instruct-cwq-ToG-log.txt",
-    "Qwen2-0.5B-json": "../ToG/results/json_results/Qwen-Qwen2-0.5B-Instruct-cwq-ToG-log.txt",
-    "Qwen2-1.5B": "../ToG/results/ori2_results/Qwen-Qwen2-1.5B-Instruct-cwq-ToG-log.txt",
-    "Qwen2-1.5B-json": "../ToG/results/json_results/Qwen-Qwen2-1.5B-Instruct-cwq-ToG-log.txt",
-    "Qwen2-7B": "../ToG/results/ori2_results/Qwen-Qwen2-7B-Instruct-cwq-ToG-log.txt",
-    "Qwen2-7B-json": "../ToG/results/json_results/Qwen-Qwen2-7B-Instruct-AWQ-cwq-ToG-log.txt",
+    "gpt-4.1": "../ToG/results/prunetool_results/gpt4.1-gpt4.1-cwq-ToG-log.txt",
+    "Qwen2-0.5B": "../ToG/results/prunetool_results/Qwen2-0.5b-Qwen2-0.5b-cwq-ToG-log.txt",
+    "Qwen2.5-0.5B": "../ToG/results/prunetool_results/Qwen2.5-0.5b-Qwen2.5-0.5b-cwq-ToG-log.txt",
+    "gemma2-2b": "../ToG/results/prunetool_results/gemma2b-gemma2b-cwq-ToG-log.txt",
+    "Phi3-mini-4k": "../ToG/results/prunetool_results/Phi3mini4k-Phi3mini4k-cwq-ToG-log.txt",
+    "Qwen2-7B": "../ToG/results/prunetool_results/Qwen2-7b-Qwen2-7b-cwq-ToG-log.txt",
+    "Llama3-8B": "../ToG/results/prunetool_results/Llama-8b-Llama-8b-cwq-ToG-log.txt",
 }
 for model, log_path in models_and_logs.items():
     update_json_with_results(output_json_path, log_path, model)

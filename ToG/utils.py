@@ -9,6 +9,21 @@ from rank_bm25 import BM25Okapi
 from sentence_transformers import util
 from sentence_transformers import SentenceTransformer
 
+import tiktoken
+MAX_CONTEXT_LENGTH = 4096
+def count_tokens(messages, model_name):
+    try:
+        encoding = tiktoken.encoding_for_model(model_name)
+    except:
+        encoding = tiktoken.get_encoding("cl100k_base")  # fallback
+    num_tokens = 0
+    for message in messages:
+        num_tokens += 4  # 每則訊息的開銷
+        for key, value in message.items():
+            num_tokens += len(encoding.encode(value))
+    num_tokens += 2
+    return num_tokens
+
 def retrieve_top_docs(query, docs, model, width=3):
     """
     Retrieve the topn most relevant documents for the given query.
@@ -118,9 +133,9 @@ def compute_bm25_similarity(query, corpus, width=3):
 #         i+=1
 #     return True, relations
 
-def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine, dataset, warning):
+def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine, dataset, warning, args):
     LLM_type = engine
-    with open('{}-{}-ToG-log.txt'.format(LLM_type.replace("/", "-"), dataset), 'a') as file:
+    with open('results/paper_results/{}/{}/{}-{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
         file.write("***START RUNING LLM***\n\n")
         file.write("PROMPT: \n" + prompt + "\n")
         file.write("\n")
@@ -139,6 +154,17 @@ def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine, dataset, w
     message_prompt = {"role":"user","content":prompt}
     messages.append(message_prompt)
 
+    # 計算 messages token 數量
+    prompt_tokens = count_tokens(messages, engine)
+
+    # 若 prompt + max_tokens > 上限，自動調整 max_tokens
+    while prompt_tokens + max_tokens > MAX_CONTEXT_LENGTH:
+        new_max_tokens = MAX_CONTEXT_LENGTH - prompt_tokens
+        if new_max_tokens <= 0:
+            raise ValueError(f"Prompt 太長（{prompt_tokens} tokens），無法產生任何回覆，請縮短 prompt。")
+        print(f"max_tokens 從 {max_tokens} 自動降為 {new_max_tokens}（context 限制：{MAX_CONTEXT_LENGTH}）")
+        max_tokens = max_tokens/2
+
     f = 0
     while(f == 0):
         try:
@@ -154,11 +180,12 @@ def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine, dataset, w
             f = 1
         except Exception as e:
             print(f"Error during request, retrying: {e}")
+            max_tokens = max_tokens/2
             time.sleep(2)
     if engine == "casperhansen/vicuna-7b-v1.5-awq":
         return result.replace("\\", "") # fix vicuna output bug
     
-    with open('{}-{}-ToG-log.txt'.format(LLM_type.replace("/", "-"), dataset), 'a') as file:
+    with open('results/paper_results/{}/{}/{}-{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
         file.write("RESULT: \n" + result + "\n")
         file.write("\n")
         file.write("PROMPT_TOKENS: " + str(response.usage.prompt_tokens) + "\n")
@@ -169,7 +196,7 @@ def run_llm(prompt, temperature, max_tokens, opeani_api_keys, engine, dataset, w
     if response.usage.completion_tokens == max_tokens or response.usage.total_tokens == 8192:
         # print("Too long context: The generated response reached the maximum length and may be truncated.")
         warning['long_context'] = True
-        with open('{}-{}-ToG-log.txt'.format(LLM_type.replace("/", "-"), dataset), 'a') as file:
+        with open('results/paper_results/{}/{}/{}-{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
             file.write("Too long context: The generated response reached the maximum length and may be truncated.\n")
             file.write("------------------------------------------------------------------------------------------------------\n")
     return result
@@ -191,14 +218,14 @@ def clean_scores(json_string, entity_candidates, warning, args):
         data = json.loads(json_string)
     except json.JSONDecodeError:
         warning['entities_cleaning_error'] = True
-        with open(f"{args.LLM_type.replace('/', '-')}-{args.dataset}-ToG-log.txt", 'a') as file:
+        with open('results/paper_results/{}/{}/{}-{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
             file.write("Entities cleaning failed: Invalid JSON format.\n")
             file.write("------------------------------------------------------------------------------------------------------\n")
         return [1 / len(entity_candidates)] * len(entity_candidates)
     
     if "entities" not in data or not isinstance(data["entities"], list):
         warning['entities_cleaning_error'] = True
-        with open(f"{args.LLM_type.replace('/', '-')}-{args.dataset}-ToG-log.txt", 'a') as file:
+        with open('results/paper_results/{}/{}/{}-{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
             file.write("Entities cleaning failed: 'entities' field missing or not a list.\n")
             file.write("------------------------------------------------------------------------------------------------------\n")
         return [1 / len(entity_candidates)] * len(entity_candidates)
@@ -210,7 +237,7 @@ def clean_scores(json_string, entity_candidates, warning, args):
         score = entity_map.get(candidate, None)
         if score is None:
             warning['entities_cleaning_error'] = True
-            with open(f"{args.LLM_type.replace('/', '-')}-{args.dataset}-ToG-log.txt", 'a') as file:
+            with open('results/paper_results/{}/{}/{}-{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
                 file.write(f"Entities cleaning failed: '{candidate}' missing in JSON output.\n")
                 file.write("------------------------------------------------------------------------------------------------------\n")
             return [1 / len(entity_candidates)] * len(entity_candidates)
@@ -220,17 +247,17 @@ def clean_scores(json_string, entity_candidates, warning, args):
         return scores
     else:
         warning['entities_cleaning_error'] = True
-        with open(f"{args.LLM_type.replace('/', '-')}-{args.dataset}-ToG-log.txt", 'a') as file:
+        with open('results/paper_results/{}/{}/{}-{}-{}-ToG-log.txt'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
             file.write("Entities cleaning failed: Incorrect number of scores.\n")
             file.write("------------------------------------------------------------------------------------------------------\n")
         return [1 / len(entity_candidates)] * len(entity_candidates)
 
 
-def save_2_jsonl(question, answer, cluster_chain_of_entities, warning, file_name, LLM_type):
+def save_2_jsonl(question, answer, cluster_chain_of_entities, warning, args, file_name, LLM_type):
     dict = {"question":question, "results": answer, "reasoning_chains": cluster_chain_of_entities, "warning":warning}
-    with open("{}-{}-ToG.jsonl".format(LLM_type.replace("/", "-"), file_name), "a") as outfile:
+    with open('results/paper_results/{}/{}/{}-{}-{}-ToG.jsonl'.format(args.LLM_type.replace("/", "-"), args.prune_tools, args.prune_tools, args.LLM_type.replace("/", "-"), args.dataset), 'a') as file:
         json_str = json.dumps(dict)
-        outfile.write(json_str + "\n")
+        file.write(json_str + "\n")
 
 
 def extract_answer(text):
@@ -251,7 +278,7 @@ def if_true(prompt):
 def generate_without_explored_paths(question, warning, args):
     warning['generate_without_explored_paths']=True
     prompt = cot_prompt + "\n\nQ: " + question + "\nA:"
-    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning)
+    response = run_llm(prompt, args.temperature_reasoning, args.max_length, args.opeani_api_keys, args.LLM_type, args.dataset, warning, args)
     return response
 
 
