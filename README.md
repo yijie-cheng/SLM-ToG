@@ -1,19 +1,10 @@
-# ToG
-The code for paper: ["Think-on-Graph: Deep and Responsible Reasoning of Large Language Model on Knowledge Graph"](https://arxiv.org/pdf/2307.07697.pdf).
+# SLM-ToG
+The official implementation of our ACL 2025 SRW paper: The Role of Exploration Modules in Small Language Models for Knowledge Graph Question Answering.
 
-The original repo for ToG is [Here](https://github.com/GasolSun36/ToG).
+This repository is built based on the amazing ICLR 2024 paper [Think-on-Graph: Deep and Responsible Reasoning of Large Language Model on Knowledge Graph"](https://github.com/GasolSun36/ToG.git). 
 
-## News!
-Our paper is accepted by ICLR 2024 🥳🥳🥳.
-
-
+![image](./assets/table2.png)
 ## Here is the illustration of ToG:
-
-![image](https://github.com/GasolSun36/ToG/blob/main/assets/demo.png)
-
-## The pipeline of ToG:
-
-![image](https://github.com/GasolSun36/ToG/blob/main/assets/methods.png)
 
 ## Project Structure
 - `requirements.txt`: Pip environment file.
@@ -48,32 +39,15 @@ See `ToG/` README.md
 Upon obtaining the result file, such as `ToG_cwq.jsonl`, you should using the `jsonl2json.py` script from the `tools` directory to convert the `ToG_cwq.jsonl` to `ToG_cwq.json`. Then, evaluate using the script in the `eval` folder (see `README.md` in `eval` folder).
 
 
-# How to cite
-If you interested or inspired by this work, you can cite us by:
+# Citation
+If you find our work helpful, please consider citing our paper.
 ```sh
-@misc{sun2023thinkongraph,
-      title={Think-on-Graph: Deep and Responsible Reasoning of Large Language Model with Knowledge Graph}, 
-      author={Jiashuo Sun and Chengjin Xu and Lumingyuan Tang and Saizhuo Wang and Chen Lin and Yeyun Gong and Heung-Yeung Shum and Jian Guo},
-      year={2023},
-      eprint={2307.07697},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@inproceedings{
+  cheng2025the,
+  title={The Role of Exploration Modules in Small Language Models for Knowledge Graph Question Answering},
+  author={Yi-Jie Cheng and Oscar Chew and Yun-Nung Chen},
+  booktitle={ACL 2025 Student Research Workshop},
+  year={2025},
+  url={https://openreview.net/forum?id=VnzIIE7KBz}
 }
 ```
-
-# Experiment:
-
-![image](https://github.com/GasolSun36/ToG/blob/main/assets/experiments.png)
-
-
-# Application:
-
-![image](https://github.com/GasolSun36/ToG/blob/main/assets/application.png)
-
-
-
-# Claims
-This project uses the Apache 2.0 protocol. The project assumes no legal responsibility for any of the model's output and will not be held liable for any damages that may result from the use of the resources and output.
-
-# FYI
-We are looking for self-motivated interns at IDEA (Shenzhen). If you are interested in the topics of LLMs and KGs, please send us your resume by email. Our email address is xuchengjin@idea.edu.cn
